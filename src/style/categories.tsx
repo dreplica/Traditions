@@ -3,9 +3,8 @@ import styled from 'styled-components';
 export const Category = styled.nav`
     display:flex;
     flex-direction:column;
-    max-width:35%;
+    width:300px;
     justify-content:start;
-    background:lightgrey;
     align-items:start;
     
     .head{

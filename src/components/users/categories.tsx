@@ -24,7 +24,7 @@ const Categories: React.FC<{}> =()=> {
                 <li><a href="/">Africana</a></li>
             </ul>
         </div>
-        <div className='head' >Filter</div>
+        {/* <div className='head' >Filter</div>
         <div className='cat-list'>
             <ul>
                 <li><label>price <input type='range' min='0' max='1000000' onChange={()=>'l'}/></label></li>
@@ -32,7 +32,7 @@ const Categories: React.FC<{}> =()=> {
                 <li><label>type <input type='text' onChange={()=>'l'}/></label></li>
                 <button>submit</button>
             </ul>
-        </div>
+        </div> */}
     </Category>
   );
 }
