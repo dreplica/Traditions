@@ -125,7 +125,6 @@ export const Searcher = styled.div`
 export const Front = styled.div`
     display:flex;
     height:auto;
-    background:yellow;
     width:100%;
     flex-direction:row;
 `

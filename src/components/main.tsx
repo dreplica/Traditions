@@ -14,7 +14,7 @@ export default function Maincomponent() {
     <> 
     <Provider store={store}>
       <Header/>
-      {/* <Homepage /> */}
+      <Homepage />
       <Frontpage />
       
         <Router>

@@ -70,7 +70,6 @@ export const Category = styled.nav`
 export const RightComponent = styled.div`
     display:flex;
     width:100%;
-    background:red;
     justify-content:flex-start;
     align-items:center;
     flex-direction:column;
