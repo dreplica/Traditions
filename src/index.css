@@ -1,0 +1,12 @@
+body {
+  margin: 0;
+  font-family: 'nunito regular';
+  background:rgb(24, 17, 17);
+  color:rgb(230, 208, 208);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+ 
