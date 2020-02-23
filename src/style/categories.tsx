@@ -10,6 +10,7 @@ export const Category = styled.nav`
     .head{
         font-size:20px;
         width:100%;
+        color:white;
         padding:10px 0px;
         text-align:center;
         position:relative;
@@ -27,6 +28,13 @@ export const Category = styled.nav`
         align-items:start;
         padding:10px 10px;
 
+    .dropdown{
+        transition:3s;
+        text-align:center;
+        margin-left:20px;
+        height:auto;
+
+    }
     .space{
         margin-top:30px;
     }
@@ -75,7 +83,7 @@ export const RightComponent = styled.div`
 
     @media(max-width:800px){
         width:100%;
-        background:pink;
+        // background:pink;
         margin:center;
     }
 ` 

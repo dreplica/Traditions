@@ -42,7 +42,8 @@ export const Nav = styled.nav`
                         padding:4px 6px;
                     }
                     &:hover{
-                        color:white;
+                        // color:white;
+                        color:purple;
                     }
                 }
             }

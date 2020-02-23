@@ -72,9 +72,9 @@ export const Card = styled.div`
             padding:0px 5px;
             color:white;
             background:black;
-            margin-top:20px;
+            // margin-top:20px;
             overflow:hidden;
-            transform:rotate(-40deg)
+            // transform:rotate(-40deg)
             }
         }
         img{

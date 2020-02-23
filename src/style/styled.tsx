@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-
 export const Headers = styled.header`
     width:80%;
     margin:auto;

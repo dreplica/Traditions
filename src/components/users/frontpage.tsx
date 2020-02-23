@@ -10,14 +10,23 @@ import styled from 'styled-components';
 const Frontpage:React.FC = () =>{
 
 
-const arr = Array.from({length:12},(x)=>x=1)
-const spread = arr.map((x,i)=><OneComponent key={i} image={""} desc={""} name={"Hover Agbada"} price={"#10,000"}/>)
+const arr = Array.from({length:4},(x)=>x=1)
+const spread = arr.map((x,i)=><OneComponent key={i} image={""} desc={""} name={"Hover Agbada"} price="&#8358;10,000"/>)
   return (
     <Front>
         <Categories />
         <RightComponent>
             <Search />
             <Slide/>
+              <h2>Top Sales</h2>
+            <Latest>
+              {spread}
+            </Latest>
+              <h2>New Sales</h2>
+            <Latest>
+              {spread}
+            </Latest>
+              <h2>Suggestion</h2>
             <Latest>
               {spread}
             </Latest>
@@ -34,7 +43,8 @@ export const Latest = styled.div`
   margin:auto;
   display:flex;
   flex-direction:row;
-  flex-wrap:wrap;
+  flex-wrap:nowrap;
+  overflow-x:scroll;
   justify-content:space-around;
   align-items:center;
 `
