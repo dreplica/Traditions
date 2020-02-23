@@ -1,5 +1,5 @@
 import React from 'react';
-import { Nav } from '../../style/navigation';
+import { Nav } from '../header/navigation';
 
 const Navigation =()=> {
   return (

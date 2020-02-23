@@ -8,15 +8,16 @@ import Header from './header/header';
 import Homepage from './users/homepage';
 import Categories from './users/categories';
 import Frontpage from './users/frontpage';
+import Modal from './users/labels/modal';
 
 export default function Maincomponent() {
   return (
     <> 
     <Provider store={store}>
+    <Modal />
       <Header/>
       <Homepage />
       <Frontpage />
-      
         <Router>
             {/* <Signup />  */}
             {/* <Login />  */}

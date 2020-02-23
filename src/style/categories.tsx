@@ -34,6 +34,18 @@ export const Category = styled.nav`
         margin-left:20px;
         height:auto;
 
+        li{
+            font-weight:bolder;
+            text-align:left;
+            width:100%;
+            
+            &:hover{
+                border-bottom:1px solid white;
+                color:white;
+                cursor:pointer;
+            }
+        }
+
     }
     .space{
         margin-top:30px;

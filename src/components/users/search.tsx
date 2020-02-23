@@ -1,5 +1,5 @@
 import React from 'react';
-import { Searcher } from '../../style/navigation';
+import { Searcher } from '../header/navigation';
 
 const Search:React.FC = () =>{
   return (

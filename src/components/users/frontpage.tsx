@@ -1,10 +1,10 @@
 import React from 'react';
-import { Front } from '../../style/navigation';
+import { Front } from '../header/navigation';
 import Categories from './categories';
 import Search from './search';
 import { RightComponent } from '../../style/categories';
 import Slide from './labels/slider';
-import OneComponent from './labels/topsales';
+import OneComponent from './labels/OneComponent';
 import styled from 'styled-components';
 
 const Frontpage:React.FC = () =>{
@@ -44,7 +44,8 @@ export const Latest = styled.div`
   display:flex;
   flex-direction:row;
   flex-wrap:nowrap;
-  overflow-x:scroll;
   justify-content:space-around;
   align-items:center;
+
+    
 `
