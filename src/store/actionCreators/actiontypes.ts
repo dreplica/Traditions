@@ -2,7 +2,8 @@ import { Dispatch } from "redux";
 
 export interface action {
     type:string;
-    payload?:string|{[key:string]:string}
+    payload?:string|{[key:string]:string},
+    modal?:string;
 }
 
 const isloading = ():action =>({
@@ -22,6 +23,14 @@ export const loadData = (payload:action['payload']) => (dispatch:Dispatch) =>{
     try {
         dispatch(isloading())
         dispatch(uploading(payload))
+    } catch (error) {
+        dispatch(isError())
+    } 
+}
+export const modalView = (arg:action['modal']) => (dispatch:Dispatch) =>{
+    try {
+        dispatch(isloading())
+        dispatch({type:'view',modal:arg})
     } catch (error) {
         dispatch(isError())
     } 

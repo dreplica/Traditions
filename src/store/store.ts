@@ -1,9 +1,9 @@
 
 import thunkMiddleware from 'redux-thunk'
 import {createLogger} from 'redux-logger'
-import {createStore,applyMiddleware, compose } from 'redux'
+import {createStore,applyMiddleware, compose,combineReducers } from 'redux'
 import authenticate from './reducers/authentication';
-// import * from './reducers/'
+import EffectReducers from './reducers/effects'
 
 
 declare global  {
@@ -11,7 +11,7 @@ declare global  {
         __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose
     }
 }
-// const AllReducers = combineReducers({ authenticateReducer, userReducer })
+const AllReducers = combineReducers({ authenticate, EffectReducers })
 const loggerMiddleware = createLogger();
 const enhancers = [];
 
@@ -35,6 +35,6 @@ const composeEnhancers:any = compose(
   ...enhancers 
 );
 
-const store = createStore(authenticate,composeEnhancers)
+const store = createStore(AllReducers,composeEnhancers) 
 
 export default store;

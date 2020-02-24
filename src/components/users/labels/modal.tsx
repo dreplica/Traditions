@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useState, MouseEvent } from 'react';
 import styled from 'styled-components';
 import two from '../../../img/five.jpg'
+import { connect } from 'react-redux';
+import { modalView } from '../../../store/actionCreators/actiontypes';
 
 
 const Modal:React.FC<{}> = () => {
+    const [remove, setremove] = useState('block')//let redux manage the state coming in for viewing
+    const close = (e:MouseEvent) =>{
+        e.preventDefault()
+        setremove('none')
+    }
   return (
       <>
-    <Modall>
+    <Modall style={{display:remove}}>
+        <span className='close' onClick={close}><strong>X</strong></span>
         <div className='main-modal'>
-            <span className='close'><strong>X</strong></span>
                 {/* <div className='nav' ><p>previous</p><p>next</p></div> */}
                 <div className='image'><img src={two} alt=''/></div>
                 <div className='description'>
@@ -41,6 +48,8 @@ const Modal:React.FC<{}> = () => {
   );
 }
 
+const mapStateToProps =
+connect(null,{view:modalView})(Modal)
 
 export default Modal;
 
@@ -48,20 +57,31 @@ export default Modal;
 export const Modall = styled.div`
   width:100%;
   height:100vh;
+  overflow-y:auto;
   position:fixed;
   z-index:10;
   background:rgba(0,0,0,0.6);
 
     .close{
-        position:relative;
+        position:absolute;
+        color:white;
+        font-size:30px;
+        transition:1s;
         top:10vh;
         left:80%;
+
+        &:hover{
+            cursor:pointer;
+            font-size:32px;
+            transform:rotate(180deg);
+            transform:scale(1.7);
+        }
     }
     .main-modal{
         width:70%;
         margin:auto;
         position:relative;
-        top:20vh;
+        top:16vh;
         height:auto;
         display:flex;
         flex-direction:row;
