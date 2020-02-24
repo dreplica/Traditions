@@ -1,19 +1,21 @@
 import React, { useState, MouseEvent } from 'react';
-import styled from 'styled-components';
 import two from '../../../img/five.jpg'
 import { connect } from 'react-redux';
 import { modalView } from '../../../store/actionCreators/actiontypes';
+import { Modal } from '../../../store/reducers/effects';
+import { Modall } from '../../../style/modalview';
 
 
-const Modal:React.FC<{}> = () => {
-    const [remove, setremove] = useState('block')//let redux manage the state coming in for viewing
+const Modalview:React.FC<{modal:string;view:(arg:string)=>void}> = ({modal,view}) => {
+    const [remove, setremove] = useState<string>(modal)//let redux manage the state coming in for viewing
     const close = (e:MouseEvent) =>{
         e.preventDefault()
-        setremove('none')
+        view('none')
+        console.log(modal)
     }
   return (
       <>
-    <Modall style={{display:remove}}>
+    <Modall style={{display:modal}}>
         <span className='close' onClick={close}><strong>X</strong></span>
         <div className='main-modal'>
                 {/* <div className='nav' ><p>previous</p><p>next</p></div> */}
@@ -37,8 +39,11 @@ const Modal:React.FC<{}> = () => {
                         <p>select size:</p>
                         <select>
                             <option value='135'>135</option>
+                            <option value='135'>105</option>
+                            <option value='135'>135</option>
                         </select>
                     </div>
+                    <div className='price-modal'><h3>&#8358;10,000</h3></div>
                     <button>Add to Cart</button>
                 </div> 
             <div className='size'><img src='/' alt=''/></div>
@@ -48,104 +53,7 @@ const Modal:React.FC<{}> = () => {
   );
 }
 
-const mapStateToProps =
-connect(null,{view:modalView})(Modal)
-
-export default Modal;
-
-
-export const Modall = styled.div`
-  width:100%;
-  height:100vh;
-  overflow-y:auto;
-  position:fixed;
-  z-index:10;
-  background:rgba(0,0,0,0.6);
-
-    .close{
-        position:absolute;
-        color:white;
-        font-size:30px;
-        transition:1s;
-        top:10vh;
-        left:80%;
-
-        &:hover{
-            cursor:pointer;
-            font-size:32px;
-            transform:rotate(180deg);
-            transform:scale(1.7);
-        }
-    }
-    .main-modal{
-        width:70%;
-        margin:auto;
-        position:relative;
-        top:16vh;
-        height:auto;
-        display:flex;
-        flex-direction:row;
-        justify-content:space-around;
-
-        .image{
-            width:35%;
-            height:40vh;
-            
-            img{
-                border-radius:20px;
-                width:100%;
-            }
-        }
-
-        .description{
-            width:50%;
-            margin-top:20px;
-            display:flex;
-            flex-direction:column;
-            color:white;
-            border-radius:0px 0px 20px 20px;
-            background:rgba(0,0,0,0.7);
-            font-weight:bold;
-            
-        h2{
-                padding:0px 10px;
-                margin:0px auto;
-            }
-        .desc{
-            height:30vh;
-            padding:10px;
-            overflow-y:auto;
-        }
-
-        .size{
-            display:flex;
-            padding:10px;
-            width:150px;
-            justify-content:space-between;
-            align-items:center;
-        }
-            select{
-                width:60px;
-                background:darkgrey;
-                color:black;
-                border:0px;
-                height:30px;
-
-            }
-            button{
-                border-radius:inherit;
-                width:100%;
-                height:40px;
-                border:0px;
-                color:lightgrey;
-                background:linear-gradient(to right, orange,purple);
-    
-                &:hover{
-                    color:white;
-                }
-            }
-
-        }
-
-    }
-`;
+const mapStateToProps = ({EffectReducers}:{EffectReducers:Modal})=>({
+    modal:EffectReducers.modal
+})
+export default connect(mapStateToProps,{view:modalView})(Modalview)

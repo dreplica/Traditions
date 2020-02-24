@@ -7,6 +7,12 @@ export const Headers = styled.header`
     font-size:40px;
     font-weight:bolder;
     padding:30px 0px 3px 30px;
+    
+    div{
+        display:flex;
+        flex-direction:row;
+        justify-content:space-between;
+        }
 
         & span{
             background:linear-gradient(to right, orange,purple);
@@ -16,7 +22,17 @@ export const Headers = styled.header`
             & sup{
                 font-size:17px;
             }
+            
         }
+        .menu-but{
+            display:none;
+        }
+    
+    @media(max-width:816px){
+        .menu-but{
+            display:block;
+        }
+    }
 `
 
 

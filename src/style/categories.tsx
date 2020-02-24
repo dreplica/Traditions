@@ -95,7 +95,5 @@ export const RightComponent = styled.div`
 
     @media(max-width:800px){
         width:100%;
-        // background:pink;
-        margin:center;
     }
 ` 

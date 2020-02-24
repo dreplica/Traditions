@@ -35,3 +35,11 @@ export const modalView = (arg:action['modal']) => (dispatch:Dispatch) =>{
         dispatch(isError())
     } 
 }
+export const menuView = (arg:action['modal']) => (dispatch:Dispatch) =>{
+    try {
+        dispatch(isloading())
+        dispatch({type:'menu',modal:arg})
+    } catch (error) {
+        dispatch(isError())
+    } 
+}

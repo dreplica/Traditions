@@ -1,28 +1,32 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import logo from '../../../img/five.jpg'
+import { connect } from 'react-redux';
+import { Modal } from '../../../store/reducers/effects';
+import { modalView } from '../../../store/actionCreators/actiontypes';
 
 interface Props{
     image:string;
     name:string;
     price:string;
     desc:string;
+    modal:string;
+    viewing:(args:string)=>void
 }
-const OneComponent:React.FC<Props> = ({image,name,price,desc}) =>{
+const OneComponent:React.FC<Props> = ({image,name,price,desc,modal,viewing}) =>{
     const [view, setView] = useState('none')
+    const [modalview, setmodalview] = useState(modal)
     const handleView = () =>{
       setView('block')
-      console.log(view)
     }
     const hideView = ()=>{
         setView('none')
-        console.log(view)
     }
   return (
     <Card>
         <div className='img' onMouseOver={handleView} onMouseOut={hideView}>
             <div className='view-details' style={{display:view}}>
-                <button><strong>View</strong></button>
+                <button onClick={(e)=>viewing('block')}><strong>View</strong></button> 
             </div>
             <div className='price'>{price}</div>
             <img src={logo} alt='name'/>
@@ -35,7 +39,12 @@ const OneComponent:React.FC<Props> = ({image,name,price,desc}) =>{
   );
 }
 
-export default OneComponent
+const mapStateToProps = (state:Modal)=>({
+    modal:state.modal
+})
+
+export default connect(mapStateToProps,{viewing:modalView})(OneComponent)
+// export default OneComponent
 
 export const Card = styled.div`
   width:250px;

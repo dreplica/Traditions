@@ -27,13 +27,16 @@ const Slide:React.FC<{}> = () =>{
 export default Slide;
 
 export const Slider = styled.div`
-  width:80%;
-  height:60vh;
+  min-width:80%;
+  max-width:80%;
+  min-height:30vh;
+  max-height:60vh;
   margin:25px auto;
 
     img{
       width:100%;
-      height:60vh;
+      min-height:30vh;
+      max-height:60vh;
     }
 `
 

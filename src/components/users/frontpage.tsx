@@ -1,11 +1,13 @@
 import React from 'react';
-import { Front } from '../header/navigation';
-import Categories from './categories';
+import { Front } from '../../style/navigation';
+import Categories from './labels/categories';
 import Search from './search';
 import { RightComponent } from '../../style/categories';
 import Slide from './labels/slider';
 import OneComponent from './labels/OneComponent';
 import styled from 'styled-components';
+import { Switch, Route } from 'react-router-dom';
+import Sales from './allCategories';
 
 const Frontpage:React.FC = () =>{
 
@@ -17,19 +19,26 @@ const spread = arr.map((x,i)=><OneComponent key={i} image={""} desc={""} name={"
         <Categories />
         <RightComponent>
             <Search />
-            <Slide/>
-              <h2>Top Sales</h2>
-            <Latest>
-              {spread}
-            </Latest>
-              <h2>New Sales</h2>
-            <Latest>
-              {spread}
-            </Latest>
-              <h2>Suggestion</h2>
-            <Latest>
-              {spread}
-            </Latest>
+            <Switch>
+              <Route exact path='/s'>
+                <Slide/>
+                  <h2>Top Sales</h2>
+                <Latest>
+                  {spread}
+                </Latest>
+                  <h2>New Sales</h2>
+                <Latest>
+                  {spread}
+                </Latest>
+                  <h2>Suggestion</h2>
+                <Latest>
+                  {spread}
+                </Latest>
+              </Route>
+              <Route path='/home/topsales'>
+                <Sales />
+              </Route>
+            </Switch>
         </RightComponent>
     </Front>
   );
@@ -43,9 +52,8 @@ export const Latest = styled.div`
   margin:auto;
   display:flex;
   flex-direction:row;
-  flex-wrap:nowrap;
+  flex-wrap:wrap;
   justify-content:space-around;
   align-items:center;
 
-    
 `
