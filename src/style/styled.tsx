@@ -92,7 +92,7 @@ export const Form = styled.form`
         width:100%;
         padding-left:15px;
         height:50px;
-        background:transparent;
+        background:white;
         margin:10px 0px;
         border:0px;
         transition:width 1s;

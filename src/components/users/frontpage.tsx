@@ -5,13 +5,11 @@ import Search from './search';
 import { RightComponent } from '../../style/categories';
 import Slide from './labels/slider';
 import OneComponent from './labels/OneComponent';
-import styled from 'styled-components';
-import { Switch, Route } from 'react-router-dom';
+import { Latest } from '../../style/sales';
+import { Switch, Route, useRouteMatch, BrowserRouter as Router } from 'react-router-dom';
 import Sales from './allCategories';
 
 const Frontpage:React.FC = () =>{
-
-
 const arr = Array.from({length:4},(x)=>x=1)
 const spread = arr.map((x,i)=><OneComponent key={i} image={""} desc={""} name={"Hover Agbada"} price="&#8358;10,000"/>)
   return (
@@ -20,7 +18,7 @@ const spread = arr.map((x,i)=><OneComponent key={i} image={""} desc={""} name={"
         <RightComponent>
             <Search />
             <Switch>
-              <Route exact path='/s'>
+              <Route path='/home/gg'>
                 <Slide/>
                   <h2>Top Sales</h2>
                 <Latest>
@@ -35,10 +33,13 @@ const spread = arr.map((x,i)=><OneComponent key={i} image={""} desc={""} name={"
                   {spread}
                 </Latest>
               </Route>
-              <Route path='/home/topsales'>
+              <Route  path='/home/topsales'>
                 <Sales />
               </Route>
-            </Switch>
+              <Route  path='/home/newsales'>
+                <Sales />
+              </Route>
+              </Switch>
         </RightComponent>
     </Front>
   );
@@ -47,13 +48,3 @@ const spread = arr.map((x,i)=><OneComponent key={i} image={""} desc={""} name={"
 
 export default Frontpage;
 
-export const Latest = styled.div`
-  width:90%;
-  margin:auto;
-  display:flex;
-  flex-direction:row;
-  flex-wrap:wrap;
-  justify-content:space-around;
-  align-items:center;
-
-`

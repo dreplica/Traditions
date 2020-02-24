@@ -18,7 +18,6 @@ export const Modall = styled.div`
 
         &:hover{
             cursor:pointer;
-            font-size:32px;
         }
     }
     .main-modal{

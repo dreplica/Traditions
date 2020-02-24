@@ -19,7 +19,7 @@ export default function Maincomponent() {
       <Homepage />
         <Router>
           <Switch>
-            <Route exact path='/'>
+            <Route path='/home'>
               <Frontpage />
             </Route>
             <Route path='/signup'>
