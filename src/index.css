@@ -3,7 +3,22 @@ body {
   font-family: 'nunito regular';
   background:rgb(24, 17, 17);
   color:rgb(230, 208, 208);
+  
 }
+
+*::-webkit-scrollbar {
+  width: 5px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+*::-webkit-scrollbar-thumb {
+  background: rgb(226, 122, 52);
+}
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
