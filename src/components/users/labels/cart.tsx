@@ -4,7 +4,7 @@ import two from '../../../img/five.jpg'
 
 interface Single{
     name:string;
-    price:number;
+    price:string;
     size:number;
     img:string;
 }
@@ -13,17 +13,20 @@ const Carts=() =>{
     //load carts from state to populate
     const data = Array.from({length:60},()=>1)
     const cart = data.map((key,index)=><SingleCart name={`Agbada ido`} 
-    price={parseFloat(`10,000`)} 
+    price={`10.000`} 
     img={"sam"} 
     size={60} 
     key={index}/>)
   return (
     <Cart>
-        <div className='head-cart'><h3>Cart {cart.length} items</h3>  <button>Buy Now</button></div>
+        <div className='head-cart'>
+            <h3>Cart {cart.length} items</h3> 
+            <button><strong>Buy Now</strong></button>
+        </div>
         <div className='main-cart'>
             <div className='cart'>{cart}</div>
             <div className='total'>
-            <p>total:{60000}</p>
+            <h2><strong>total: &#8358;{60000}</strong></h2> 
             </div>
         </div>
     </Cart>
@@ -33,10 +36,11 @@ const Carts=() =>{
 export default Carts;
 const SingleCart:React.FC<Single> = ({name,price,img,size})=>{
     return <ContainCart>
+        <div className='close'><h1><strong>X</strong></h1></div>
         <div className='img-cart'><img src={two} alt=''/></div>
         <div className='desc-cart'>
-            <p>name:{name}</p>
-            <p>price:{price}</p>
+            <p>{name}</p>
+            <p>&#8358;{price}</p>
             <p>size:{size}</p>
         </div>
     </ContainCart>
@@ -45,23 +49,47 @@ const SingleCart:React.FC<Single> = ({name,price,img,size})=>{
 const ContainCart = styled.div`
     background:red;
     width:90%;
+    background:transparent;
+    font-weight:bolder;
     display:flex;
     flex-direction:row;
     justify-content:flex-start;
     align-items:center;
     margin:auto;
-    height:200px;
-    border:1px solid black;
+    height:250px;
+    border-bottom:1px solid white;
 
-    .img-cart{
-        width:150px;
-        height:200px;
+        .close{
+            position:relative;
+            font-weight:bolder;
+            top:-13vh;
+            left:90%;
 
-        img{
-            max-width:100%;
-            height:100%;
+            :hover{
+                transform:scale(1.2);
+                cursor:pointer;
+            }
         }
-    }
+
+        p{
+        font-size:20px;
+        }
+        .img-cart{
+            width:200px;
+            height:200px;
+            overflow:hidden;
+
+            img{
+                max-width:100%;
+                height:100%;
+                transition:3s;
+
+                :hover{
+                    transform:scale(1.3);
+                }
+
+            }
+        }
 
 
 
@@ -93,5 +121,17 @@ const Cart = styled.div`
         justify-content:space-between;
         align-items:center;
 
+        button{
+            width:30%;
+            padding:10px;
+            border:0px;
+            background:orange;
+            color:lightgrey;
+            border-radius:20px;
+
+            :hover{
+                color:black;
+            }
+        }
     }
 `

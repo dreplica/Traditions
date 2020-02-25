@@ -39,7 +39,7 @@ const Frontpage:React.FC = () =>{
 export default Frontpage;
 
 const Initial = ()=>{
-  const arr = Array.from({length:4},(x)=>x=1)
+  const arr = Array.from({length:3},(x)=>x=1)
   const spread = arr.map((x,i)=><OneComponent key={i} image={""} desc={""} name={"Hover Agbada"} price="&#8358;10,000"/>)
 
   return <>

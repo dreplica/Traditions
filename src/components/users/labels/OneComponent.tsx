@@ -49,19 +49,20 @@ export default connect(mapStateToProps,{viewing:modalView})(OneComponent)
 export const Card = styled.div`
   width:250px;
   margin:10px auto;
-  height:300px;
+  height:350px;
   border-radius:0px 0px 20px 20px;
 
     .img{
         background:transparent;
         margin:0px;
         width:100%;
-        height:200px;
+        height:250px;
+
         .view-details{
             position:absolute;
             width:250px;
             z-index:2;
-            height:200px;
+            height:250px;
             background:rgba(0,0,0,0.6);
     
             button{
@@ -89,6 +90,7 @@ export const Card = styled.div`
         img{
             width:100%;
             height:100%;
+            
         }
     }
     .details{

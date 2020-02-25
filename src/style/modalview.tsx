@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Modall = styled.div`
+  overflow:hidden;
   width:100%;
   height:100vh;
   overflow-y:auto;
@@ -22,7 +23,7 @@ export const Modall = styled.div`
     }
     .main-modal{
         width:80%;
-        margin:auto;
+        margin:20px auto;
         position:relative;
         top:15vh;
         height:auto;
@@ -35,8 +36,13 @@ export const Modall = styled.div`
             height:40vh;
             
             img{
+                transition: transform 3s;
                 border-radius:20px;
                 width:100%;
+
+                :hover{
+                    transform:scale(1.1);
+                }
             }
         }
 
