@@ -10,7 +10,6 @@ const Slide:React.FC<{}> = () =>{
     useEffect(() => {
         const pict = setInterval(()=>{
             const random:number = Math.floor(Math.random()*3);
-            console.log(random)
             setback(colors[random])
         },3000)
       return () => {

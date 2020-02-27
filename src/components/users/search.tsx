@@ -1,11 +1,12 @@
 import React from 'react';
 import { Searcher } from '../../style/navigation';
+import { FiSearch } from 'react-icons/fi';
 
 const Search:React.FC = () =>{
   return (
     <Searcher>
         <input type='search' placeholder='search items' />
-        <button>Search</button>
+        <button> <FiSearch/> </button> 
     </Searcher>
   );
 }

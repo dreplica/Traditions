@@ -24,13 +24,20 @@ export const Nav = styled.nav`
                 color:grey;
                 margin:auto
                 text-decoration:none;
-                padding:15px;
+                padding:12px;
                 
                 & a{
+                    display:flex;
+                    justify-content:space-between;
+                    align-items:center;
                     font-size:20px;
                     text-decoration:none;
                     font-weight:bolder;
                     color:inherit;
+                    
+                    span{
+                        margin-left:5px;
+                    }
 
                     sup{
                         margin:4px;
@@ -83,7 +90,7 @@ export const Nav = styled.nav`
 `
 
 export const Searcher = styled.div`
-    width:50%;
+    width:40%;
     display:flex;
     flex-direction:row;
     background:transparent;
@@ -100,7 +107,7 @@ export const Searcher = styled.div`
         border:0px;
         color:white;
         border-radius:15px 0px 0px 15px;
-        border-bottom:1px grey solid;
+        border-bottom:0px grey solid;
 
         &:focus{
         background:white;
@@ -109,13 +116,12 @@ export const Searcher = styled.div`
 
     }
     button{
-            width:30%;
-            height:39px;
-            background:lightgrey;
+            width:50px;
+            height:39.9px;
+            background:white;
             border:0px;
             border-radius:0px 15px 15px 0px;
             color:darkgrey;
-            font-size:16px;
 
             &:hover{   
                 color:black;

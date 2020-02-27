@@ -27,6 +27,14 @@ export const loadData = (payload:action['payload']) => (dispatch:Dispatch) =>{
         dispatch(isError())
     } 
 }
+export const checkLocal =()=> (dispatch:Dispatch) =>{
+    try {
+        dispatch(isloading())
+        dispatch({type:'checkLocal'})
+    } catch (error) {
+        dispatch(isError())
+    } 
+}
 export const modalView = (arg:action['modal']) => (dispatch:Dispatch) =>{
     try {
         dispatch(isloading())

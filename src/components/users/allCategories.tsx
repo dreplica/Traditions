@@ -3,6 +3,10 @@ import OneComponent from './labels/OneComponent';
 import { Latest,Sort } from '../../style/sales';
 
 const Sales: React.FC<{}> = () => {
+    //get the path, if men,women,mfoot etc
+    //use it to query for that particular item
+    //create a route on backend that collects the params
+    //send back the data and populate them here
     const [sortActive, setSortActive] = useState<{one:string;two:string;}>({one:'active',two:'none'})
     const sort = (e:MouseEvent)=>{
       e.preventDefault();

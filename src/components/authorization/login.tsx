@@ -2,6 +2,7 @@ import React, { FormEvent, ChangeEvent, useState } from 'react';
 import { connect } from 'react-redux';
 import { loadData } from '../../store/actionCreators/actiontypes';
 import { Form, Logintro } from '../../style/styled';
+import { useHistory } from 'react-router-dom';
 
 
 export type dataType = {[key:string]:number|string}
@@ -22,10 +23,11 @@ const initialForm:Form = {
 
 const Login:React.FC<Props> = ({setToken}) =>{
     const [form, setForm] = useState<Form>(initialForm)
-    const [error, seterror] = useState({error:"",check:false})
+    const history = useHistory()
+    const [error, setError] = useState<string>("")
     const handleChange = (e:ChangeEvent<HTMLInputElement>) =>{
         e.preventDefault();
-        seterror({error:"",check:false})
+        setError("")
         setForm({...form,[e.target?.id]:e.target?.value}) 
     }
     const handleSubmit = (e:FormEvent) =>{
@@ -39,8 +41,9 @@ const Login:React.FC<Props> = ({setToken}) =>{
     }
         ).then((res)=>res.json())
         .then((token)=>{
-            token?.token && setToken(token?.token)
-            token?.token ?? seterror({error:token,check:true})
+            console.log(token); 
+            (token?.token)?setToken(token):setError(token.error);
+            (token?.token && history.push('/home'))
         })
         .catch(err=>console.log(err.error))
     }
@@ -57,12 +60,12 @@ const Login:React.FC<Props> = ({setToken}) =>{
             </div>
         </Logintro>   
         <Form>
-            <p>{error.check && error.error}</p>
+            <span>{error}</span>
         <label>  
-        <input placeholder='Email' type='email' id="email"  value={form.email} onChange={handleChange} />
+        <input placeholder='Email' type='email' id="email"  value={form.email} onChange={handleChange} required/>
         </label>
         <label>  
-        <input placeholder='Password' type='password' id="password"  value={form.password} onChange={handleChange} />
+        <input placeholder='Password' type='password' id="password"  value={form.password} onChange={handleChange} required/>
         </label>
         <button type="submit" onClick={handleSubmit}>Login</button>
         </Form>

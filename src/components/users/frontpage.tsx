@@ -6,9 +6,10 @@ import { RightComponent } from '../../style/categories';
 import Slide from './labels/slider';
 import OneComponent from './labels/OneComponent';
 import { Latest } from '../../style/sales';
-import { Switch, Route, useRouteMatch, BrowserRouter as Router } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import Sales from './allCategories';
 import Carts from './labels/cart';
+import SaleRoute from './sales';
 
 const Frontpage:React.FC = () =>{
   return (
@@ -17,19 +18,22 @@ const Frontpage:React.FC = () =>{
         <RightComponent>
             <Search />
             <Switch>
-              <Route exact path='/home/'>
+              <Route exact path='/home'>
                 <Initial />
               </Route>
-              <Route  path='/home/topsales'>
+              <Route path='/home/topsales'>
                 <Sales />
               </Route>
-              <Route  path='/home/newsales'>
+              <Route path='/home/newsales'>
                 <Sales />
               </Route> 
-              <Route  path='/home/cart'>
+              <Route path='/home/cart'>
                 <Carts/>
               </Route> 
-              </Switch>
+              <Route path='/home/sale'>
+                <SaleRoute/>
+              </Route> 
+              </Switch> 
         </RightComponent>
     </Front>
   );

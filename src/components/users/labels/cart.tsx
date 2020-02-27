@@ -1,4 +1,4 @@
-import React from 'react'; 
+import React, { useState,MouseEvent } from 'react'; 
 import styled from 'styled-components';
 import two from '../../../img/five.jpg'
 
@@ -11,7 +11,7 @@ interface Single{
 const Carts=() =>{
     //load from local storage to state
     //load carts from state to populate
-    const data = Array.from({length:60},()=>1)
+    const data = Array.from({length:5},()=>1)
     const cart = data.map((key,index)=><SingleCart name={`Agbada ido`} 
     price={`10.000`} 
     img={"sam"} 
@@ -35,8 +35,14 @@ const Carts=() =>{
 
 export default Carts;
 const SingleCart:React.FC<Single> = ({name,price,img,size})=>{
-    return <ContainCart>
-        <div className='close'><h1><strong>X</strong></h1></div>
+    const [view, setview] = useState<string>('flex') 
+    const handleClose = (e:MouseEvent) =>{
+        e.preventDefault();
+        setview('none')
+ 
+    }
+    return <ContainCart style={{display:view}}>
+        <div className='close' onClick={handleClose}><h1><strong>X</strong></h1></div>
         <div className='img-cart'><img src={two} alt=''/></div>
         <div className='desc-cart'>
             <p>{name}</p>
@@ -52,6 +58,7 @@ const ContainCart = styled.div`
     background:transparent;
     font-weight:bolder;
     display:flex;
+    transition:height 3s;
     flex-direction:row;
     justify-content:flex-start;
     align-items:center;
@@ -62,7 +69,7 @@ const ContainCart = styled.div`
         .close{
             position:relative;
             font-weight:bolder;
-            top:-13vh;
+            top:-10vh;
             left:90%;
 
             :hover{

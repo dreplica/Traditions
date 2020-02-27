@@ -1,14 +1,12 @@
 import React from 'react';
-import {BrowserRouter, Route} from 'react-router-dom'
+import store from './store/store';
+import {Provider} from 'react-redux'
 import Maincomponent from './components/main';
 const App = () => {
-  return (
-    <BrowserRouter>
-      <Route path='/'>
-        <Maincomponent />
-      </Route>
-    </BrowserRouter>
-  );
+  return <Provider store={store}>
+          <Maincomponent />  
+        </Provider>
+
 }
 
 export default App;

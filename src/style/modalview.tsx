@@ -6,6 +6,7 @@ export const Modall = styled.div`
   height:100vh;
   overflow-y:auto;
   position:fixed;
+  top: 0px;
   z-index:10;
   background:rgba(0,0,0,0.6);
 

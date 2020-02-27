@@ -2,6 +2,7 @@ import React, { FormEvent, ChangeEvent, useState } from 'react';
 import { connect } from 'react-redux';
 import { loadData } from '../../store/actionCreators/actiontypes';
 import { Form,Logintro } from '../../style/styled';
+import { useHistory } from 'react-router-dom';
 
 
 export type dataType = {[key:string]:number|string}
@@ -16,6 +17,7 @@ interface Form{
     username:string;
     password:string;
     email:string;
+    admin:boolean;
     phone:string;
 }
 
@@ -25,13 +27,17 @@ const initialForm:Form = {
     username:"",
     password:"",
     email:"",
+    admin:false,
     phone:"",
 }
 
 const Signup:React.FC<Props> = ({setToken}) =>{
     const [form, setForm] = useState<Form>(initialForm)
+    const [error, setError] = useState<string>("")
+    const history = useHistory()
     const handleChange = (e:ChangeEvent<HTMLInputElement>) =>{
         e.preventDefault();
+        setError("")
         setForm({...form,[e.target?.id]:e.target?.value})
     }
     const handleSubmit = (e:FormEvent) =>{
@@ -45,8 +51,11 @@ const Signup:React.FC<Props> = ({setToken}) =>{
         body:JSON.stringify(form)
     }
         ).then((res)=>res.json())
-        .then((token)=>setToken(token?.token))
-        .catch(err=>console.log(err))
+        .then((token)=>{
+            console.log(token);  
+            (token?.token)?setToken(token):setError(token.error);
+            (token?.token && history.push('/home'))
+        }).catch(err=>console.log(err))
     }
 
   return (
@@ -61,7 +70,8 @@ const Signup:React.FC<Props> = ({setToken}) =>{
                 already have an account ? <a href="/" className="forget">Login</a>
         </div>
     </Logintro>
-    <Form>
+    <Form> 
+        <span>{error}</span>
         <label> 
         <input placeholder="first name" type='text'  id="firstname" value={form.firstname} onChange={handleChange} />
         </label>
@@ -73,6 +83,9 @@ const Signup:React.FC<Props> = ({setToken}) =>{
         </label>
         <label> 
         <input placeholder="email"type='email' id="email"  value={form.email} onChange={handleChange} />
+        </label>
+        <label className='checkbox'> Sell Cloths
+        <input placeholder="" type='checkbox' id="admin" onChange={(e)=>setForm({...form,admin:true})} /> 
         </label>
         <label> 
         <input placeholder="phone" type='phone' id="phone"  value={form.phone} onChange={handleChange} />

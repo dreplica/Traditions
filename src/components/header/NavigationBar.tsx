@@ -3,9 +3,13 @@ import { Nav } from '../../style/navigation';
 import { connect } from 'react-redux';
 import { menuView } from '../../store/actionCreators/actiontypes';
 import { Modal } from '../../store/reducers/effects';
+import { Link } from 'react-router-dom';
+import { FiShoppingCart } from 'react-icons/fi';
+import { FaStoreAlt, FaRegEnvelope, FaSignOutAlt } from 'react-icons/fa'; 
 
 const Navigation:React.FC<{menu:string,view:(args:string)=>void}> = ({menu,view})=>{
   // const [viewing, setView] = useState(menu);
+  const auth = true;
   useEffect(() => {
     window.onresize = (e:Event)=>{
       e.preventDefault(); 
@@ -16,16 +20,26 @@ const Navigation:React.FC<{menu:string,view:(args:string)=>void}> = ({menu,view}
   }, [menu,view])
   return (
     <>
-    <Nav style={{display:menu}}> 
+    {
+      !auth && <Nav>
         <ul>
-            <li><a href='/'>Home</a></li>
-            <li><a href='/'>Categories</a></li>
-            <li><a href='/'>Top Sales</a></li>
-            <li><a href='/'>New Sales</a></li>
-            <li><a href='/'>Cart<sup>10</sup></a></li>
-            <li><a href='/'>Contact</a></li>
+            <li><Link to='/home'><FaStoreAlt /> <span>Home</span></Link></li>
+            <li><Link to='/signin'><span>Login</span></Link></li>
+            <li><Link to='/signup'>Register</Link></li>
         </ul>
-    </Nav>
+      </Nav>
+    }
+    {auth && <Nav style={{display:menu}}> 
+        <ul>
+            <li><Link to='/home'><FaStoreAlt /> <span>Home</span></Link></li>
+            {/* <li style={{display:menu}}><Link to='/'><span>Categories</span></Link></li> */}
+            <li><Link to='/home/topsales'>Top Sales</Link></li> 
+            <li><Link to='/home/newsales'>New Sales</Link></li>  
+            <li><Link to='/home/cart'><FiShoppingCart/><span> Cart<sup>10</sup></span></Link></li>
+            <li><Link to='/'><FaRegEnvelope/><span>Contact</span></Link></li>
+            <li><Link to='/'><FaSignOutAlt/><span>Logout</span></Link></li> 
+        </ul>
+    </Nav>}  
     </>
   );
 }
