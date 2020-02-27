@@ -25,13 +25,7 @@ const Modalview:React.FC<{modal:string;view:(arg:string)=>void}> = ({modal,view}
                     <p className="desc">Lorem ipsum, dolor sit amet consectetur adipisicing el
                         Modi et saepe aspernatur voluptatem animi aliquid est 
                         dolorem illo incidunt cumque, voluptatibus explicabo 
-                        voluptatum dolore eligendi, amet at. Exercitationem vel 
-                        velit illo corrupti aliquid repellendus minus dicta rem 
-                        quia delectus omnis id possimus laudantium, laboriosam deleniti 
-                        pariatur. Eum, reiciendis recusandae doloribus repellat atque 
-                        amet odit iste odio tempore. Et sit culpa adipisci. Qui voluptatum 
-                        ipsa harum dicta voluptates quod aliquid minima architecto animi modi 
-                        saepe molestiae porro at expedita magni, adipisci ipsum omnis, cupidit
+                        voluptatum dolore eligendi, amet at. Exercitationem cupidit
                         ate tempora. Laborum enim neque quae cumque, voluptas quisquam nostrum 
                         dolor magni recusandae voluptatem qui fugiat consectetur perferendis?</p>
                     

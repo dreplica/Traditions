@@ -38,17 +38,17 @@ const Admin: React.FC<{auth:any}> = ({auth}) => {
     const SubmitItem = (e:FormEvent)=>{
         e.preventDefault();
         console.log(auth.token) 
-        const Imagedata = new FormData(); 
-        const name = (form.name + "" + (new Date().toISOString())+".jpg")
+        const data = new FormData(); 
+        const name = (form.name + Date.now()+".jpg")
         setForm({...form,image:name})
-        const img = image.current?.files?.item(0)
+        const img = image.current?.files?.item(0) as Blob
         console.log(img)
-        // Imagedata.append('file',img as Blob); 
-        Imagedata.set('file',img as Blob,name)
-        console.log(Imagedata.get('file'))
-        axios.post('http://localhost:3000/upload',ImageData,{
+        // data.append('file',img as File); 
+        data.set('file',img as File,name)
+        console.log(data)
+        axios.post('http://localhost:3000/upload',data,{
 
-        })  
+        })
         // .then(_=>{
         //     axios.post('http://localhost:3000/items',form,{
         //         headers:{
@@ -62,7 +62,6 @@ const Admin: React.FC<{auth:any}> = ({auth}) => {
 
   return (
     <Form style={{top:"5vh"}} > 
-        {/* <img src='http://localhost:3000/public/images/' alt=''/> */}
         <h2 style={{textAlign:"center"}}>Hello Admin, Please Fill in the Form to upload an Item</h2>
         <label> Item Name
             <input type='text' id='name' placeholder='item name' value={form.name} onChange={handleChange}/>

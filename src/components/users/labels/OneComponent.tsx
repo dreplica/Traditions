@@ -4,7 +4,7 @@ import logo from '../../../img/five.jpg'
 import { connect } from 'react-redux';
 import { Modal } from '../../../store/reducers/effects';
 import { modalView } from '../../../store/actionCreators/actiontypes';
-
+import axios from 'axios' 
 interface Props{
     image:string;
     name:string;
@@ -22,6 +22,8 @@ const OneComponent:React.FC<Props> = ({image,name,price,desc,modal,viewing}) =>{
     const hideView = ()=>{
         setView('none')
     }
+    axios.get('http://localhost:3000/items')
+    .then(res=>getItems(res.data))
   return (
     <Card>
         <div className='img' onMouseOver={handleView} onMouseOut={hideView}>
@@ -29,7 +31,7 @@ const OneComponent:React.FC<Props> = ({image,name,price,desc,modal,viewing}) =>{
                 <button onClick={(e)=>viewing('block')}><strong>View</strong></button> 
             </div>
             <div className='price'>{price}</div>
-            <img src={logo} alt='name'/>
+            <img src='http://localhost:3000/images/loo.jpg' alt='name'/>
         </div>
         <div className='details'>
          <p><strong>{name}</strong></p>

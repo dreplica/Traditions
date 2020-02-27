@@ -46,14 +46,8 @@ const authenticate = (state = initialState,action:action):stateData =>{
             }
         case 'profile':
             return {
-                ...state,
+                ...state, 
                 data:{...state.data,user:action.payload} as dataType,
-            }
-        case 'cart':
-            const cart = JSON.parse(localStorage['cart']) //.push() //,action.payload]
-            return{
-                ...state,
-                data:{...state.data,cart},
             }
         case 'error':
             return{

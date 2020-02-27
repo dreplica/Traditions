@@ -51,3 +51,11 @@ export const menuView = (arg:action['modal']) => (dispatch:Dispatch) =>{
         dispatch(isError())
     } 
 }
+export const getItem = (payload:action['payload']) => (dispatch:Dispatch) =>{
+    try {
+        dispatch(isloading())
+        dispatch({type:'getItems',payload})
+    } catch (error) {
+        dispatch(isError())
+    } 
+}
