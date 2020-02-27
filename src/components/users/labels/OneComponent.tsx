@@ -3,17 +3,19 @@ import styled from 'styled-components';
 import logo from '../../../img/five.jpg'
 import { connect } from 'react-redux';
 import { Modal } from '../../../store/reducers/effects';
-import { modalView } from '../../../store/actionCreators/actiontypes';
+import { modalView, getPreview } from '../../../store/actionCreators/actiontypes';
 import axios from 'axios' 
 interface Props{
     image:string;
     name:string;
     price:string;
     desc:string;
+    id:string;
     modal:string;
+    current:(args:string)=>void
     viewing:(args:string)=>void
 }
-const OneComponent:React.FC<Props> = ({image,name,price,desc,modal,viewing}) =>{
+const OneComponent:React.FC<Props> = ({image,name,price,desc,modal,viewing,id,current}) =>{
     const [view, setView] = useState('none')
     const [modalview, setmodalview] = useState(modal)
     const handleView = () =>{
@@ -22,13 +24,11 @@ const OneComponent:React.FC<Props> = ({image,name,price,desc,modal,viewing}) =>{
     const hideView = ()=>{
         setView('none')
     }
-    // axios.get('http://localhost:3000/items')
-    // .then(res=>getItems(res.data))
   return (
     <Card>
         <div className='img' onMouseOver={handleView} onMouseOut={hideView}>
             <div className='view-details' style={{display:view}}>
-                <button onClick={(e)=>viewing('block')}><strong>View</strong></button> 
+                <button onClick={(e)=>{viewing('block');current(id)}}><strong>View</strong></button> 
             </div>
             <div className='price'>&#8358;{price}</div>
             <img src={`http://localhost:3000/images/${image}`} alt='name'/>
@@ -45,7 +45,7 @@ const mapStateToProps = (state:Modal)=>({
     modal:state.modal
 })
 
-export default connect(mapStateToProps,{viewing:modalView})(OneComponent)
+export default connect(mapStateToProps,{viewing:modalView,current:getPreview})(OneComponent)
 // export default OneComponent
 
 export const Card = styled.div`

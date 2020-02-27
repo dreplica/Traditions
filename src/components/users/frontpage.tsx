@@ -1,7 +1,8 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { Front } from '../../style/navigation';
 import Categories from './labels/categories';
 import Search from './search';
+import Initial from './labels/initialpage'
 import { RightComponent } from '../../style/categories';
 import Slide from './labels/slider';
 import OneComponent from './labels/OneComponent';
@@ -19,7 +20,7 @@ const Frontpage:React.FC = () =>{
             <Search />
             <Switch>
               <Route exact path='/home'>
-                <Initial />
+                <Initial/>
               </Route>
               <Route path='/home/topsales'>
                 <Sales />
@@ -41,24 +42,3 @@ const Frontpage:React.FC = () =>{
 
 
 export default Frontpage;
-
-const Initial = ()=>{
-  const arr = Array.from({length:3},(x)=>x=1)
-  const spread = arr.map((x,i)=><OneComponent key={i} image={""} desc={""} name={"Hover Agbada"} price="&#8358;10,000"/>)
-
-  return <>
-  <Slide/>
-                  <h2>Top Sales</h2>
-                <Latest>
-                  {spread}
-                </Latest>
-                  <h2>New Sales</h2>
-                <Latest>
-                  {spread}
-                </Latest>
-                  <h2>Suggestion</h2>
-                <Latest>
-                  {spread}
-                </Latest>
-  </>
-}

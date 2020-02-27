@@ -28,7 +28,7 @@ const initialForm:AdminForm = {
 }
 
 const Admin: React.FC<{auth:any}> = ({auth}) => {   
-    const [form, setForm] = useState<AdminForm>(initialForm)
+    const [form, setForm] = useState<AdminForm>(initialForm) 
     const image  = useRef<HTMLInputElement>(null)
     const handleChange = (e:ChangeEvent<HTMLInputElement|HTMLSelectElement|HTMLTextAreaElement>)=>{
         e?.preventDefault();  
@@ -37,20 +37,19 @@ const Admin: React.FC<{auth:any}> = ({auth}) => {
 
     const SubmitItem = (e:FormEvent)=>{
         e.preventDefault();
-        console.log(auth.token) 
         const data = new FormData(); 
         const name = (form.itemname + Date.now()+".jpg")
+        console.log(name) 
         setForm({...form,image:name})
         const img = image.current?.files?.item(0) as Blob
-        console.log(img)
-        // data.append('file',img as File); 
+        console.log("this is form",form); 
         data.set('file',img as File,name)
-        console.log(data)
+        // console.log(data)
         axios.post('http://localhost:3000/upload',data,{
 
         })
         .then(_=>{
-            axios.post('http://localhost:3000/items',form,{
+            axios.post('http://localhost:3000/items',{...form,image:name},{
                 headers:{
                     'authorization':`Bearer ${auth?.token}`, 
                     'content-type':'application/json' 

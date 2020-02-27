@@ -60,3 +60,12 @@ export const getItem = (payload:objectData[]) => (dispatch:Dispatch) =>{
         dispatch(isError())
     } 
 }
+
+export const getPreview = (payload:string) => (dispatch:Dispatch) =>{
+    try {
+        dispatch(isloading())
+        dispatch({type:'Preview',payload})
+    } catch (error) {
+        dispatch(isError())
+    } 
+}
