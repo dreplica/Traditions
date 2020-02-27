@@ -1,37 +1,30 @@
 import React, { useState, MouseEvent, useEffect } from 'react';
-import OneComponent from './labels/OneComponent';
-import { Latest,Sort } from '../../style/sales';
-import {itemState,objectData} from '../../store/reducers/items'
-import {getItem} from '../../store/actionCreators/actiontypes' 
+import OneComponent from '../labels/OneComponent';
+import { Latest,Sort } from '../../../style/sales';
+import {itemState,objectData} from '../../../store/reducers/items'
+import {getItem} from '../../../store/actionCreators/actiontypes' 
 import { connect } from 'react-redux';
 import Axios from 'axios';
 import { useRouteMatch, useParams } from 'react-router-dom';
-import { stateData } from '../../store/reducers/authentication';
+import { stateData } from '../../../store/reducers/authentication';
 
 export interface IProps {
   data:objectData[];
   getitems:(args:objectData[])=>void;
   auth:objectData;
+  url:string;
 }
-const Sales: React.FC<IProps> = ({data,getitems,auth}) => {
-  const {type} = useParams()
-  const matcher = useRouteMatch();
+const Sales: React.FC<IProps> = ({data,getitems,auth,url}) => {
     useEffect(() => {
-      const path = matcher.path.split('/')
-      console.log(path)  
-      const category = path[path.length-2] 
-      // const type = path[path.length-2] 
-      console.log("this is category",category)
-      console.log("this is type",type)
       if(auth.token !== ""){
-        Axios.get(`http://localhost:3000/items/${category}/${type}`,{
+        Axios.get(url,{
           headers:{
             'authorization':`bearer ${auth?.token}`
           }
         })
         .then((res)=>getitems(res.data))
       }
-    }, [auth])
+    }, [url])
     //get the path, if men,women,mfoot etc
     //use it to query for that particular item
     //create a route on backend that collects the params

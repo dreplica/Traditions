@@ -1,18 +1,18 @@
 import React,{useEffect} from 'react';
-import { Front } from '../../style/navigation';
-import Categories from './labels/categories';
-import Search from './search';
-import Initial from './labels/initialpage'
-import { RightComponent } from '../../style/categories';
-import Slide from './labels/slider';
-import OneComponent from './labels/OneComponent';
-import { Latest } from '../../style/sales';
-import { Switch, Route } from 'react-router-dom';
+import { Front } from '../../../style/navigation';
+import Categories from './categories';
+import Search from '../labels/search';
+import Initial from './initialpage'
+import { RightComponent } from '../../../style/categories';
+import OneComponent from '../labels/OneComponent';
+import { Latest } from '../../../style/sales';
+import { Switch, Route, useRouteMatch,useParams } from 'react-router-dom';
 import Sales from './allCategories';
-import Carts from './labels/cart';
-import SaleRoute from './sales';
+import Carts from './cart';
+import SaleRoute from '../labels/sales';
 
 const Frontpage:React.FC = () =>{
+
   return (
     <Front>
         <Categories />
@@ -20,13 +20,14 @@ const Frontpage:React.FC = () =>{
             <Search />
             <Switch>
               <Route exact path='/home'>
-                <Initial/>
+                <Initial url={'jj'}/>
               </Route>
               <Route path='/home/topsales'>
-                <Sales />
+                <Sales url={`http://localhost:3000/items/`}/>
               </Route>
               <Route path='/home/newsales'>
-                <Sales />
+
+                <Sales url={`http://localhost:3000/items/`}/>
               </Route> 
               <Route path='/home/cart'>
                 <Carts/>
@@ -36,7 +37,7 @@ const Frontpage:React.FC = () =>{
               </Route> 
               </Switch> 
         </RightComponent>
-    </Front>
+    </Front> 
   );
 }
 

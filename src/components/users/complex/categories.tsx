@@ -46,7 +46,7 @@ const Categories: React.FC<{}> =()=> {
                         <li><Link to='/home/sale/men/shirts/'>Shirts</Link></li>
                         <li><Link to='/home/sale/men/trousers/'>Trousers</Link></li>
                         <li><Link to='/home/sale/men/shorts/'>Shorts</Link></li>
-                        <li><Link to='/home/sale/men/Style/'>Style</Link></li>
+                        <li><Link to='/home/sale/men/style/'>Style</Link></li>
                     </ul>
                 </li>
                 {/* <li>

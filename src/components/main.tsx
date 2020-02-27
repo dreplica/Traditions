@@ -3,12 +3,12 @@ import {BrowserRouter as Router,Switch,Route, useRouteMatch, useHistory} from 'r
 import Signup from './authorization/signup'
 import Login from './authorization/login'
 import Header from './header/header';
-import Homepage from './users/homepage';
-import Categories from './users/labels/categories';
-import Admin from './users/admin' 
-import Frontpage from './users/frontpage';
+import Homepage from './users/labels/homepage';
+import Categories from './users/complex/categories';
+import Admin from './users/complex/admin' 
+import Frontpage from './users/complex/frontpage';
 import Modal from './users/labels/modal';
-import SaleRoute from './users/sales';
+import SaleRoute from './users/labels/sales';
 import { connect } from 'react-redux';
 import { checkLocal } from '../store/actionCreators/actiontypes';
 

@@ -1,15 +1,15 @@
 import React,{useEffect} from 'react';
 import { connect } from "react-redux"
 import { Latest } from "../../../style/sales"
-import OneComponent from "./OneComponent"
-import Slide from "./slider"
+import OneComponent from "../labels/OneComponent"
+import Slide from "../labels/slider"
 import { objectData, itemState } from '../../../store/reducers/items';
 import Axios from 'axios';  
-import {IProps} from '../allCategories'
+import {IProps} from './allCategories'
 import { getItem } from '../../../store/actionCreators/actiontypes';
 import { stateData } from '../../../store/reducers/authentication';
 
-const Initial :React.FC<IProps>= ({data,auth,getitems})=>{
+const Initial :React.FC<IProps>= ({data,auth,getitems,url})=>{
     useEffect(() => {
       if(auth.token !== ""){
         Axios.get(`http://localhost:3000/items`,{

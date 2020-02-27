@@ -1,7 +1,7 @@
 import React, { useEffect, useState, ChangeEvent, FormEvent, useRef} from 'react';
-import { Form } from '../../style/styled';
+import { Form } from '../../../style/styled';
 import { connect } from 'react-redux';
-import {stateData, dataType} from '../../store/reducers/authentication'
+import {stateData, dataType} from '../../../store/reducers/authentication'
 import axios from 'axios'
 
 

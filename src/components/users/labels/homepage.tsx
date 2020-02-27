@@ -1,7 +1,7 @@
 import React, { FormEvent, ChangeEvent, useState } from 'react';
 import { connect } from 'react-redux';
-import { loadData } from '../../store/actionCreators/actiontypes';
-import Navigation from '../header/NavigationBar';
+import { loadData } from '../../../store/actionCreators/actiontypes';
+import Navigation from '../../header/NavigationBar';
 
 
 export type dataType = {[key:string]:number|string}
