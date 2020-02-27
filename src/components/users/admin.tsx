@@ -49,14 +49,14 @@ const Admin: React.FC<{auth:any}> = ({auth}) => {
         axios.post('http://localhost:3000/upload',data,{
 
         })
-        // .then(_=>{
-        //     axios.post('http://localhost:3000/items',form,{
-        //         headers:{
-        //             'authorization':`Bearer ${auth?.token}`, 
-        //             'content-type':'application/json' 
-        //         }
-        //     })
-        // })
+        .then(_=>{
+            axios.post('http://localhost:3000/items',form,{
+                headers:{
+                    'authorization':`Bearer ${auth?.token}`, 
+                    'content-type':'application/json' 
+                }
+            })
+        }).catch(err=>console.log(err.message)) 
 
     }
 
@@ -64,7 +64,7 @@ const Admin: React.FC<{auth:any}> = ({auth}) => {
     <Form style={{top:"5vh"}} > 
         <h2 style={{textAlign:"center"}}>Hello Admin, Please Fill in the Form to upload an Item</h2>
         <label> Item Name
-            <input type='text' id='name' placeholder='item name' value={form.itemname} onChange={handleChange}/>
+            <input type='text' id='itemname' placeholder='item name' value={form.itemname} onChange={handleChange}/>
         </label>
         <label> Price
             <input type='text' id='price' placeholder='price e.g, 6000' value={form.price} onChange={handleChange}/>

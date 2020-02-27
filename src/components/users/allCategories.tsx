@@ -45,7 +45,7 @@ const Sales: React.FC<Props> = ({data,getitems,auth}) => {
     }
     console.log("hello")
     const arr = Array.from({length:50},()=>1)
-    const Spread = data.map((x,i)=><OneComponent key={i} image={x.image} desc={x.description} name={x.name} price={x.price}/>)
+    const Spread = data.map((x,i)=><OneComponent key={i} image={x.image} desc={x.description} name={x.itemname} price={x.price}/>)
   return (<>
       <Sort>
         <div>

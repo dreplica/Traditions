@@ -31,7 +31,7 @@ const OneComponent:React.FC<Props> = ({image,name,price,desc,modal,viewing}) =>{
                 <button onClick={(e)=>viewing('block')}><strong>View</strong></button> 
             </div>
             <div className='price'>&#8358;{price}</div>
-            <img src='http://localhost:3000/images/loo.jpg' alt='name'/>
+            <img src={`http://localhost:3000/images/${image}`} alt='name'/>
         </div>
         <div className='details'>
          <p><strong>{name}</strong></p>
