@@ -10,7 +10,7 @@ import axios from 'axios'
 interface AdminForm{
     category:string; 
     type:string;
-    name:string;
+    itemname:string;
     price:string;
     description:string;
     image:string
@@ -20,7 +20,7 @@ interface AdminForm{
 const initialForm:AdminForm = {
     category:"",
     type:"",
-    name:"",
+    itemname:"",
     price:"",
     image:"",
     description:"",
@@ -39,7 +39,7 @@ const Admin: React.FC<{auth:any}> = ({auth}) => {
         e.preventDefault();
         console.log(auth.token) 
         const data = new FormData(); 
-        const name = (form.name + Date.now()+".jpg")
+        const name = (form.itemname + Date.now()+".jpg")
         setForm({...form,image:name})
         const img = image.current?.files?.item(0) as Blob
         console.log(img)
@@ -64,7 +64,7 @@ const Admin: React.FC<{auth:any}> = ({auth}) => {
     <Form style={{top:"5vh"}} > 
         <h2 style={{textAlign:"center"}}>Hello Admin, Please Fill in the Form to upload an Item</h2>
         <label> Item Name
-            <input type='text' id='name' placeholder='item name' value={form.name} onChange={handleChange}/>
+            <input type='text' id='name' placeholder='item name' value={form.itemname} onChange={handleChange}/>
         </label>
         <label> Price
             <input type='text' id='price' placeholder='price e.g, 6000' value={form.price} onChange={handleChange}/>

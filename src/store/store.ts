@@ -4,6 +4,7 @@ import {createLogger} from 'redux-logger'
 import {createStore,applyMiddleware, compose,combineReducers } from 'redux'
 import authenticate from './reducers/authentication';
 import EffectReducers from './reducers/effects'
+import ItemsReducer from './reducers/items'
 
 
 declare global  {
@@ -11,7 +12,7 @@ declare global  {
         __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose
     }
 }
-const AllReducers = combineReducers({ authenticate, EffectReducers })
+const AllReducers = combineReducers({ authenticate, EffectReducers,ItemsReducer})
 const loggerMiddleware = createLogger();
 const enhancers = [];
 

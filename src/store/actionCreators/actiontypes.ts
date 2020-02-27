@@ -1,4 +1,5 @@
 import { Dispatch } from "redux";
+import { objectData } from "../reducers/items";
 
 export interface action {
     type:string;
@@ -51,7 +52,7 @@ export const menuView = (arg:action['modal']) => (dispatch:Dispatch) =>{
         dispatch(isError())
     } 
 }
-export const getItem = (payload:action['payload']) => (dispatch:Dispatch) =>{
+export const getItem = (payload:objectData[]) => (dispatch:Dispatch) =>{
     try {
         dispatch(isloading())
         dispatch({type:'getItems',payload})

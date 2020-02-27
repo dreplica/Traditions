@@ -1,9 +1,9 @@
+import { action } from "../actionCreators/actiontypes"
 
+export type objectData = {[key:string]:string}
 
-type objectData = {[key:string]:string}
-
-type itemState = {
-    data:objectData[];
+export type itemState = {
+    data:objectData[]; 
     cart:objectData[];
     currentItem:objectData
 }
@@ -14,7 +14,7 @@ const intitialState:itemState = {
     currentItem:{}
 }
 
-const ItemsReducer = (state:intitialState,action) =>{
+const ItemsReducer = (state = intitialState,action:action) =>{
     switch (action.type) {
         case "getItems":
             return {
@@ -30,7 +30,7 @@ const ItemsReducer = (state:intitialState,action) =>{
             const cart = JSON.parse(localStorage['cart']);
             return {
                 ...state,
-                cart:cart
+                cart:[...cart]
             }
         default:
             return state;

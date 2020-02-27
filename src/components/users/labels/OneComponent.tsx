@@ -22,15 +22,15 @@ const OneComponent:React.FC<Props> = ({image,name,price,desc,modal,viewing}) =>{
     const hideView = ()=>{
         setView('none')
     }
-    axios.get('http://localhost:3000/items')
-    .then(res=>getItems(res.data))
+    // axios.get('http://localhost:3000/items')
+    // .then(res=>getItems(res.data))
   return (
     <Card>
         <div className='img' onMouseOver={handleView} onMouseOut={hideView}>
             <div className='view-details' style={{display:view}}>
                 <button onClick={(e)=>viewing('block')}><strong>View</strong></button> 
             </div>
-            <div className='price'>{price}</div>
+            <div className='price'>&#8358;{price}</div>
             <img src='http://localhost:3000/images/loo.jpg' alt='name'/>
         </div>
         <div className='details'>
