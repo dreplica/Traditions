@@ -6,8 +6,9 @@ import { Modal } from '../../store/reducers/effects';
 import { Link } from 'react-router-dom';
 import { FiShoppingCart } from 'react-icons/fi';
 import { FaStoreAlt, FaRegEnvelope, FaSignOutAlt } from 'react-icons/fa'; 
+import { itemState, objectData } from '../../store/reducers/items';
 
-const Navigation:React.FC<{menu:string,view:(args:string)=>void}> = ({menu,view})=>{
+const Navigation:React.FC<{menu:string,view:(args:string)=>void,data:objectData[]}> = ({menu,view,data})=>{
   // const [viewing, setView] = useState(menu);
   const auth = true;
   useEffect(() => {
@@ -17,7 +18,7 @@ const Navigation:React.FC<{menu:string,view:(args:string)=>void}> = ({menu,view}
 
       console.log(window.innerWidth)
     }
-  }, [menu,view])
+  }, [menu,view,data])
   return (
     <>
     {
@@ -35,7 +36,7 @@ const Navigation:React.FC<{menu:string,view:(args:string)=>void}> = ({menu,view}
             {/* <li style={{display:menu}}><Link to='/'><span>Categories</span></Link></li> */}
             <li><Link to='/home/topsales'>Top Sales</Link></li> 
             <li><Link to='/home/newsales'>New Sales</Link></li>  
-            <li><Link to='/home/cart'><FiShoppingCart/><span> Cart<sup>10</sup></span></Link></li>
+            <li><Link to='/home/cart'><FiShoppingCart/><span> Cart<sup>{data.length}</sup></span></Link></li>
             <li><Link to='/'><FaRegEnvelope/><span>Contact</span></Link></li>
             <li><Link to='/'><FaSignOutAlt/><span>Logout</span></Link></li> 
         </ul>
@@ -45,7 +46,8 @@ const Navigation:React.FC<{menu:string,view:(args:string)=>void}> = ({menu,view}
 }
 
 
-const mapStateToProps = ({EffectReducers}:{EffectReducers:Modal})=>({
-  menu:EffectReducers.menu
+const mapStateToProps = ({EffectReducers,ItemsReducer}:{EffectReducers:Modal,ItemsReducer:itemState})=>({
+  menu:EffectReducers.menu,
+  data:ItemsReducer.cart
 })
 export default connect(mapStateToProps,{view:menuView})(Navigation)

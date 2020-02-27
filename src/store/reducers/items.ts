@@ -26,11 +26,17 @@ const ItemsReducer = (state = intitialState,action:action) =>{
                 ...state,
                 currentItem:state.data.filter((item:objectData)=>item.id === action.payload)[0] 
             }
-        case 'Cart':
-            const cart = JSON.parse(localStorage['cart']);
+        case 'addCart':
+            const addcart = action.payload as objectData[]
             return {
                 ...state,
-                cart:[...cart]
+                cart:[...addcart]
+            }
+        case 'removeCart':
+            const removecart = action.payload as objectData[]
+            return {
+                ...state,
+                cart:[...removecart]
             }
         default:
             return state;

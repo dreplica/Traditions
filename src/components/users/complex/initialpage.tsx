@@ -22,9 +22,9 @@ const Initial :React.FC<IProps>= ({data,auth,getitems,url})=>{
     }, [auth])
 
     console.log("data d here",data)
-    const topS = data.map((x,i)=><OneComponent id ={x.id} key={i} image={x.image} desc={x.description} name={x.name} price={x.price}/>).slice(0,3)
-    const newS = data.reverse().map((x,i)=><OneComponent id ={x.id} key={i} image={x.image} desc={x.description} name={x.name} price={x.price}/>).slice(0,3)
-    const sugs = data.map((x,i)=><OneComponent id ={x.id} key={i} image={x.image} desc={x.description} name={x.name} price={x.price}/>).slice(0,3)
+    const topS = data.map((x,i)=><OneComponent id ={x.id} key={i} image={x.image} desc={x.description} name={x.itemname} price={x.price}/>).slice(0,3)
+    const newS = data.reverse().map((x,i)=><OneComponent id ={x.id} key={i} image={x.image} desc={x.description} name={x.itemname} price={x.price}/>).slice(0,3)
+    const sugs = data.map((x,i)=><OneComponent id ={x.id} key={i} image={x.image} desc={x.description} name={x.itemname} price={x.price}/>).slice(0,3)
     return <>
     <Slide/>
                     <h2>Top Sales</h2>

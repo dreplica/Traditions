@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, MouseEvent } from 'react';
 import styled from 'styled-components';
 import logo from '../../../img/five.jpg'
 import { connect } from 'react-redux';
 import { Modal } from '../../../store/reducers/effects';
-import { modalView, getPreview } from '../../../store/actionCreators/actiontypes';
+import { modalView, getPreview, addCart } from '../../../store/actionCreators/actiontypes';
 import axios from 'axios' 
+import { objectData } from '../../../store/reducers/items';
 interface Props{
     image:string;
     name:string;
@@ -14,8 +15,9 @@ interface Props{
     modal:string;
     current:(args:string)=>void
     viewing:(args:string)=>void
+    cart:(args:objectData)=>void
 }
-const OneComponent:React.FC<Props> = ({image,name,price,desc,modal,viewing,id,current}) =>{
+const OneComponent:React.FC<Props> = ({image,name,price,desc,modal,viewing,id,current,cart}) =>{
     const [view, setView] = useState('none')
     const [modalview, setmodalview] = useState(modal)
     const handleView = () =>{
@@ -23,6 +25,10 @@ const OneComponent:React.FC<Props> = ({image,name,price,desc,modal,viewing,id,cu
     }
     const hideView = ()=>{
         setView('none')
+    }
+    const addCart = (e:MouseEvent) =>{
+        e.preventDefault();
+        cart({image,itemname:name,price,id})
     }
   return (
     <Card>
@@ -35,7 +41,7 @@ const OneComponent:React.FC<Props> = ({image,name,price,desc,modal,viewing,id,cu
         </div>
         <div className='details'>
          <p><strong>{name}</strong></p>
-         <button><strong>Add to Cart</strong></button>
+         <button onClick={addCart}><strong>Add to Cart</strong></button>
         </div>
     </Card>
   );
@@ -45,7 +51,9 @@ const mapStateToProps = (state:Modal)=>({
     modal:state.modal
 })
 
-export default connect(mapStateToProps,{viewing:modalView,current:getPreview})(OneComponent)
+const dispatch = {viewing:modalView,current:getPreview,cart:addCart}
+
+export default connect(mapStateToProps,dispatch)(OneComponent)
 // export default OneComponent
 
 export const Card = styled.div`
