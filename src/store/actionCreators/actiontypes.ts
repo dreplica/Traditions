@@ -80,13 +80,13 @@ export const addCart = (payload:objectData) => (dispatch:Dispatch) =>{
     if(localStorage['cart']){
         const value = JSON.parse(localStorage['cart']);
         console.log("value local",value)
-        local = [...value,payload];
+        local = [...value,{...payload,cartid:"c" + value.length as string}];
         localStorage['cart'] = JSON.stringify(local)
     }
     else{
         console.log("none")
         local.push(payload)
-        localStorage['cart'] = JSON.stringify([payload]);
+        localStorage['cart'] = JSON.stringify([{...payload,cartid:" c0"}]);
     } 
     try {
         dispatch(isloading())
@@ -97,7 +97,10 @@ export const addCart = (payload:objectData) => (dispatch:Dispatch) =>{
 }
 export const removeCart = (payload:string) => (dispatch:Dispatch) =>{
     const value = JSON.parse(localStorage['cart'])
-    const local = value.filter((item:objectData)=>item.id !== payload)
+    console.log("thuis is paulosad",payload)
+    value.map((x:{[key:string]:string})=>console.log(typeof x.cartid)) 
+    const local = value.filter((item:objectData)=>item.cartid !== payload)
+    console.log("thgis is local",local)
     localStorage['cart'] = JSON.stringify(local)
     try {
         dispatch(isloading())
