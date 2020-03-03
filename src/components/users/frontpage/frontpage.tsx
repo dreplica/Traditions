@@ -1,15 +1,14 @@
-import React,{useEffect} from 'react';
+import React from 'react';
 import { Front } from '../../../style/navigation';
-import Categories from './categories';
-import Search from '../labels/search';
+import Categories from '../categories/categories';
+import Search from '../search/search';
 import Initial from './initialpage'
 import { RightComponent } from '../../../style/categories';
-import OneComponent from '../labels/OneComponent';
-import { Latest } from '../../../style/sales';
+import MakePayment from '../cart/payment'
 import { Switch, Route, useRouteMatch,useParams } from 'react-router-dom';
-import Sales from './allCategories';
-import Carts from './cart';
-import SaleRoute from '../labels/sales';
+import Sales from '../categories/allCategories';
+import Carts from '../cart/cart';
+import SaleRoute from '../sales/sales';
 
 const Frontpage:React.FC = () =>{
 
@@ -34,6 +33,9 @@ const Frontpage:React.FC = () =>{
               </Route> 
               <Route path='/home/sale'>
                 <SaleRoute/>
+              </Route> 
+              <Route path='/home/payment'>
+                <MakePayment/>
               </Route> 
               </Switch> 
         </RightComponent>

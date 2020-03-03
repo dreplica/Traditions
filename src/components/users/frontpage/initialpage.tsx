@@ -5,7 +5,7 @@ import OneComponent from "../labels/OneComponent"
 import Slide from "../labels/slider"
 import { objectData, itemState } from '../../../store/reducers/items';
 import Axios from 'axios';  
-import {IProps} from './allCategories'
+import {IProps} from '../categories/allCategories'
 import { getItem } from '../../../store/actionCreators/actiontypes';
 import { stateData } from '../../../store/reducers/authentication';
 
