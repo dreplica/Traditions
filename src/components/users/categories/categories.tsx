@@ -1,7 +1,6 @@
 import React,{useState, MouseEvent} from 'react';
 import {Category} from '../../../style/categories'
 import { Link } from 'react-router-dom';
-import { FaFemale } from "react-icons/fa";
 
 export interface dropdown{
     women:string;
@@ -36,16 +35,16 @@ const Categories: React.FC<{}> =()=> {
                     <ul className='dropdown' style={{display:drop.women}}>
                         <li><Link to='/home/sale/women/top/'>Tops</Link></li> 
                         <li><Link to='/home/sale/women/gown/'>Gown</Link></li>
-                        <li><Link to='/home/sale/women/skirts/'>Skirts</Link></li>
+                        <li><Link to='/home/sale/women/skirt/'>Skirts</Link></li>
                         <li><Link to='/home/sale/women/style/'>Style</Link></li>
                     </ul>
                 </li>
                 <li>
                     <a href="/" id='men' className={drop.men} onClick={handleDrop}>Men's Clothing</a>
                     <ul className='dropdown' style={{display:drop.men}}>
-                        <li><Link to='/home/sale/men/shirts/'>Shirts</Link></li>
+                        <li><Link to='/home/sale/men/shirt/'>Shirts</Link></li>
                         <li><Link to='/home/sale/men/trousers/'>Trousers</Link></li>
-                        <li><Link to='/home/sale/men/shorts/'>Shorts</Link></li>
+                        <li><Link to='/home/sale/men/short/'>Shorts</Link></li>
                         <li><Link to='/home/sale/men/style/'>Style</Link></li>
                     </ul>
                 </li>

@@ -15,6 +15,7 @@ export interface IProps {
   url:string;
 }
 const Sales: React.FC<IProps> = ({data,getitems,auth,url}) => {
+  const [sortActive, setSortActive] = useState<{one:string;two:string;}>({one:'active',two:'none'})
     useEffect(() => {
       if(auth.token !== ""){
         Axios.get(url,{
@@ -29,7 +30,6 @@ const Sales: React.FC<IProps> = ({data,getitems,auth,url}) => {
     //use it to query for that particular item
     //create a route on backend that collects the params
     //send back the data and populate them here
-    const [sortActive, setSortActive] = useState<{one:string;two:string;}>({one:'active',two:'none'})
     const sort = (e:MouseEvent)=>{
       e.preventDefault();
       for(let i in sortActive){
@@ -41,7 +41,7 @@ const Sales: React.FC<IProps> = ({data,getitems,auth,url}) => {
     }
     const arr = Array.from({length:50},()=>1)
     const Spread = data.map((x,i)=><OneComponent key={i} 
-    id={x.id} image={x.image} 
+    id={x.id} image={x.image}
     desc={x.description} 
     name={x.itemname} 
     price={x.price}/>

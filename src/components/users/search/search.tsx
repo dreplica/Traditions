@@ -5,10 +5,11 @@ import Axios from 'axios';
 import { objectData } from '../../../store/reducers/items';
 import { connect } from 'react-redux';
 import { stateData } from '../../../store/reducers/authentication';
+import { List } from './searchstyle';
+import { Link } from 'react-router-dom';
 
 const Search:React.FC<{auth:objectData}> = ({auth}) =>{
   const [search, setSearch] = useState("")
-  const [gottenSearch, setSearchGotten] = useState<Array<{[key:string]:string}>>([])
   const [data, setdata] = useState<Array<{[key:string]:string}>>([])
   useEffect(() => {
     const val = new RegExp(search,'ig');
@@ -18,20 +19,14 @@ const Search:React.FC<{auth:objectData}> = ({auth}) =>{
         }  
       })
         .then(res=>{
-          console.log(res.data)
-          setdata(res.data?.search)
-        }).then(_=>{
-        console.log("this regex",val)
-          const searchGotten = data.filter((item,index)=>item.itemname.match(val))
-          setSearchGotten(searchGotten)
-          console.log("gotten",searchGotten)
+          setdata(res.data?.search
+              .filter((item:objectData,index:number)=>item.itemname.match(val)))
         })
   }, [setdata,setSearch,auth,search]) 
+
   const handleSearch = (e:ChangeEvent<HTMLInputElement>) =>{
     e.preventDefault();
     if(e.currentTarget?.value === ""){
-      console.log("hello");
-      setSearchGotten([])
       setSearch("") 
       setdata([]) 
     }
@@ -43,9 +38,9 @@ const Search:React.FC<{auth:objectData}> = ({auth}) =>{
         <input type='search' placeholder='search items' value={search} onChange={handleSearch}/>
         <button> <FiSearch/> </button> 
     </Searcher>
-    <ul>
-      {gottenSearch.map((item,index)=><li id={item.id} key={index}>{item.itemname}</li>)}
-    </ul>
+    <List>
+      {data.map((item,index)=><li key={index}><Link to={`/search/${item.id}`}>{item.itemname}</Link></li>)}
+    </List> 
     </>
   );
 }

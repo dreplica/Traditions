@@ -134,4 +134,5 @@ export const Front = styled.div`
     height:auto;
     width:100%;
     flex-direction:row;
+    align-items:start;
 `

@@ -14,7 +14,7 @@ const SaleRoute: React.FC<{}> = ({}) => {
     console.log(path)
     seturl(`http://localhost:3000/items/${category}/${type}`)
     console.log(typeof window.location.href)
-  }, [window.location])
+  }, [useParams()])
 
   return (
     <RightComponent>
