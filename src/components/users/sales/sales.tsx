@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react';
-import { Switch,Route,useRouteMatch, useParams} from 'react-router-dom';
+import { Switch,Route, useParams} from 'react-router-dom';
 import Sales from '../categories/allCategories';
 import { RightComponent } from '../../../style/categories';
 

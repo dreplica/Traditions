@@ -1,4 +1,4 @@
-import React,{useState, ChangeEvent, useEffect} from 'react';
+import React,{useState, ChangeEvent, useEffect, MouseEvent} from 'react';
 import { Searcher } from '../../../style/navigation';
 import { FiSearch } from 'react-icons/fi';
 import Axios from 'axios';
@@ -32,6 +32,7 @@ const Search:React.FC<{auth:objectData}> = ({auth}) =>{
     }
     setSearch(e.currentTarget?.value)
   }
+
   return (
     <>
     <Searcher>

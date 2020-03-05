@@ -83,7 +83,7 @@ export const Headers = styled.header`
             display:none;
         }
     
-    @media(max-width:816px){
+    @media(max-width:999px){
         .menu-but{
             display:block;
         }

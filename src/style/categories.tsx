@@ -79,9 +79,8 @@ export const Category = styled.nav`
             }
         }
     }
-    @media(max-width:800px){
+    @media(max-width:999px){
         display:none;
-
     }
         
 `

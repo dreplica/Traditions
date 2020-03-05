@@ -25,7 +25,6 @@ const Frontpage:React.FC = () =>{
                 <Sales url={`http://localhost:3000/items/`}/>
               </Route>
               <Route path='/home/newsales'>
-
                 <Sales url={`http://localhost:3000/items/`}/>
               </Route> 
               <Route path='/home/cart'>

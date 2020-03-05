@@ -14,7 +14,7 @@ const Navigation:React.FC<{menu:string,view:(args:string)=>void,data:objectData[
   useEffect(() => {
     window.onresize = (e:Event)=>{
       e.preventDefault(); 
-      (window.innerWidth <= 816) ? view('none') : view('block')
+      (window.innerWidth <= 999) ? view('none') : view('block')
 
       console.log(window.innerWidth)
     }

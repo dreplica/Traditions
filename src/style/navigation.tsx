@@ -56,7 +56,7 @@ export const Nav = styled.nav`
             }
         }
 
-    @media(max-width:816px){
+    @media(max-width:999px){
         border:none;
         height:84vh;
         border-top:1px solid orange;

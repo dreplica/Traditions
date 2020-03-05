@@ -2,7 +2,7 @@ import React, { useState,MouseEvent, useEffect } from 'react';
 import { objectData, itemState } from '../../../store/reducers/items';
 import { removeCart } from '../../../store/actionCreators/actiontypes';
 import { connect } from 'react-redux';
-import { ContainCart, Cart } from '../../../style/cart';
+import { ContainCart, Cart } from '../../../style/cartstyle';
 import { useHistory } from 'react-router-dom';
 import Axios from 'axios';
 import { stateData } from '../../../store/reducers/authentication';

@@ -1,5 +1,4 @@
-import React, { useState, MouseEvent } from 'react';
-import two from '../../../img/five.jpg'
+import React, {MouseEvent } from 'react';
 import { connect } from 'react-redux';
 import { modalView, addCart } from '../../../store/actionCreators/actiontypes';
 import { Modal } from '../../../store/reducers/effects';

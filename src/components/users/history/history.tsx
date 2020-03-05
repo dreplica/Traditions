@@ -44,8 +44,7 @@ const History:React.FC<{auth:objectData}> = ({auth})=> {
   return (
     <>
     <Summary>
-  <h3>Total Transaction: &#8358;{data.reduce((acc,val)=>parseInt(val.price) + acc,0)
-      }</h3>
+  <h3>Total Transaction: &#8358;{data.reduce((acc,val)=>parseInt(val.price) + acc,0)}</h3>
     </Summary>
         <HistoryStyle>
             <thead>
@@ -60,8 +59,7 @@ const History:React.FC<{auth:objectData}> = ({auth})=> {
             </thead>
             {console.log("the table", data)}
             <tbody>
-                { 
-                    data.map((items,ind)=><tr key={ind}>
+                {                     data.map((items,ind)=><tr key={ind}>
                         <td>{ind + 1}</td>
                         <td>{items.itemname}</td>
                         <td>{items.quantity}</td>

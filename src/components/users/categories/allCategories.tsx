@@ -25,7 +25,7 @@ const Sales: React.FC<IProps> = ({data,getitems,auth,url}) => {
         })
         .then((res)=>getitems(res.data))
       }
-    }, [url])
+    }, [url,useParams])
     //get the path, if men,women,mfoot etc
     //use it to query for that particular item
     //create a route on backend that collects the params
@@ -39,7 +39,6 @@ const Sales: React.FC<IProps> = ({data,getitems,auth,url}) => {
         else setSortActive({...sortActive,[e.currentTarget.id]:"none"})
       }
     }
-    const arr = Array.from({length:50},()=>1)
     const Spread = data.map((x,i)=><OneComponent key={i} 
     id={x.id} image={x.image}
     desc={x.description} 

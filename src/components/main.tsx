@@ -10,6 +10,7 @@ import History from './users/history/history'
 import Modal from './users/modalbox/modal';
 import { connect } from 'react-redux';
 import { checkLocal } from '../store/actionCreators/actiontypes';
+import SearchDisplay from './users/search/searchDisplay';
 
 const Maincomponent:React.FC<{getLocal:()=>void}> = ({getLocal}) => {
   useEffect(() => {
@@ -36,6 +37,10 @@ const Maincomponent:React.FC<{getLocal:()=>void}> = ({getLocal}) => {
                 <Route path='/admin'>
                   <Admin /> 
                 </Route>
+                <Route path='/search/:id'>
+                  <SearchDisplay/>
+                </Route>
+                
               </Switch>
         </Router>  
 }
