@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import Axios from 'axios';
+import {HistoryStyle,Summary} from './historystyle' 
 import { objectData } from '../../../store/reducers/items';
 import { stateData } from '../../../store/reducers/authentication';
 
 const History:React.FC<{auth:objectData}> = ({auth})=> { 
     const [data, setData] = useState<objectData[]>([])
+    const [loading, setLoading] = useState<boolean>(true)
     useEffect(() => {
         console.log("current token",auth)
         console.log("hello")
@@ -15,31 +17,37 @@ const History:React.FC<{auth:objectData}> = ({auth})=> {
             }
         })
         .then(_=>{
-            setData(unique(_.data.history))
+            console.log(_.data.payload)
+            setData(unique(_.data?.payload))
+            console.log("uniqueness",unique(_.data?.payload))
+            setLoading(false)
             // setData(_.data.history)
         })
     }, [auth])
     
-    const unique = (data:objectData[]) =>{
-        console.log("data entered",data)
-        let id = data.map((item:objectData)=>item.id);
+    const unique = (history:objectData[]) =>{
+        console.log("data entered",history) 
+        let id = history.map((item:objectData)=>item.id);
         let uniqueId = new Set([...id]);
-        console.log("this is data",data)
-        return  [...uniqueId].map(id_=>data.reduce((acc:objectData,val:objectData)=>{
+        console.log([...uniqueId])
+        return  [...uniqueId].map(id_=>history.reduce((acc:objectData ,val:objectData)=>{
             if(val.id === id_){
-                val.price += val.price;
-                val.quantity += 1;
-                acc = val;
+                acc.price = String(parseFloat(acc.price) + parseFloat(val.price));
+                acc.quantity = String(parseInt(acc.quantity)+1);
+                return ({...val,price:acc.price,quantity:acc.quantity})
             }
             return acc;
-        },{})
+        },{quantity:'0',price:'0'})
         )
     }
-    console.log(unique(data))
 
   return (
     <>
-        <table>
+    <Summary>
+  <h3>Total Transaction: &#8358;{data.reduce((acc,val)=>parseInt(val.price) + acc,0)
+      }</h3>
+    </Summary>
+        <HistoryStyle>
             <thead>
                 <tr>
                     <td>S/n</td>
@@ -50,19 +58,20 @@ const History:React.FC<{auth:objectData}> = ({auth})=> {
                     <td>Date</td>
                 </tr>
             </thead>
+            {console.log("the table", data)}
             <tbody>
-                {
-                    data.map((items,ind)=><tr>
+                { 
+                    data.map((items,ind)=><tr key={ind}>
                         <td>{ind + 1}</td>
-                        <td>{items.name}</td>
+                        <td>{items.itemname}</td>
                         <td>{items.quantity}</td>
-                        <td>{items.Price}</td>
-                        <td>{items.delivered}</td>
-                        <td>{items.created}</td>
+                        <td>{items.price}</td>
+                        <td>{items.bought}</td>
+                        <td>{new Date(items.created).toDateString()}</td>
                     </tr>)
                 }
-            </tbody>
-        </table>
+            </tbody>  
+        </HistoryStyle>
     </>
   );
 }

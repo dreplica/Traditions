@@ -30,12 +30,11 @@ const Maincomponent:React.FC<{getLocal:()=>void}> = ({getLocal}) => {
                 <Route path='/signin'>
                   <Login /> 
                 </Route>
-                {/* <Route path='/'>
-                  <SaleRoute /> 
-                </Route> */}
+                <Route path='/history'>
+                  <History />
+                </Route>
                 <Route path='/admin'>
                   <Admin /> 
-                  <History /> 
                 </Route>
               </Switch>
         </Router>  

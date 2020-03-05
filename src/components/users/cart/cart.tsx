@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-dom';
 import Axios from 'axios';
 import { stateData } from '../../../store/reducers/authentication';
 
+
 const Carts:React.FC<{data:objectData[];auth:objectData; remove:(id:string)=>void}>=({data,remove,auth}) =>{
     const [total, settotal] = useState(0);
     const history = useHistory()
