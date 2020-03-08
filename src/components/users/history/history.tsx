@@ -34,7 +34,7 @@ const History:React.FC<{auth:objectData}> = ({auth})=> {
             if(val.id === id_){
                 acc.price = String(parseFloat(acc.price) + parseFloat(val.price));
                 acc.quantity = String(parseInt(acc.quantity)+1);
-                return ({...val,price:acc.price,quantity:acc.quantity})
+                return ({...val,price:acc.price,quantity:acc.quantity})   
             }
             return acc;
         },{quantity:'0',price:'0'})
@@ -54,7 +54,7 @@ const History:React.FC<{auth:objectData}> = ({auth})=> {
                     <td>Quantity</td>
                     <td>Price</td>
                     <td>Status</td>
-                    <td>Date</td>
+                    <td>Last Purchased Date</td>
                 </tr>
             </thead>
             {console.log("the table", data)}

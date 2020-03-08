@@ -9,6 +9,7 @@ import { Switch, Route,} from 'react-router-dom';
 import Sales from '../categories/allCategories';
 import Carts from '../cart/cart';
 import SaleRoute from '../sales/sales';
+import SearchDisplay from '../search/searchDisplay';
 
 const Frontpage:React.FC = () =>{
 
@@ -17,6 +18,7 @@ const Frontpage:React.FC = () =>{
         <Categories />
         <RightComponent>
             <Search />
+            {/* search is here */}
             <Switch>
               <Route exact path='/home'>
                 <Initial url={''}/>
@@ -36,6 +38,9 @@ const Frontpage:React.FC = () =>{
               <Route path='/home/payment'>
                 <MakePayment/>
               </Route> 
+              {/* <Route path='/home/search/:id'>
+                  <SearchDisplay/>
+                </Route> */}
               </Switch> 
         </RightComponent>
     </Front> 

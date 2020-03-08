@@ -6,6 +6,9 @@ import { connect } from 'react-redux';
 import { objectData } from '../../../store/reducers/items';
 import { getItem } from '../../../store/actionCreators/actiontypes';
 import { stateData } from '../../../store/reducers/authentication';
+import { RightComponent } from '../../../style/categories';
+import Categories from '../categories/categories';
+import { Front } from '../../../style/navigation';
 
 type Props = {
     auth:objectData; 
@@ -28,13 +31,17 @@ const SearchDisplay:React.FC<Props> = ({auth,setItems})=>{
         }
     }, [useParams])
   return (
-    <>
-    {data.length < 1 ? <>sorry no data available</>
-    :<OneComponent name={data[0]?.itemname} 
-    id={data[0]?.id} desc={data[0]?.description} 
-    price={data[0]?.price} image={data[0]?.image}/>
-}
-</>
+      <Front>
+      <Categories />
+        <RightComponent>
+
+            {data.length < 1 ? <>sorry no data available</>
+            :<OneComponent name={data[0]?.itemname} 
+            id={data[0]?.id} desc={data[0]?.description} 
+            price={data[0]?.price} image={data[0]?.image}/>
+        }
+        </RightComponent>
+      </Front>
   );
 }
 

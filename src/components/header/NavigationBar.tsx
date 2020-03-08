@@ -3,22 +3,34 @@ import { Nav } from '../../style/navigation';
 import { connect } from 'react-redux';
 import { menuView } from '../../store/actionCreators/actiontypes';
 import { Modal } from '../../store/reducers/effects';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { FiShoppingCart } from 'react-icons/fi';
 import { FaStoreAlt, FaRegEnvelope, FaSignOutAlt, FaTags, FaGlobeAfrica } from 'react-icons/fa'; 
 import { itemState, objectData } from '../../store/reducers/items';
+import { stateData } from '../../store/reducers/authentication';
 
 const Navigation:React.FC<{menu:string,view:(args:string)=>void,data:objectData[]}> = ({menu,view,data})=>{
   // const [viewing, setView] = useState(menu);
+  const history = useHistory();
+
   const auth = true;
   useEffect(() => {
     window.onresize = (e:Event)=>{
       e.preventDefault(); 
       (window.innerWidth <= 999) ? view('none') : view('block')
-
-      console.log(window.innerWidth)
     }
   }, [menu,view,data])
+
+  const gotToLogin = (e:MouseEvent) =>{
+    e.preventDefault();
+     console.log("this is auth")
+      if(auth){
+          console.log("out")
+          // delete localStorage['auth']
+          history.push("/signin")
+      }
+  }
+
   return (
     <>
     {
@@ -37,17 +49,17 @@ const Navigation:React.FC<{menu:string,view:(args:string)=>void,data:objectData[
             <li><Link to='/home/topsales'><FaGlobeAfrica/> Top Sales</Link></li> 
             <li><Link to='/home/newsales'><FaTags/> New Sales</Link></li>   
             <li><Link to='/home/cart'><FiShoppingCart/><span> Cart<sup>{data.length}</sup></span></Link></li>
-            <li><Link to='/'><FaRegEnvelope/><span>Contact</span></Link></li>
-            <li><Link to='/'><FaSignOutAlt/><span>Logout</span></Link></li> 
+            <li><a href='#foot'><FaRegEnvelope/><span>Contact</span></a></li>
+            <li><a href='/' onClick={gotToLogin}><FaSignOutAlt/><span>Logout</span></a></li> 
         </ul>
     </Nav>}  
     </>
   );
 }
 
-
-const mapStateToProps = ({EffectReducers,ItemsReducer}:{EffectReducers:Modal,ItemsReducer:itemState})=>({
+const mapStateToProps = ({EffectReducers,ItemsReducer,authenticate}:{authenticate:stateData; EffectReducers:Modal,ItemsReducer:itemState})=>({
   menu:EffectReducers.menu,
+  auth:authenticate.data?.auth as objectData,
   data:ItemsReducer.cart
 })
 export default connect(mapStateToProps,{view:menuView})(Navigation)

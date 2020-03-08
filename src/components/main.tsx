@@ -10,7 +10,7 @@ import History from './users/history/history'
 import Modal from './users/modalbox/modal';
 import { connect } from 'react-redux';
 import { checkLocal } from '../store/actionCreators/actiontypes';
-import SearchDisplay from './users/search/searchDisplay';
+import Adminprofile from './users/admin/adminProfile';
 
 const Maincomponent:React.FC<{getLocal:()=>void}> = ({getLocal}) => {
   useEffect(() => {
@@ -28,6 +28,9 @@ const Maincomponent:React.FC<{getLocal:()=>void}> = ({getLocal}) => {
                 <Route path='/signup'>
                   <Signup />  
                 </Route>
+                <Route path='/seller'>
+                  <Adminprofile/> 
+                </Route>
                 <Route path='/signin'>
                   <Login /> 
                 </Route>
@@ -37,14 +40,8 @@ const Maincomponent:React.FC<{getLocal:()=>void}> = ({getLocal}) => {
                 <Route path='/admin'>
                   <Admin /> 
                 </Route>
-                <Route path='/search/:id'>
-                  <SearchDisplay/>
-                </Route>
-                
               </Switch>
         </Router>  
 }
-
-
 
 export default connect(null,{getLocal:checkLocal})(Maincomponent)

@@ -1,9 +1,14 @@
+*{
+    box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: 'nunito regular';
+  font-size:60%;
   background:rgb(24, 17, 17);
   color:rgb(230, 208, 208);
-  
+
 }
 
 *::-webkit-scrollbar {
@@ -24,4 +29,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
- 

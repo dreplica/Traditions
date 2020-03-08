@@ -6,16 +6,16 @@ import { objectData } from '../../../store/reducers/items';
 import { connect } from 'react-redux';
 import { stateData } from '../../../store/reducers/authentication';
 import { List } from './searchstyle';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const Search:React.FC<{auth:objectData}> = ({auth}) =>{
   const [search, setSearch] = useState("")
   const [data, setdata] = useState<Array<{[key:string]:string}>>([])
   useEffect(() => {
     const val = new RegExp(search,'ig');
-      Axios.post(`http://localhost:3000/search/${search.toLowerCase()}`,{},{
+      Axios.get(`http://localhost:3000/search/${search.toLowerCase()}`,{
         headers:{
-          'authorization':`Bearer ${auth?.token}` 
+          'authorization':`Bearer ${auth?.token}`  
         }  
       })
         .then(res=>{
