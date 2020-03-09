@@ -27,17 +27,21 @@ const OneComponent:React.FC<Props> = ({image,name,price,desc,modal,viewing,id,cu
         e.preventDefault();
         cart({image,itemname:name,price,id})
     }
+    const style = {
+        background:`url('http://localhost:3000/images/${image}') center/cover no-repeat`,
+    }
   return (
     <Card>
-        <div className='img' onMouseOver={handleView} onMouseOut={hideView}>
-            <div className='view-details' style={{display:view}}>
+        <div className='img' onMouseOver={handleView} style={style}onMouseOut={hideView}>
+            <div className='view-details'style={{display:view,}} >
                 <button onClick={(e)=>{viewing('block');current(id)}}><strong>View</strong></button> 
             </div>
-            <div className='price'>&#8358;{price}</div>
-            <img src={`http://localhost:3000/images/${image}`} alt='name'/>
+            <div className='price'></div>
+            {/* <img src={`http://localhost:3000/images/${image}`} alt='name'/> */}
         </div>
         <div className='details'>
          <p><strong>{name}</strong></p>
+         <p><strong>&#8358;{price}</strong></p>
          <button onClick={addCart}><strong>Add to Cart</strong></button>
         </div>
     </Card>

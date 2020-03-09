@@ -2,6 +2,10 @@
     box-sizing: border-box;
 }
 
+p,a{
+  font-size: 150%;
+}
+
 body {
   margin: 0;
   font-family: 'nunito regular';

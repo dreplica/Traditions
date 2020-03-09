@@ -29,8 +29,7 @@ export const DropIT = styled.div`
             height:auto;
             font-size:2rem;
             border:0px;
-            transition:3s;
-            animation:turn 10s  infinite  reverse linear;
+            animation:turn  3s infinite  normal ease-in;
             color:lightgrey;
             background:linear-gradient(to right, orange,purple);
     

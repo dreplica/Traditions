@@ -2,9 +2,10 @@ import styled from "styled-components";
 
 
 export const Card = styled.div`
-  width:250px;
-  margin:10px auto;
-  height:350px;
+  max-width:250px;
+  min-width:250px;
+  margin:10px 20px;
+  max-height:350px;
   border-radius:0px 0px 20px 20px;
 
     .img{
@@ -14,7 +15,6 @@ export const Card = styled.div`
         height:250px;
 
         .view-details{
-            position:absolute;
             width:250px;
             z-index:2;
             height:250px;
@@ -29,6 +29,9 @@ export const Card = styled.div`
                 border:2px solid white;
                 color:white;
                 padding:10px 15px;
+                :hover{
+                    border:2px solid black;
+                }
             }
         }
 
