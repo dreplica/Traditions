@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
 export const DropIT = styled.div`
-  width:100;
+  position:absolute;
+  z-index:1;
+  width:100%;
   background-color:white; 
   color:green;
   overflow:hidden;

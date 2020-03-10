@@ -4,6 +4,7 @@ import { modalView, addCart } from '../../../store/actionCreators/actiontypes';
 import { Modal } from '../../../store/reducers/effects';
 import { Modall } from '../../../style/modalview';
 import { itemState, objectData } from '../../../store/reducers/items';
+import { Link } from 'react-router-dom';
 
 type Proper = {
     modal:string;
@@ -15,7 +16,7 @@ type Proper = {
 const Modalview:React.FC<Proper> = ({current,modal,view,cart}) => {
     // const [remove, setremove] = useState<string>(modal)//let redux manage the state coming in for viewing
     const close = (e:MouseEvent) =>{
-        e.preventDefault()
+        // e.preventDefault()
         view('none')
     }
     const addCart = (e:MouseEvent) =>{
@@ -42,6 +43,7 @@ const Modalview:React.FC<Proper> = ({current,modal,view,cart}) => {
                         </select>
                     </div>
                     <div className='price-modal'><h3>&#8358;{current?.price}</h3></div>
+                    <Link to={`/seller`} onClick={close}>Check Designer</Link>
                     <button onClick={addCart}>Add to Cart</button>
                 </div> 
             <div className='size'><img src='/' alt=''/></div>

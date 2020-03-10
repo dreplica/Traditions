@@ -14,7 +14,7 @@ const Adminprofile = () => {
     <>
       {/* <>setimeout for blank page with brand name, with a button to slide the page up after data has loaded</>
       <>seller page shows up</> */}
-      {/* <DropTag name={"adejo"}/> */}
+      <DropTag name={"adejo"}/>
       <Profile />
     </>
   )

@@ -7,6 +7,7 @@ import {
     Addreview,Reviews, 
     Container,TabView,
     AboutStyle,Links,Product } from './profilestyle'
+import mapboxgl from 'mapbox-gl'
 import one from '../../../../img/agba2.jpg'
 
 const Profile = () => {
@@ -99,6 +100,7 @@ const Products:React.FC<{id:string,token:string}> = ({id,token}) =>{
 }
 const Location:React.FC<{id:string,token:string}> = ({id,token}) =>{
     const [location, setLocation] = useState<string>("coordinate")
+    const ref = useRef<HTMLDivElement>(null)
     console.log('location')
     useEffect(() => {
       Axios.get(`http://localhost:3000/user/${id}`,{
@@ -106,9 +108,15 @@ const Location:React.FC<{id:string,token:string}> = ({id,token}) =>{
               authorization:`Bearer ${token}`
           }
       }).then((res)=>setLocation(res.data))//get just the location
+      mapboxgl.accessToken = `pk.eyJ1IjoiZHJlcGxpY2EiLCJhIjoiY2p6OXV6eTM3MDBwaTNucnRkZm44MjZjayJ9.W3_lNRKchA62E0LFtQ9icg`
+      new mapboxgl.Map({
+           container: "mapp",
+           style: 'mapbox://styles/mapbox/streets-v11'
+           });
     }, [])
     return <>
-    <p>Hello a map is here to my location</p>
+    map
+    <div id='mapp' ref={ref}></div>
     </>
 }
 

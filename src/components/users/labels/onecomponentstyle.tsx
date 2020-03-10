@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const Card = styled.div`
   max-width:250px;
   min-width:250px;
-  margin:10px 20px;
+  margin:20px 20px;
   max-height:350px;
   border-radius:0px 0px 20px 20px;
 
@@ -58,7 +58,7 @@ export const Card = styled.div`
         justify-content:space-between;
         margin:0px auto;
         width:100%;
-        height:100px;
+        min-height:100px;
         border-radius:0px 0px 20px 20px;
         
 

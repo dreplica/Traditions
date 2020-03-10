@@ -14,6 +14,10 @@ export const Container = styled.div`
    align-items:start;
    flex-wrap:wrap; 
    
+   #mapp{
+       width:100%;
+       height:50vh;
+   }
 `;
 export const AboutStyle = styled.div`
        width:80%;
