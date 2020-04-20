@@ -5,7 +5,7 @@ import tre from '../../../img/tre.jpg'
 import one from '../../../img/one.jpg'
 
 const Slide:React.FC<{}> = () =>{
-    const [back, setback] = useState<string>()
+    const [back, setback] = useState<string>(one)
     const colors:string[] = [four,tre,one]
     useEffect(() => {
         const pict = setInterval(()=>{
@@ -38,4 +38,3 @@ export const Slider = styled.div`
       max-height:60vh;
     }
 `
-

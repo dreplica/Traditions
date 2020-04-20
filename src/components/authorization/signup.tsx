@@ -1,8 +1,9 @@
-import React, { FormEvent, ChangeEvent, useState } from 'react';
+import React, { FormEvent, ChangeEvent, useState, useRef } from 'react';
 import { connect } from 'react-redux';
 import { loadData } from '../../store/actionCreators/actiontypes';
-import { Form,Logintro } from '../../style/styled';
+import { Form,Logintro, AdminForm } from '../../style/styled';
 import { useHistory } from 'react-router-dom';
+import Axios from 'axios';
 
 
 export type dataType = {[key:string]:number|string}
@@ -19,6 +20,12 @@ interface Form{
     email:string;
     admin:boolean;
     phone:string;
+    companyname?:string;
+    companydesc?:string;
+    logo?:string;
+    facebook?:string;
+    twitter?:string;
+    instagram?:string;
 }
 
 const initialForm:Form = {
@@ -29,10 +36,17 @@ const initialForm:Form = {
     email:"",
     admin:false,
     phone:"",
+    companyname:"",
+    logo:"",
+    companydesc:"",
+    facebook:"",
+    twitter:"",
+    instagram:"",
 }
 
 const Signup:React.FC<Props> = ({setToken}) =>{
     const [form, setForm] = useState<Form>(initialForm)
+    const logo = useRef<HTMLInputElement>(null)
     const [error, setError] = useState<string>("")
     const history = useHistory()
     const handleChange = (e:ChangeEvent<HTMLInputElement>) =>{
@@ -43,23 +57,30 @@ const Signup:React.FC<Props> = ({setToken}) =>{
     const handleSubmit = (e:FormEvent) =>{
         e.preventDefault()
         console.log(form)
-        fetch('http://localhost:3000/signup',{
-        method:'POST',
-        headers:{
-            'content-type':'application/json'
-        },
-        body:JSON.stringify(form)
-    }
-        ).then((res)=>res.json())
-        .then((token)=>{
-            console.log(token);  
-            (token?.token)?setToken(token):setError(token.error);
-            (token?.token && history.push('/home'))
-        }).catch(err=>console.log(err))
+        //make post for profile pic here
+        const formData = new FormData();
+        const name = ((form?.companyname as string) + Date.now() + ".jpg")
+        setForm({ ...form, logo: name })
+        const img = logo.current?.files?.item(0) as Blob
+        formData.set('file', img as File, name)
+        console.log(formData.values())
+        Axios.post('http://localhost:3000/upload',formData)
+        .then(()=>{
+            //make post for remaining for here
+            Axios.post('http://localhost:3000/signup',{...form,logo:name},{
+            headers:{
+                'content-type':'application/json'
+            }}
+            ).then((res)=>res.data)
+            .then((token)=>{ 
+                (token?.token)?setToken(token):setError(token.error);
+                (token?.token && history.push('/home'))
+            }).catch(err=>console.log(err))
+        })
     }
 
   return (
-    <div>
+    <>
     <Logintro>
         <div className='log'>
             <h3>Register</h3>
@@ -85,8 +106,32 @@ const Signup:React.FC<Props> = ({setToken}) =>{
         <input placeholder="email"type='email' id="email"  value={form.email} onChange={handleChange} />
         </label>
         <label className='checkbox'> Sell Cloths
-        <input placeholder="" type='checkbox' id="admin" onChange={(e)=>setForm({...form,admin:true})} /> 
+        <input placeholder="" type='checkbox' id="admin" onChange={(e)=>setForm({...form,admin:(form.admin?false:true)})} /> 
         </label>
+        <AdminForm style={{display:form.admin ?'block':'none'}}>
+            <label> Company Name
+                <input placeholder="e.g Versace" type='text' id="companyname"  value={form.companyname} onChange={handleChange} />
+            </label>
+            <label> Company Logo
+                <input  type='file' id="logo"  ref={logo} />
+            </label>
+            <label> company description
+                <textarea placeholder="e.g we are the largest..."
+                 value={form.companydesc} 
+                 onChange={(e)=>setForm({...form,companydesc:e.target.value})}>
+                     
+                 </textarea>
+            </label>
+            <label> facebook link
+                <input placeholder="https://facebook.com/aba.hi" type='text' id="facebook"  value={form.facebook} onChange={handleChange} />
+            </label>
+            <label> twitter link
+                <input placeholder="https://twitter.com/aba.hi" type='text' id="twitter"  value={form.twitter} onChange={handleChange} />
+            </label>
+            <label> instagram link
+                <input placeholder="https://instagram.com/aba.hi" type='text' id="instagram"  value={form.instagram} onChange={handleChange} />
+            </label>
+        </AdminForm>
         <label> 
         <input placeholder="phone" type='phone' id="phone"  value={form.phone} onChange={handleChange} />
         </label>
@@ -95,7 +140,7 @@ const Signup:React.FC<Props> = ({setToken}) =>{
         </label>
         <button type="submit" onClick={handleSubmit}>Register</button>
     </Form>
-    </div>
+    </>
   );
 }
 

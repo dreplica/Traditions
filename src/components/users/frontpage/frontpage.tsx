@@ -1,18 +1,28 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { Front } from '../../../style/navigation';
 import Categories from '../categories/categories';
 import Search from '../search/search';
 import Initial from './initialpage'
 import { RightComponent } from '../../../style/categories';
 import MakePayment from '../cart/payment'
-import { Switch, Route,} from 'react-router-dom';
+import { Switch, Route, useHistory,} from 'react-router-dom';
 import Sales from '../categories/allCategories';
 import Carts from '../cart/cart';
 import SaleRoute from '../sales/sales';
 import SearchDisplay from '../search/searchDisplay';
+import { connect } from 'react-redux';
+import { stateData } from '../../../store/reducers/authentication';
 
-const Frontpage:React.FC = () =>{
-
+interface Iprops{
+  auth: string;
+}
+function Frontpage(props:Iprops) {
+  const history = useHistory()
+  useEffect(() => {
+    if (!props.auth) {
+      history.push('/')
+    }
+  }, [props.auth,history])
   return (
     <Front>
         <Categories />
@@ -47,5 +57,8 @@ const Frontpage:React.FC = () =>{
   );
 }
 
+const mapStateToProp = ({authenticate}:{authenticate:stateData}) => ({
+  auth:authenticate.data?.auth?.token as string
+})
 
-export default Frontpage;
+export default connect(mapStateToProp)(Frontpage)

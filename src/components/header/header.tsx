@@ -5,7 +5,7 @@ import { menuView } from '../../store/actionCreators/actiontypes';
 import { Modal } from '../../store/reducers/effects';
 import prof from '../../img/prof.jpg'
 import { FiAlignLeft, FiWatch, FiUser } from "react-icons/fi";
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 interface MenuView{
   toggleMenu:(args:string)=>void; 
@@ -13,6 +13,7 @@ interface MenuView{
 }
 const Header:React.FC<MenuView> = ({toggleMenu,Menu})=>{
   const [drop, setDrop] = useState<string>('none')
+  const history = useHistory();
   const isAdmin = true;
   const auth = true;
   const Shownav = (e:MouseEvent) =>{
@@ -29,8 +30,14 @@ const Header:React.FC<MenuView> = ({toggleMenu,Menu})=>{
         <img src={prof} alt='' onClick={showProfile}/>
         <div style={{display:drop}}>
           <ul>
-            <Link to={`/history`}><FiWatch/> history</Link> 
-            {isAdmin && <Link to={`/admin`}><FiUser/> Admin</Link>}
+            <Link to={`/history`} onClick={(e)=>{
+              showProfile(e)
+              history.push('/history') 
+            }}><FiWatch/> history</Link> 
+            {isAdmin && <Link to={`/admin`} onClick={(e)=>{
+              showProfile(e)
+              history.push('/admin') 
+            }}><FiUser/> Admin</Link>}
           </ul>
         </div>
       </div>} 

@@ -12,7 +12,12 @@ export type dataType = {
 export interface stateData {
     error:boolean|string,
     loading:boolean | string,
-    data:dataType
+    data: {
+        auth?: {
+            token?: string;
+            admin?: boolean|string;
+        }
+    }
 }
 
 const initialState:stateData= {error:false,loading:false,data:{auth:{token:"",admin:""}}}

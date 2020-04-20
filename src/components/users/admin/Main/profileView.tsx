@@ -109,11 +109,51 @@ const Location:React.FC<{id:string,token:string}> = ({id,token}) =>{
           }
       }).then((res)=>setLocation(res.data))//get just the location
       mapboxgl.accessToken = `pk.eyJ1IjoiZHJlcGxpY2EiLCJhIjoiY2p6OXV6eTM3MDBwaTNucnRkZm44MjZjayJ9.W3_lNRKchA62E0LFtQ9icg`
-      new mapboxgl.Map({
+      const map = new mapboxgl.Map({
            container: "mapp",
            style: 'mapbox://styles/mapbox/streets-v11'
-           });
+           }); 
+           getPoint(map)
     }, [])
+
+    const getPoint = (map:mapboxgl.Map)=>{
+        map.on('load',()=>{
+            console.log("is mapping")
+          map.loadImage('https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Cat_silhouette.svg/400px-Cat_silhouette.svg.png',(error:Error,image:any)=>{
+                if(error){
+                    throw new Error('couldnt load maps')
+                }
+                console.log(image)
+            map.addImage('seller',image)
+            map.addSource('point',{
+                'type': 'geojson',
+                'data': {
+                'type': 'FeatureCollection',
+                'features': [
+                        {
+                        'type': 'Feature',
+                        'properties':null,
+                        'geometry': {
+                        'type': 'Point',
+                        'coordinates': [0, 0]
+                                    }
+                            }
+                        ]
+                    }
+            })
+            map.addLayer({
+                    'id': 'points',
+                    'type': 'symbol',
+                    'source': 'point',
+                    'layout': {
+                    'icon-image': 'cat',
+                    'icon-size': 0.25
+                    }
+            });
+          })
+        
+         })
+    }
     return <>
     map
     <div id='mapp' ref={ref}></div>

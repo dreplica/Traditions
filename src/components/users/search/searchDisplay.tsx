@@ -27,6 +27,7 @@ const SearchDisplay:React.FC<Props> = ({auth,setItems})=>{
             .then(_=>{
                 setData(_.data)
                 setItems(_.data)
+                console.log(_.data)
             })
         }
     }, [useParams])

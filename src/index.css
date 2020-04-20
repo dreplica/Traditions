@@ -1,35 +1,31 @@
-*{
-    box-sizing: border-box;
+* {
+	box-sizing: border-box;
 }
 
-p,a{
+/* p,a{
   font-size: 150%;
-}
+} */
 
 body {
-  margin: 0;
-  font-family: 'nunito regular';
-  font-size:60%;
-  background:rgb(24, 17, 17);
-  color:rgb(230, 208, 208);
-
+	margin: 0;
+	font-family: 'nunito regular';
+	background: rgb(24, 17, 17);
+	color: rgb(230, 208, 208);
 }
 
 *::-webkit-scrollbar {
-  width: 5px;
+	width: 5px;
 }
 
 *::-webkit-scrollbar-track {
-  background: #f1f1f1;
+	background: #f1f1f1;
 }
 
 /* Handle */
 *::-webkit-scrollbar-thumb {
-  background: rgb(226, 122, 52);
+	background: rgb(226, 122, 52);
 }
 
-
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }

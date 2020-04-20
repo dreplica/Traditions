@@ -5,7 +5,7 @@ import {HistoryStyle,Summary} from './historystyle'
 import { objectData } from '../../../store/reducers/items';
 import { stateData } from '../../../store/reducers/authentication';
 
-const History:React.FC<{auth:objectData}> = ({auth})=> { 
+const History:React.FC<{auth:string}> = ({auth})=> { 
     const [data, setData] = useState<objectData[]>([])
     const [loading, setLoading] = useState<boolean>(true)
     useEffect(() => {
@@ -13,11 +13,11 @@ const History:React.FC<{auth:objectData}> = ({auth})=> {
         console.log("hello")
         Axios.get(`http://localhost:3000/history`,{
             headers:{
-                'authorization':`Bearer ${auth?.token}`
+                'authorization':`Bearer ${auth}`
             }
         })
         .then(_=>{
-            console.log(_.data.payload)
+            console.log("payload", _.data.payload)
             setData(unique(_.data?.payload))
             console.log("uniqueness",unique(_.data?.payload))
             setLoading(false)
@@ -41,8 +41,13 @@ const History:React.FC<{auth:objectData}> = ({auth})=> {
         )
     }
 
+    if(!data.length){
+        return <>Loading</>
+    }
+
   return (
     <>
+    
     <Summary>
   <h3>Total Transaction: &#8358;{data.reduce((acc,val)=>parseInt(val.price) + acc,0)}</h3>
     </Summary>
@@ -75,6 +80,6 @@ const History:React.FC<{auth:objectData}> = ({auth})=> {
 }
 
 const mapState = ({authenticate}:{authenticate:stateData})=>({
-    auth:authenticate.data?.auth as objectData
+    auth:authenticate.data?.auth?.token as string
 })
 export default connect(mapState)(History)

@@ -36,12 +36,9 @@ const Admin: React.FC<{ auth: any }> = ({ auth }) => {
         e.preventDefault();
         const data = new FormData();
         const name = (form.itemname + Date.now() + ".jpg")
-        console.log(name)
         setForm({ ...form, image: name })
         const img = image.current?.files?.item(0) as Blob
-        console.log("this is form", form);
         data.set('file', img as File, name)
-        // console.log(data)
         axios.post('http://localhost:3000/upload', data, {
 
         })
@@ -67,6 +64,7 @@ const Admin: React.FC<{ auth: any }> = ({ auth }) => {
             </label>
             <label> Select Category
             <select value={form.category} id='category' onChange={handleChange}>
+                    <option value=''>Please select a Category</option>
                     <option value='women'>Women Wears</option>
                     <option value='men'>Men Wears</option>
                     <option value='accessories'>Accessories</option>
@@ -79,14 +77,16 @@ const Admin: React.FC<{ auth: any }> = ({ auth }) => {
                     {form.category === "" && <option>you have to select category first</option>}
                     {form.category === 'women' &&
                         <>
-                            <option value='women'>Top</option>
-                            <option value='men'>Gowns</option>
-                            <option value='accessories'>Skirts</option>
-                            <option value='womenfoot'>Style</option>
+                            <option value='' >Select A type</option>
+                            <option value='top' >Top</option>
+                            <option value='gown'>Gowns</option>
+                            <option value='skirt'>Skirts</option>
+                            <option value='style'>Style</option>
                         </>
                     }
                     {form.category === 'men' &&
                         <>
+                            <option value='' >Select A type</option>
                             <option value='shirt'>Shirts</option>
                             <option value='trousers'>Trousers</option>
                             <option value='short'>Short</option>
@@ -95,6 +95,7 @@ const Admin: React.FC<{ auth: any }> = ({ auth }) => {
                     }
                     {form.category === 'accessories' &&
                         <>
+                            <option value='' >Select A type</option>
                             <option value='bangles'>Bangles</option>
                             <option value='necklace'>Necklace</option>
                             <option value='waistbid'>Waist bids</option>
@@ -103,6 +104,7 @@ const Admin: React.FC<{ auth: any }> = ({ auth }) => {
                     }
                     {form.category === 'womenfoot' &&
                         <>
+                            <option value='' >Select A type</option>
                             <option value='sandal'>Sandal</option>
                             <option value='shoe'>Shoe</option>
                             <option value='hill'>Hills</option>
@@ -110,6 +112,7 @@ const Admin: React.FC<{ auth: any }> = ({ auth }) => {
                     }
                     {form.category === 'menfoot' &&
                         <>
+                            <option value='' >Select A type</option>
                             <option value='sandal'>Sandals</option>
                             <option value='shoe'>Shoes</option>
                         </>

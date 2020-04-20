@@ -9,25 +9,32 @@ import { FaStoreAlt, FaRegEnvelope, FaSignOutAlt, FaTags, FaGlobeAfrica } from '
 import { itemState, objectData } from '../../store/reducers/items';
 import { stateData } from '../../store/reducers/authentication';
 
-const Navigation:React.FC<{menu:string,view:(args:string)=>void,data:objectData[]}> = ({menu,view,data})=>{
+interface Iprops{
+  menu: string;
+  auth: string;
+  view: (args: string) => void;
+  data: objectData[]
+}
+function  Navigation({menu,view,auth,data}:Iprops){
   // const [viewing, setView] = useState(menu);
   const history = useHistory();
-
-  const auth = true;
   useEffect(() => {
     window.onresize = (e:Event)=>{
       e.preventDefault(); 
       (window.innerWidth <= 999) ? view('none') : view('block')
     }
-  }, [menu,view,data])
+  }, [menu,view,data,auth])
 
   const gotToLogin = (e:MouseEvent) =>{
     e.preventDefault();
-     console.log("this is auth")
-      if(auth){
-          console.log("out")
-          // delete localStorage['auth']
+    if (auth) {
+        try {
+          localStorage.removeItem('auth')
           history.push("/signin")
+          
+        } catch (error) {
+          console.log(error.message)
+        }
       }
   }
 
@@ -59,7 +66,7 @@ const Navigation:React.FC<{menu:string,view:(args:string)=>void,data:objectData[
 
 const mapStateToProps = ({EffectReducers,ItemsReducer,authenticate}:{authenticate:stateData; EffectReducers:Modal,ItemsReducer:itemState})=>({
   menu:EffectReducers.menu,
-  auth:authenticate.data?.auth as objectData,
+  auth:authenticate.data?.auth?.token as string,
   data:ItemsReducer.cart
 })
 export default connect(mapStateToProps,{view:menuView})(Navigation)

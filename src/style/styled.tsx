@@ -4,7 +4,7 @@ export const Headers = styled.header`
     width:90%;
     display:flex;
     flex-direction:row;
-    justify-conten:flex-start;
+    justify-content:flex-start;
     margin:auto;
     position:relative;
     // background:red;
@@ -127,13 +127,22 @@ export const Logintro = styled.div`
         }
     
 `
+export const AdminForm = styled.div`
+    width:100%;
 
+    .companydesc{
+        min-width:200px;
+        max-width:200px;
+        min-height:150px;
+        max-height:150px;
+    }
+`
 export const Form = styled.form`
     width:350px;
     position:relative;
     top:15vh;
     margin:auto;
-    height:300px;
+    height:auto;
     display:flex;
     flex-direction:column;
     justify-content:space-between;
@@ -221,4 +230,3 @@ export const Form = styled.form`
     }
 
 `
-

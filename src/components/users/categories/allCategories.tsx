@@ -5,7 +5,7 @@ import {itemState,objectData} from '../../../store/reducers/items'
 import {getItem} from '../../../store/actionCreators/actiontypes' 
 import { connect } from 'react-redux';
 import Axios from 'axios';
-import { useRouteMatch, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { stateData } from '../../../store/reducers/authentication';
 
 export interface IProps {

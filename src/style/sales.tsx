@@ -1,14 +1,13 @@
 import styled from "styled-components";
 
 export const Latest = styled.div`
-  width:90%;
+  width:auto;
   margin:auto;
   display:flex;
   flex-direction:row;
   flex-wrap:wrap;
-  justify-content:space-around;
+  justify-content:flex-start;
   align-items:center;
-
 `
 
 export const Sort = styled.div`

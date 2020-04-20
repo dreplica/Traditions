@@ -10,6 +10,14 @@ export const Modall = styled.div`
   z-index:10;
   background:rgba(0,0,0,0.6);
 
+   .check_designer{
+        width:100%;
+        text-align:center;
+        height:40px;
+        color:lightgrey;
+        background:inherit;
+   }
+
     .close{
         position:absolute;
         color:white;

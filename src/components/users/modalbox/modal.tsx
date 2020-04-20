@@ -43,7 +43,7 @@ const Modalview:React.FC<Proper> = ({current,modal,view,cart}) => {
                         </select>
                     </div>
                     <div className='price-modal'><h3>&#8358;{current?.price}</h3></div>
-                    <Link to={`/seller`} onClick={close}>Check Designer</Link>
+                    <Link to={`/seller`} onClick={close} className='check_designer'>Check Designer</Link>
                     <button onClick={addCart}>Add to Cart</button>
                 </div> 
             <div className='size'><img src='/' alt=''/></div>
