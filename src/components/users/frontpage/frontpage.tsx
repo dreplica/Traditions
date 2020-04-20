@@ -48,9 +48,9 @@ function Frontpage(props:Iprops) {
               <Route path='/home/payment'>
                 <MakePayment/>
               </Route> 
-              {/* <Route path='/home/search/:id'>
+              <Route path='/home/search/:id'>
                   <SearchDisplay/>
-                </Route> */}
+                </Route>
               </Switch> 
         </RightComponent>
     </Front> 

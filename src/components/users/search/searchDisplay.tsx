@@ -27,7 +27,6 @@ const SearchDisplay:React.FC<Props> = ({auth,setItems})=>{
             .then(_=>{
                 setData(_.data)
                 setItems(_.data)
-                console.log(_.data)
             })
         }
     }, [useParams])
@@ -40,7 +39,8 @@ const SearchDisplay:React.FC<Props> = ({auth,setItems})=>{
             :<OneComponent name={data[0]?.itemname} 
             id={data[0]?.id} desc={data[0]?.description} 
             price={data[0]?.price} image={data[0]?.image}/>
-        }
+              }
+              {console.log("data is coming in",data)}
         </RightComponent>
       </Front>
   );
