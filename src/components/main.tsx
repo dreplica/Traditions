@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import {BrowserRouter as Router,Switch,Route} from 'react-router-dom'
 import Signup from './authorization/signup'
 import Login from './authorization/login'
-import Header from './header/header';
+import Header from './header/HeadLogo/Logo';
 import Homepage from './header/homepage';
 import Admin from './users/admin/admin' 
 import Frontpage from './users/frontpage/frontpage';
