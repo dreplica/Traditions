@@ -7,8 +7,7 @@ import {
     Addreview,Reviews, 
     Container,TabView,
     AboutStyle,Links,Product } from './profilestyle'
-import mapboxgl from 'mapbox-gl'
-import one from '../../../../img/agba2.jpg'
+
 
 const Profile = () => {
   return <CoverPage />
