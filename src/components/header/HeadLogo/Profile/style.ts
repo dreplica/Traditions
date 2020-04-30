@@ -13,6 +13,9 @@ export const Container = styled.div`
 
   & a{
       text-decoration:none;
+      margin-bottom:5px;
+      display: flex;
+      align-items:center;
       color:grey;
       font-size:1.3rem;
   }
