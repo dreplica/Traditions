@@ -2,12 +2,12 @@ import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { connect } from 'react-redux';
 
+import Header from './components/header';
+import Modal from './components/Modal/index';
 import Screens from './Screens/index'
 import Frontpage from './components/users/frontpage/frontpage';
-import Modal from './components/users/modalbox/modal';
-import { checkLocal } from './store/actionCreators/actiontypes';
 import Adminprofile from './components/users/admin/adminProfile';
-import Header from './components/header';
+import { checkLocal } from './store/actionCreators/actiontypes';
 
 interface Iprops{
   getLocal: () => void;
@@ -17,6 +17,7 @@ function Maincomponent({ getLocal }:Iprops){
   useEffect(() => {
     getLocal()
   }, [])
+
   return (
     <Router>
       <Modal />
