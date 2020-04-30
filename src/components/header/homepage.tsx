@@ -1,36 +1,5 @@
-import React, { FormEvent, ChangeEvent, useState } from 'react';
-import { connect } from 'react-redux';
-import { loadData } from '../../store/actionCreators/actiontypes';
-import Navigation from './NavigationBar';
-
-
-export type dataType = {[key:string]:number|string}
-
-type Props = {
-    setToken:(args:string)=>void
-}
-
-interface Form{
-    firstname:string;
-    lastname:string;
-    username:string;
-    password:string;
-    email:string;
-    phone:string;
-    categoryname:string;
-    categoryimage:string;
-}
-
-const initialForm:Form = {
-    firstname:"",
-    lastname:"",
-    username:"",
-    password:"",
-    email:"",
-    phone:"",
-    categoryname:"",
-    categoryimage:"",
-}
+import React from 'react';
+import Navigation from './Navigation';
 
 const Homepage:React.FC = () =>{
     
