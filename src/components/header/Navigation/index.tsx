@@ -16,25 +16,35 @@ interface Iprops{
   view: (args: string) => void;
   data: objectData[]
 }
-function  Navigation({menu,view,auth,data}:Iprops){
+function Navigation({ menu, view, auth, data }: Iprops) {
+  
+  useEffect(() => {
+     if (window.innerWidth <= 999) {
+      view('none')
+    }
+  }, [])
+  
   useEffect(() => {
     window.onresize = (e:Event)=>{
       e.preventDefault(); 
-      (window.innerWidth >= 999)? view('block'):view('none');
+      (window.innerWidth >= 999)? view('flex'):view('none');
     }
   }, [menu, view, data, auth])
-  
-  const Login = <li><a href='/signin'><FaSignOutAlt/><span>Login</span></a></li>
 
-  return (<Nav style={{display:menu}}> 
-        <ul>
-            <li><Link to='/home'><FaStoreAlt /> <span>Home</span></Link></li>
-            <li><Link to='/home/topsales'><FaGlobeAfrica/> Top Sales</Link></li> 
-            <li><Link to='/home/newsales'><FaTags/> New Sales</Link></li>   
-            <li><Link to='/home/cart'><FiShoppingCart/><span> Cart<sup>{data.length}</sup></span></Link></li>
-      <li><a href='#foot'><FaRegEnvelope /><span>Contact</span></a></li>
-      {!auth && Login}
-        </ul>
+  const closeAction = () => {
+    view('none')
+  }
+  
+  const Login = <Link to='/signin' onClick={closeAction}><FaSignOutAlt/><span>Login</span></Link>
+
+  return (
+    <Nav style={{ display: menu }}> 
+            <Link to='/home' onClick={closeAction}><FaStoreAlt /> <span>Home</span></Link>
+            <Link to='/home/topsales' onClick={closeAction}><FaGlobeAfrica/> Top Sales</Link>
+            <Link to='/home/newsales' onClick={closeAction}><FaTags/> New Sales</Link>   
+            <Link to='/home/cart' onClick={closeAction}><FiShoppingCart/><span> Cart<sup>{data.length}</sup></span></Link>
+            <Link to='/#foot' onClick={closeAction}><FaRegEnvelope /><span>Contact</span></Link>
+            {!auth && Login}
     </Nav>
   );
 }

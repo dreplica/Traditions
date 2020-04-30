@@ -1,38 +1,24 @@
 import styled from 'styled-components';
 
 export const Nav = styled.nav`
+    display:flex;
+    flex-direction:row;
+    justify-content:space-evenly;
     width:100%;
-    margin:auto;
+    height:auto;
     border-bottom:1px solid orange;
-    
-    .close{
-        position:absolute;
-    }
-    
-    & ul{  
-        width:80%;
-        margin:auto;
-        display:flex;
-        flex-wrap:nowrap;
-        flex-direction:row;
-        justify-content:space-around;
-        align-items:center;
-
-            & li{
-                list-style:none;
-                color:grey;
-                margin:auto;
-                text-decoration:none;
-                padding:12px;
                 
-                & a{
-                    display:flex;
-                    justify-content:space-between;
-                    align-items:center;
-                    font-size:20px;
-                    text-decoration:none;
-                    font-weight:bolder;
-                    color:inherit;
+      a{
+            display:flex;
+            width:140px;
+            height:30px;
+            margin:10px;
+            justify-content:flex-start;
+            align-items:center;
+            font-size:20px;
+            text-decoration:none;
+            font-weight:bolder;
+            color:inherit;
                     
                     span{
                         margin-left:5px;
@@ -51,37 +37,20 @@ export const Nav = styled.nav`
                         color:white;
                     }
                 }
-            }
-        }
 
     @media(max-width:999px){
-        border:none;
-        height:84vh;
+        height:87vh;
         border-top:1px solid orange;
+        border-bottom:1px solid orange;
+        flex-direction:column;
+        justify-content:flex-start;
+        align-items:center;
+        padding-top:20%;
 
-        .close{
-            position:absolute;;
-            top:190px;
-            width:20px;
-            font-size:30px;
-            left:85%;
-
-            &:hover{
-                color:white;
-            }
-            
-        }
-
-        ul{
-            flex-direction:column;
-            justify-content:flex-start;
-            align-items:end;
-            margin:30px;
-
-            li{
-                margin:10px;
+            a{
+                margin:20px;
                 padding:5px;
             }
         }
-    }
+    
 `

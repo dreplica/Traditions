@@ -24,7 +24,7 @@ const Header:React.FC<MenuView> = ({toggleMenu,Menu})=>{
 
   const Shownav = (e:MouseEvent) =>{
     e.preventDefault(); 
-    (Menu === 'none')?toggleMenu('block'):toggleMenu('none')
+    (Menu === 'none')?toggleMenu('flex'):toggleMenu('none')
   }
   const showProfile = (e:MouseEvent) =>{
     e.preventDefault();

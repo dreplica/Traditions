@@ -8,7 +8,7 @@ export interface Modal{
 
 const modalView :Modal={
     modal:'none',
-    menu:'block'
+    menu:'flex'
 }
 
 
