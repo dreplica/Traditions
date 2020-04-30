@@ -1,11 +1,11 @@
 import React, { useState,MouseEvent, useEffect } from 'react'; 
-import { objectData, itemState } from '../../../store/reducers/items';
-import { removeCart } from '../../../store/actionCreators/actiontypes';
+import { objectData, itemState } from '../../store/reducers/items';
+import { removeCart } from '../../store/actionCreators/actiontypes';
 import { connect } from 'react-redux';
-import { ContainCart, Cart } from '../../../style/cartstyle';
+import { ContainCart, Cart } from './style';
 import { useHistory } from 'react-router-dom';
 import Axios from 'axios';
-import { stateData } from '../../../store/reducers/authentication';
+import { stateData } from '../../store/reducers/authentication';
 
 
 const Carts:React.FC<{data:objectData[];auth:objectData; remove:(id:string)=>void}>=({data,remove,auth}) =>{
@@ -62,4 +62,3 @@ const mapStateToProps = ({ItemsReducer,authenticate}:{ItemsReducer:itemState,aut
     auth:authenticate.data?.auth as objectData 
 })
 export default connect(mapStateToProps,{remove:removeCart})(Carts);
-

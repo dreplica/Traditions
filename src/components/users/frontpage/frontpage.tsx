@@ -4,10 +4,10 @@ import Categories from '../categories/categories';
 import Search from '../search/search';
 import Initial from './initialpage'
 import { RightComponent } from '../../../style/categories';
-import MakePayment from '../cart/payment'
+import MakePayment from '../../../util/Payment/index'
 import { Switch, Route, useHistory,} from 'react-router-dom';
 import Sales from '../categories/allCategories';
-import Carts from '../cart/cart';
+import Carts from '../../../Screens/CartScreen';
 import SaleRoute from '../sales/sales';
 import SearchDisplay from '../search/searchDisplay';
 import { connect } from 'react-redux';

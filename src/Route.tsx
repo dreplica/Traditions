@@ -1,45 +1,46 @@
 import React, { useEffect } from 'react';
-import {BrowserRouter as Router,Switch,Route} from 'react-router-dom'
-import Signup from './Screens/AuthScreen/Register/signup'
-import Login from './Screens/AuthScreen/Login/index'
-import Admin from './Screens/Adminscreen/Upload' 
-import Frontpage from './components/users/frontpage/frontpage';
-import History from './Screens/Adminscreen/History' 
-import Modal from './components/users/modalbox/modal';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { connect } from 'react-redux';
+
+import Screens from './Screens/index'
+import Frontpage from './components/users/frontpage/frontpage';
+import Modal from './components/users/modalbox/modal';
 import { checkLocal } from './store/actionCreators/actiontypes';
 import Adminprofile from './components/users/admin/adminProfile';
 import Header from './components/header';
 
-const Maincomponent:React.FC<{getLocal:()=>void}> = ({getLocal}) => {
-  useEffect(() => {
-    getLocal()
-    //update user state from local storage
-  }, [])
-  return <Router>
-    <Modal />
-    <Header />
-              <Switch>
-                <Route  path='/home'>
-                  <Frontpage />
-                </Route>
-                <Route path='/signup'>
-                  <Signup />  
-                </Route>
-                <Route path='/seller'>
-                  <Adminprofile/> 
-                </Route>
-                <Route path='/signin'>
-                  <Login /> 
-                </Route>
-                <Route path='/history'>
-                  <History />
-                </Route>
-                <Route path='/admin'>
-                  <Admin /> 
-                </Route>
-              </Switch>
-        </Router>  
+interface Iprops{
+  getLocal: () => void;
 }
 
-export default connect(null,{getLocal:checkLocal})(Maincomponent)
+function Maincomponent({ getLocal }:Iprops){
+  useEffect(() => {
+    getLocal()
+  }, [])
+  return (
+    <Router>
+      <Modal />
+      <Header />
+      <Switch>
+        <Route path='/home'>
+          <Frontpage />
+        </Route>
+        <Route path='/signup'>
+        </Route>
+        <Route path='/seller'>
+          <Adminprofile />
+        </Route>
+        <Route path='/signin'>
+          <Screens.Login />
+        </Route>
+        <Route path='/history'>
+          <Screens.History />
+        </Route>
+        <Route path='/admin'>
+          <Screens.Upload />
+        </Route>
+      </Switch>
+    </Router>)
+}
+
+export default connect(null, { getLocal: checkLocal })(Maincomponent)

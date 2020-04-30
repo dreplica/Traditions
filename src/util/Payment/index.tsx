@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PaystackButton from 'react-paystack'
 import { connect } from 'react-redux';
-import { itemState, objectData } from '../../../store/reducers/items';
+import { itemState, objectData } from '../../store/reducers/items';
 
 const MakePayment:React.FC<{data:objectData[]}> = ({data}) =>{
     const [userBuy, setUserbuy] = useState({refId:"",email:"",amount:""})
