@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import { itemState, objectData } from '../../../store/reducers/items';
+import { stateData } from '../../../store/reducers/authentication';
 import { menuView } from '../../../store/actionCreators/actiontypes';
 import { Modal } from '../../../store/reducers/effects';
 import { Link } from 'react-router-dom';
 import { FiShoppingCart } from 'react-icons/fi';
 import { FaStoreAlt, FaRegEnvelope, FaSignOutAlt, FaTags, FaGlobeAfrica } from 'react-icons/fa'; 
-import { itemState, objectData } from '../../../store/reducers/items';
-import { stateData } from '../../../store/reducers/authentication';
-import { Nav } from '../../../style/navigation';
+
+import { Nav } from './style';
 
 interface Iprops{
   menu: string;
@@ -19,7 +20,7 @@ function  Navigation({menu,view,auth,data}:Iprops){
   useEffect(() => {
     window.onresize = (e:Event)=>{
       e.preventDefault(); 
-      (window.innerWidth <= 999) ? view('none') : view('block')
+      (window.innerWidth >= 999)? view('block'):view('none');
     }
   }, [menu, view, data, auth])
   
@@ -43,4 +44,5 @@ const mapStateToProps = ({EffectReducers,ItemsReducer,authenticate}:{authenticat
   auth:authenticate.data?.auth?.token as string,
   data:ItemsReducer.cart
 })
+
 export default connect(mapStateToProps,{view:menuView})(Navigation)
