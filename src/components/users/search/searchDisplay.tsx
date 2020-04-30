@@ -18,7 +18,9 @@ const SearchDisplay:React.FC<Props> = ({auth,setItems})=>{
     const {id} = useParams();
     const [data, setData] = useState<objectData[]>([])
     useEffect(() => {
-        if(id){
+        console.log("hello my neighbours")
+        if (id) {
+            
             Axios.get(`http://localhost:3000/items/${id}`,{
                 headers:{
                     authorization:`Bearer ${auth?.token}`
@@ -29,7 +31,7 @@ const SearchDisplay:React.FC<Props> = ({auth,setItems})=>{
                 setItems(_.data)
             })
         }
-    }, [useParams])
+    }, [id])
   return (
       <Front>
       <Categories />

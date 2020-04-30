@@ -6,6 +6,7 @@ import { Modal } from '../../store/reducers/effects';
 import prof from '../../img/prof.jpg'
 import { FiAlignLeft, FiWatch, FiUser } from "react-icons/fi";
 import { Link, useHistory } from 'react-router-dom';
+import ProfileDropdown from './HeadLogo/Profile';
 
 interface MenuView{
   toggleMenu:(args:string)=>void; 
@@ -28,23 +29,12 @@ const Header:React.FC<MenuView> = ({toggleMenu,Menu})=>{
     <Headers>
       {auth && <div className='profile'>
         <img src={prof} alt='' onClick={showProfile}/>
-        <div style={{display:drop}}>
-          <ul>
-            <Link to={`/history`} onClick={(e)=>{
-              showProfile(e)
-              history.push('/history') 
-            }}><FiWatch/> history</Link> 
-            {isAdmin && <Link to={`/admin`} onClick={(e)=>{
-              showProfile(e)
-              history.push('/admin') 
-            }}><FiUser/> Admin</Link>}
-          </ul>
-        </div>
       </div>} 
         <div className="heading">
           <span>Tradishion <sup>&reg;</sup></span>
           <span onClick={Shownav} className='menu-but'><FiAlignLeft /></span>
-        </div>
+      </div>
+      <ProfileDropdown drop={true}/>
     </Headers>
   );
 }
