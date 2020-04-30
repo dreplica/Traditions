@@ -40,12 +40,13 @@ export const Nav = styled.nav`
 
     @media(max-width:999px){
         height:87vh;
+        background-color:rgba(24, 17, 17,0.8);
         border-top:1px solid orange;
         border-bottom:1px solid orange;
         flex-direction:column;
         justify-content:flex-start;
         align-items:center;
-        padding-top:20%;
+        padding-top:15%;
 
             a{
                 margin:20px;

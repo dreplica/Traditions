@@ -1,7 +1,7 @@
-import React, { FormEvent, ChangeEvent, useState } from 'react';
+import React, { FormEvent, ChangeEvent, useState, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { loadData } from '../../store/actionCreators/actiontypes';
-import { Form, Logintro } from '../../style/styled';
+import { loadData } from '../../../store/actionCreators/actiontypes';
+import { Form, Container } from '../style';
 import { useHistory } from 'react-router-dom';
 
 
@@ -47,9 +47,9 @@ const Login:React.FC<Props> = ({setToken}) =>{
         })
         .catch(err=>console.log(err.error))
     }
-  return ( 
-      <div>
-        <Logintro>
+    return ( 
+      <Fragment>
+      <Container>
             <div className='log'>
                 <h3>Login</h3>
                 <div className="line"></div>
@@ -58,7 +58,7 @@ const Login:React.FC<Props> = ({setToken}) =>{
                 <br/>
                     Did you <a href="/" className="forget">forget your password ?</a>
             </div>
-        </Logintro>   
+        </Container>   
         <Form>
             <span>{error}</span>
         <label>  
@@ -69,7 +69,7 @@ const Login:React.FC<Props> = ({setToken}) =>{
         </label>
         <button type="submit" onClick={handleSubmit}>Login</button>
         </Form>
-      </div>
+      </Fragment>
   ); 
 }
 

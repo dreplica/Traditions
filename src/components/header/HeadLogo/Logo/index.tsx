@@ -18,13 +18,13 @@ interface MenuView{
   toggleMenu:(args:string)=>void; 
   Menu:string;
 }
-const Header:React.FC<MenuView> = ({toggleMenu,Menu})=>{
+function Header(props:MenuView){
   const [drop, setDrop] = useState<'hidden'|'visible'>('hidden')
   const auth = true;
 
   const Shownav = (e:MouseEvent) =>{
     e.preventDefault(); 
-    (Menu === 'none')?toggleMenu('flex'):toggleMenu('none')
+    (props.Menu === 'none')?props.toggleMenu('flex'):props.toggleMenu('none')
   }
   const showProfile = (e:MouseEvent) =>{
     e.preventDefault();

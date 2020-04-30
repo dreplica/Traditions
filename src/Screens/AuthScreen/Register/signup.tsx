@@ -1,7 +1,7 @@
-import React, { FormEvent, ChangeEvent, useState, useRef } from 'react';
+import React, { FormEvent, ChangeEvent, useState, useRef, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { loadData } from '../../store/actionCreators/actiontypes';
-import { Form,Logintro, AdminForm } from '../../style/styled';
+import { loadData } from '../../../store/actionCreators/actiontypes';
+import { Form,Container, AdminForm } from '../style';
 import { useHistory } from 'react-router-dom';
 import Axios from 'axios';
 
@@ -79,9 +79,9 @@ const Signup:React.FC<Props> = ({setToken}) =>{
         })
     }
 
-  return (
-    <>
-    <Logintro>
+    return (
+      <Fragment>
+    <Container>
         <div className='log'>
             <h3>Register</h3>
             <div className="line"></div>
@@ -90,7 +90,7 @@ const Signup:React.FC<Props> = ({setToken}) =>{
             <br/>
                 already have an account ? <a href="/" className="forget">Login</a>
         </div>
-    </Logintro>
+    </Container>
     <Form> 
         <span>{error}</span>
         <label> 
@@ -140,7 +140,7 @@ const Signup:React.FC<Props> = ({setToken}) =>{
         </label>
         <button type="submit" onClick={handleSubmit}>Register</button>
     </Form>
-    </>
+    </Fragment>
   );
 }
 

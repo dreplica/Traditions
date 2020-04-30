@@ -1,5 +1,5 @@
 import React, { useEffect, useState, ChangeEvent, FormEvent, useRef } from 'react';
-import { Form } from '../../../style/styled';
+import { Form } from './style';
 import { connect } from 'react-redux';
 import { stateData, dataType } from '../../../store/reducers/authentication'
 import axios from 'axios'
@@ -24,7 +24,7 @@ const initialForm: AdminForm = {
     quantity: 0
 }
 
-const Admin: React.FC<{ auth: any }> = ({ auth }) => {
+function Admin({ auth }:{auth:any}){
     const [form, setForm] = useState<AdminForm>(initialForm)
     const image = useRef<HTMLInputElement>(null)
     const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -134,6 +134,8 @@ const Admin: React.FC<{ auth: any }> = ({ auth }) => {
         </Form>
     );
 }
+
+
 const mapStateToProps = ({ authenticate }: { authenticate: stateData }) => ({
     auth: authenticate.data?.auth
 })

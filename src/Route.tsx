@@ -1,16 +1,15 @@
 import React, { useEffect } from 'react';
 import {BrowserRouter as Router,Switch,Route} from 'react-router-dom'
-import Signup from './authorization/signup'
-import Login from './authorization/login'
-import Header from './header/HeadLogo/Logo';
-import Homepage from './header/homepage';
-import Admin from './users/admin/admin' 
-import Frontpage from './users/frontpage/frontpage';
-import History from './users/history/history' 
-import Modal from './users/modalbox/modal';
+import Signup from './Screens/AuthScreen/Register/signup'
+import Login from './Screens/AuthScreen/Login/index'
+import Admin from './Screens/Adminscreen/Upload' 
+import Frontpage from './components/users/frontpage/frontpage';
+import History from './Screens/Adminscreen/History' 
+import Modal from './components/users/modalbox/modal';
 import { connect } from 'react-redux';
-import { checkLocal } from '../store/actionCreators/actiontypes';
-import Adminprofile from './users/admin/adminProfile';
+import { checkLocal } from './store/actionCreators/actiontypes';
+import Adminprofile from './components/users/admin/adminProfile';
+import Header from './components/header';
 
 const Maincomponent:React.FC<{getLocal:()=>void}> = ({getLocal}) => {
   useEffect(() => {
@@ -18,9 +17,8 @@ const Maincomponent:React.FC<{getLocal:()=>void}> = ({getLocal}) => {
     //update user state from local storage
   }, [])
   return <Router>
-        <Modal />
-          <Header/>
-          <Homepage />
+    <Modal />
+    <Header />
               <Switch>
                 <Route  path='/home'>
                   <Frontpage />

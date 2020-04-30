@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import Axios from 'axios';
-import {HistoryStyle,Summary} from './historystyle' 
 import { objectData } from '../../../store/reducers/items';
 import { stateData } from '../../../store/reducers/authentication';
+
+
+import {HistoryStyle,Summary} from './style' 
 
 const History:React.FC<{auth:string}> = ({auth})=> { 
     const [data, setData] = useState<objectData[]>([])
@@ -21,7 +23,6 @@ const History:React.FC<{auth:string}> = ({auth})=> {
             setData(unique(_.data?.payload))
             console.log("uniqueness",unique(_.data?.payload))
             setLoading(false)
-            // setData(_.data.history)
         })
     }, [auth])
     
