@@ -8,20 +8,18 @@ import Screens from './Screens/index'
 import Frontpage from './components/users/frontpage/frontpage';
 import Adminprofile from './components/users/admin/adminProfile';
 import { checkLocal } from './store/actionCreators/actiontypes';
+import ProfileScreen from './Screens/ProfileScreen';
 
-interface Iprops{
+interface Iprops {
   getLocal: () => void;
 }
 
-function Maincomponent({ getLocal }:Iprops){
+function Maincomponent({ getLocal }: Iprops) {
   useEffect(() => {
     getLocal()
   }, [])
 
   return (
-    <Router>
-      <Modal />
-      <Header />
       <Switch>
         <Route path='/home'>
           <Frontpage />
@@ -29,7 +27,7 @@ function Maincomponent({ getLocal }:Iprops){
         <Route path='/signup'>
         </Route>
         <Route path='/seller'>
-          <Adminprofile />
+          <ProfileScreen />
         </Route>
         <Route path='/signin'>
           <Screens.Login />
@@ -40,8 +38,8 @@ function Maincomponent({ getLocal }:Iprops){
         <Route path='/admin'>
           <Screens.Upload />
         </Route>
-      </Switch>
-    </Router>)
+    </Switch>
+  )
 }
 
 export default connect(null, { getLocal: checkLocal })(Maincomponent)

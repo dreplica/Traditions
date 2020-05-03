@@ -1,14 +1,14 @@
 import React from 'react'
+import OneComponent from '../../../components/users/labels/OneComponent'
+import { Container } from './style'
 
 interface Iprops {
     id: string;
     token: string;
 }
 
-function Products({ id, token }: Iprops) {
+export default function Products({ id, token }: Iprops) {
     // const [product, setproduct] = useState<objectData[]>([])
-    console.log('product')
-
     // useEffect(() => {
     //   Axios.get(`http://localhost:3000/sellerproducts/${id}`,{
     //       headers:{
@@ -16,8 +16,9 @@ function Products({ id, token }: Iprops) {
     //       }
     //   }).then((res)=>setproduct(res.data))
     // }, [])
+
     const products = Array.from({ length: 10 })
-    return (<Product>
+    return (<Container>
         {products.map((_, index) => <OneComponent
             key={index}
             id={"0"}
@@ -26,5 +27,7 @@ function Products({ id, token }: Iprops) {
             image={"Agbada1582886477226.jpg"}
             price={"90909"} />
         )}
-    </Product>)
+    </Container>)
 }
+
+// export default {}

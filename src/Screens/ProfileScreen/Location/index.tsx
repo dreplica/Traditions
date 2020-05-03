@@ -1,15 +1,14 @@
 import React, { Fragment, useState, useRef, useEffect } from "react";
 import mapboxgl from 'mapbox-gl'
 import Axios from "axios"
-
 import getPoint from "./Mapconfig"
-import { IProps } from "../../../components/users/categories/allCategories"
 
 interface Iprops{
     id: string,
     token: string
 }
-function Location({ id, token }:IProps){
+
+export default function Location({ id, token }:Iprops){
     const [location, setLocation] = useState<string>("coordinate")
     const ref = useRef<HTMLDivElement>(null)
     console.log('location')
@@ -27,9 +26,10 @@ function Location({ id, token }:IProps){
         getPoint(map)
     }, [])
 
-    return <Fragment>
-        map
-    <div id='mapp' ref={ref} > </div>
-
+    return (
+        <Fragment>
+            map
+            <div id='mapp' ref={ref} > </div>
         </Fragment>
+    )
 }

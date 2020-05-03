@@ -1,4 +1,6 @@
 import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
+import { AboutStyle,Links } from './style';
 
 export default function About() {
   return (
