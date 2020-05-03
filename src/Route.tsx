@@ -1,14 +1,10 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import { connect } from 'react-redux';
 
-import Header from './components/header';
-import Modal from './components/Modal/index';
 import Screens from './Screens/index'
 import Frontpage from './components/users/frontpage/frontpage';
-import Adminprofile from './components/users/admin/adminProfile';
 import { checkLocal } from './store/actionCreators/actiontypes';
-import ProfileScreen from './Screens/ProfileScreen';
 
 interface Iprops {
   getLocal: () => void;
@@ -21,13 +17,14 @@ function Maincomponent({ getLocal }: Iprops) {
 
   return (
       <Switch>
-        <Route path='/home'>
+        <Route path='/'>
           <Frontpage />
         </Route>
-        <Route path='/signup'>
+      <Route path='/signup'>
+        <Screens.Register />
         </Route>
         <Route path='/seller'>
-          <ProfileScreen />
+          <Screens.ProfileScreen />
         </Route>
         <Route path='/signin'>
           <Screens.Login />

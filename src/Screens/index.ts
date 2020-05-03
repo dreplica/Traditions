@@ -3,6 +3,7 @@ import Upload from "./Adminscreen/Upload/index";
 import Login from "./AuthScreen/Login/index";
 import Register from "./AuthScreen/Register/signup";
 import Cart from "./CartScreen/index";
+import ProfileScreen from "./ProfileScreen/index";
 
 
 export default {
@@ -10,5 +11,6 @@ export default {
     Upload,
     Login,
     Register,
-    Cart
+    Cart,
+    ProfileScreen
 }
