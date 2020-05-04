@@ -1,5 +1,7 @@
 * {
 	box-sizing: border-box;
+	margin:0px;
+	padding:0px;
 }
 
 /* p,a{
@@ -7,7 +9,6 @@
 } */
 
 body {
-	margin: 0;
 	font-family: 'nunito regular';
 	background: rgb(24, 17, 17);
 	color: rgb(230, 208, 208);
