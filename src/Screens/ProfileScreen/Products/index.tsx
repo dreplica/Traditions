@@ -1,6 +1,9 @@
 import React from 'react'
-import OneComponent from '../../../components/users/labels/OneComponent'
-import { Container } from './style'
+
+import Cards from '../../../ReusableComponents/Cards'
+import {
+    Container
+} from './style'
 
 interface Iprops {
     id: string;
@@ -19,7 +22,7 @@ export default function Products({ id, token }: Iprops) {
 
     const products = Array.from({ length: 10 })
     return (<Container>
-        {products.map((_, index) => <OneComponent
+        {products.map((_, index) => <Cards
             key={index}
             id={"0"}
             name={"gro"}
