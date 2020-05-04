@@ -64,7 +64,7 @@ export const Category = styled.nav`
                 list-style:none;
                 color:black;
                 padding:10px 0px;
-                margin:auto
+                margin:auto;
                 text-decoration:none;
                 
                 & a{
@@ -83,7 +83,7 @@ export const Category = styled.nav`
         display:none;
     }
         
-`
+`;
 
 export const RightComponent = styled.div`
     display:flex;
