@@ -16,25 +16,25 @@ function Maincomponent({ getLocal }: Iprops) {
   }, [])
 
   return (
-      <Switch>
-        <Route path='/'>
-          <Frontpage />
-        </Route>
+    <Switch>
+      <Route path='/'>
+        <Frontpage />
+      </Route>
       <Route path='/signup'>
         <Screens.Register />
-        </Route>
-        <Route path='/seller'>
-          <Screens.ProfileScreen />
-        </Route>
-        <Route path='/signin'>
-          <Screens.Login />
-        </Route>
-        <Route path='/history'>
-          <Screens.History />
-        </Route>
-        <Route path='/admin'>
-          <Screens.Upload />
-        </Route>
+      </Route>
+      <Route path='/seller'>
+        <Screens.ProfileScreen />
+      </Route>
+      <Route path='/signin'>
+        <Screens.Login />
+      </Route>
+      <Route path='/history'>
+        <Screens.History />
+      </Route>
+      <Route path='/admin'>
+        <Screens.Upload />
+      </Route>
     </Switch>
   )
 }
