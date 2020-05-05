@@ -32,7 +32,6 @@ function SaleRoutes({ data, getitems, auth }: IProps) {
 
 
   useEffect(() => {
-    console.log(`http://localhost:3000/items/${category}/${type}`)
     Axios.get(`http://localhost:3000/items/${category}/${type}`, {
       headers: {
         'authorization': `bearer ${auth?.token}`
