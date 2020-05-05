@@ -1,12 +1,12 @@
 import React,{useEffect} from 'react';
 import { Front } from '../../../style/navigation';
-import Categories from '../categories/categories';
+import Categories from '../../categories/categories';
 import Search from '../search/search';
 import Homepage from '../../../Screens/Homescreen/index'
 import { RightComponent } from '../../../style/categories';
 import MakePayment from '../../../util/Payment/index'
 import { Switch, Route, useHistory,} from 'react-router-dom';
-import Sales from '../categories/allCategories';
+import Sales from '../../categories/allCategories';
 import Carts from '../../../Screens/CartScreen';
 import SaleRoute from '../sales/sales';
 import SearchDisplay from '../search/searchDisplay';
@@ -34,10 +34,10 @@ function Frontpage(props:Iprops) {
                 <Homepage />
               </Route>
               <Route path='/home/topsales'>
-                <Sales url={`http://localhost:3000/items/`}/>
+                <Sales />
               </Route>
               <Route path='/home/newsales'>
-                <Sales url={`http://localhost:3000/items/`}/>
+                <Sales />
               </Route> 
               <Route path='/home/cart'>
                 <Carts/>

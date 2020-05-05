@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import { Switch,Route, useParams} from 'react-router-dom';
-import Sales from '../categories/allCategories';
+import Sales from '../../categories/allCategories';
 import { RightComponent } from '../../../style/categories';
 
 
@@ -19,20 +19,8 @@ const SaleRoute: React.FC<{}> = ({}) => {
   return (
     <RightComponent>
         <Switch>
-                <Route path='/home/sale/women/:type'>
-                    <Sales url={url}/>
-                </Route>
-                <Route path='/home/sale/men/:type'>
-                  <Sales url={url}/>
-                </Route>
-                <Route path='/home/sale/access/:type'>
-                  <Sales url={url}/>
-                </Route> 
-                <Route path='/home/sale/wfoot/:type'>
-                  <Sales url={url}/>
-                </Route>
-                <Route path='/home/sale/mfoot/:type'>
-                  <Sales url={url}/>
+                <Route path='/home/sale/:category/:type'>
+                    <Sales/>
                 </Route>
         </Switch>
     </RightComponent>

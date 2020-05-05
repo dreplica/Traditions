@@ -29,12 +29,12 @@ interface IProps {
 }
 
 function Card(props: IProps) {
-    const [display, setstate] = useState<"none"|"block">("none")
-    const showModal =( e: MouseEvent  )=> {
+    const [display, setstate] = useState<"none" | "block">("none")
+    const showModal = (e: MouseEvent) => {
         props.viewing('block')
         props.current(props.id)
     }
-    
+
     const addCart = (e: MouseEvent) => {
         e.preventDefault();
         props.cart({
@@ -46,21 +46,21 @@ function Card(props: IProps) {
     }
 
     const showCover = (e: MouseEvent) =>
-        (display === "none") 
+        (display === "none")
             ? setstate("block")
-            :setstate("none")
+            : setstate("none")
 
     return (
         <Container onMouseEnter={showCover} onMouseLeave={showCover}>
-            <Cover style={{display:display}}/>
-            <Image src={img}/>
+            <Cover style={{ display: display }} />
+            <Image src={img} />
             <View
-                style={{display:display}}
+                style={{ display: display }}
                 onClick={showModal}
             >View</View>
             <Price><strong>&#8358;{props.price}</strong></Price>
             <Details>
-            <Name><strong>{props.name}</strong></Name>
+                <Name><strong>{props.name}</strong></Name>
                 <CartButton onClick={addCart}><strong>Add to Cart</strong></CartButton>
             </Details>
         </Container>

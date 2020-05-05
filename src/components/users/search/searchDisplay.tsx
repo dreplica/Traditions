@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { objectData } from '../../../store/reducers/items';
 import { getItem } from '../../../store/actionCreators/actiontypes';
 import { stateData } from '../../../store/reducers/authentication';
-import Categories from '../categories/categories';
+import Categories from '../../categories/categories';
 import { Front } from '../../../style/navigation';
 import Cards from '../../../ReusableComponents/Cards';
 import {
