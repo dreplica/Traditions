@@ -5,6 +5,7 @@ import Login from "./AuthScreen/Login/index";
 import Register from "./AuthScreen/Register/signup";
 import Cart from "./CartScreen/index";
 import ProfileScreen from "./ProfileScreen/index";
+import Sales from "./Sales/index";
 
 
 export default {
@@ -14,5 +15,6 @@ export default {
     Register,
     Cart,
     ProfileScreen,
-    Homepage
+    Homepage,
+    Sales
 }

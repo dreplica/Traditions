@@ -25,7 +25,7 @@ const InitialState: IProps[] = [
     }
 ]
 
-export default function Newsales() {
+export default function Topsales() {
     const [state, setstate] = useState<IProps[]>(InitialState)
     const [loading, setLoading] = useState<boolean>(true)
 

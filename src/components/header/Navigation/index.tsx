@@ -44,10 +44,10 @@ function Navigation({ menu, view, auth, data }: Iprops) {
 
   return (
     <Nav style={{ display: menu }}>
-      <Link to='/home' onClick={closeAction}><FaStoreAlt /> <span>Home</span></Link>
-      <Link to='/home/topsales' onClick={closeAction}><FaGlobeAfrica /> Top Sales</Link>
-      <Link to='/home/newsales' onClick={closeAction}><FaTags /> New Sales</Link>
-      <Link to='/home/cart' onClick={closeAction}><FiShoppingCart /><span> Cart<sup>{data.length}</sup></span></Link>
+      <Link to='/' onClick={closeAction}><FaStoreAlt /> <span>Home</span></Link>
+      <Link to='/topsales' onClick={closeAction}><FaGlobeAfrica /> Top Sales</Link>
+      <Link to='/newsales' onClick={closeAction}><FaTags /> New Sales</Link>
+      <Link to='/cart' onClick={closeAction}><FiShoppingCart /><span> Cart<sup>{data.length}</sup></span></Link>
       <Link to='/#foot' onClick={closeAction}><FaRegEnvelope /><span>Contact</span></Link>
       {!auth && Login}
     </Nav>
