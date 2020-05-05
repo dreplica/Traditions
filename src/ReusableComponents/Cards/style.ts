@@ -5,7 +5,7 @@ export const Container = styled.div`
   display:flex;
   flex-direction:column;
   position:relative;
-  width:250px;
+  min-width:250px;
   margin:20px;
   height:330px;
   border-radius:0px 0px 20px 20px;
@@ -19,7 +19,7 @@ export const Image = styled.img`
 `;
 
 export const Cover = styled.div`
-    width:250px;
+    width:100%;
     height:250px;
     position:absolute;
     z-index:2;
@@ -27,7 +27,7 @@ export const Cover = styled.div`
 `;
 
 export const View = styled.button`
-    width:100px;
+    width:30%;
     height:35px;
     position:absolute;
     z-index:3;

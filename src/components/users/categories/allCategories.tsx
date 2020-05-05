@@ -1,12 +1,15 @@
 import React, { useState, MouseEvent, useEffect } from 'react';
-import OneComponent from '../labels/OneComponent';
-import { Latest,Sort } from '../../../style/sales';
 import {itemState,objectData} from '../../../store/reducers/items'
 import {getItem} from '../../../store/actionCreators/actiontypes' 
 import { connect } from 'react-redux';
 import Axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { stateData } from '../../../store/reducers/authentication';
+import Cards from '../../../ReusableComponents/Cards';
+import {
+  Latest,
+  Sort
+} from '../../../style/sales';
 
 export interface IProps {
   data:objectData[];
@@ -39,7 +42,7 @@ const Sales: React.FC<IProps> = ({data,getitems,auth,url}) => {
         else setSortActive({...sortActive,[e.currentTarget.id]:"none"})
       }
     }
-    const Spread = data.map((x,i)=><OneComponent key={i} 
+    const Spread = data.map((x,i)=><Cards key={i} 
     id={x.id} image={x.image}
     desc={x.description} 
     name={x.itemname} 

@@ -2,7 +2,7 @@ import React,{useEffect} from 'react';
 import { Front } from '../../../style/navigation';
 import Categories from '../categories/categories';
 import Search from '../search/search';
-import Initial from './initialpage'
+import Homepage from '../../../Screens/Homescreen/index'
 import { RightComponent } from '../../../style/categories';
 import MakePayment from '../../../util/Payment/index'
 import { Switch, Route, useHistory,} from 'react-router-dom';
@@ -31,7 +31,7 @@ function Frontpage(props:Iprops) {
             {/* search is here */}
             <Switch>
               <Route exact path='/home'>
-                <Initial url={''}/>
+                <Homepage />
               </Route>
               <Route path='/home/topsales'>
                 <Sales url={`http://localhost:3000/items/`}/>

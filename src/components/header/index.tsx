@@ -8,13 +8,6 @@ export default function Header() {
         <Fragment>
             <Logo />
             <Navigation />
-            <Cards
-                image="string"
-                name="hello"
-                price='10'
-                desc="talking"
-                id="2"
-            />
         </Fragment>
     );
 }

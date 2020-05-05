@@ -1,8 +1,8 @@
 import React, { useState,useEffect } from 'react';
 import styled from 'styled-components';
-import four from '../../../img/four.jpg'
-import tre from '../../../img/tre.jpg'
-import one from '../../../img/one.jpg'
+import four from '../../img/four.jpg'
+import tre from '../../img/tre.jpg'
+import one from '../../img/one.jpg'
 
 const Slide:React.FC<{}> = () =>{
     const [back, setback] = useState<string>(one)
