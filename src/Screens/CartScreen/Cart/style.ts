@@ -38,7 +38,6 @@ export const RemoveItem = styled.h2`
   position: absolute;
   top: 20px;
   color:white;
-  /* font-size:20px; */
   font-weight:bolder; 
   transition: transform 0.5s;
   right: 5%;

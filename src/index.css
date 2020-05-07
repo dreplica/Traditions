@@ -11,6 +11,10 @@
 body {
   font-family: "Fira Code";
   background: rgb(24, 17, 17);
+  overflow-x: hidden;
+  max-width: 1700px;
+  min-width: 400px;
+  margin: auto;
   color: rgb(230, 208, 208);
 }
 
