@@ -1,14 +1,10 @@
 import React,{useEffect} from 'react';
 import { Front } from '../../../style/navigation';
-import Categories from '../../categories/categories';
+import Categories from '../../categories/category';
 import Search from '../search/search';
-import Homepage from '../../../Screens/Homescreen/index'
 import { RightComponent } from '../../../style/categories';
 import MakePayment from '../../../util/Payment/index'
 import { Switch, Route, useHistory,} from 'react-router-dom';
-import Sales from '../../categories/allCategories';
-import Carts from '../../../Screens/CartScreen';
-import SaleRoute from '../sales/sales';
 import SearchDisplay from '../search/searchDisplay';
 import { connect } from 'react-redux';
 import { stateData } from '../../../store/reducers/authentication';
@@ -29,22 +25,7 @@ function Frontpage(props:Iprops) {
         <RightComponent>
             <Search />
             {/* search is here */}
-            <Switch>
-              <Route exact path='/home'>
-                <Homepage />
-              </Route>
-              <Route path='/home/topsales'>
-                <Sales />
-              </Route>
-              <Route path='/home/newsales'>
-                <Sales />
-              </Route> 
-              <Route path='/home/cart'>
-                <Carts/>
-              </Route> 
-              <Route path='/home/sale/:cat/:type'>
-                <SaleRoute/>
-              </Route> 
+            <Switch> 
               <Route path='/home/payment'>
                 <MakePayment/>
               </Route> 

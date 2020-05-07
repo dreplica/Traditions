@@ -8,9 +8,10 @@ import { getItem } from '../../store/actionCreators/actiontypes'
 import { stateData } from '../../store/reducers/authentication';
 import Cards from '../../ReusableComponents/Cards';
 import {
-  Latest,
-  Sort
-} from '../../style/sales';
+  Container,
+  Sort,
+  Items
+} from './style';
 
 export interface IProps {
   data: objectData[];
@@ -56,7 +57,7 @@ function SaleRoutes({ data, getitems, auth }: IProps) {
     price={x.price} />
   )
   return (
-    <Fragment>
+    <Container>
       <h1>{category}</h1>
       <Sort>
         <div>
@@ -65,10 +66,10 @@ function SaleRoutes({ data, getitems, auth }: IProps) {
           <button className={state.two} id='two' onClick={sort}>Price Down</button>
         </div>
       </Sort>
-      <Latest>
+      <Items>
         {Spread}
-      </Latest>
-    </Fragment>
+      </Items>
+    </Container>
   );
 }
 

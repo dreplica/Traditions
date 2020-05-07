@@ -1,4 +1,4 @@
-import React,{useState, ChangeEvent, useEffect, MouseEvent} from 'react';
+import React,{useState, ChangeEvent, useEffect} from 'react';
 import { Searcher } from '../../../style/navigation';
 import { FiSearch } from 'react-icons/fi';
 import Axios from 'axios';
@@ -6,7 +6,7 @@ import { objectData } from '../../../store/reducers/items';
 import { connect } from 'react-redux';
 import { stateData } from '../../../store/reducers/authentication';
 import { List } from './searchstyle';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Search:React.FC<{auth:objectData}> = ({auth}) =>{
   const [search, setSearch] = useState("")

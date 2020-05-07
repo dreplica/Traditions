@@ -27,11 +27,12 @@ const InitialState: IProps[] = [
 
 export default function Topsales() {
     const [state, setstate] = useState<IProps[]>(InitialState)
-    const [loading, setLoading] = useState<boolean>(true)
+    const [loading, setLoading] = useState<boolean>(false)
 
     useEffect(() => {
         (async function () {
-            const result = await Axios.get('http://localhost:3000/items')
+            const result = await Axios.get('http://localhost:3000/history')
+            // i need to reference a route that provides topsales
             const Data = getItems(result.data)
             setstate(Data)
             setLoading(false)

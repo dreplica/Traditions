@@ -6,6 +6,7 @@ export const Container = styled.div`
   flex-direction:column;
   position:relative;
   min-width:250px;
+  max-width:250px;
   margin:20px;
   height:330px;
   border-radius:0px 0px 20px 20px;

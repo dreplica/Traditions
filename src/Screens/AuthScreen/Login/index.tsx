@@ -1,8 +1,12 @@
-import React, { FormEvent, ChangeEvent, useState, Fragment } from 'react';
+import React, { FormEvent, ChangeEvent, useState } from 'react';
 import { connect } from 'react-redux';
 import { loadData } from '../../../store/actionCreators/actiontypes';
-import { Form, Container } from '../style';
 import { useHistory } from 'react-router-dom';
+import {
+    Container,
+    Content,
+    Form
+} from '../style';
 
 
 export type dataType = {[key:string]:number|string}
@@ -48,8 +52,8 @@ const Login:React.FC<Props> = ({setToken}) =>{
         .catch(err=>console.log(err.error))
     }
     return ( 
-      <Fragment>
       <Container>
+      <Content>
             <div className='log'>
                 <h3>Login</h3>
                 <div className="line"></div>
@@ -57,8 +61,10 @@ const Login:React.FC<Props> = ({setToken}) =>{
             <div>Welcome back, Login to continue shoping traditional
                 <br/>
                     Did you <a href="/" className="forget">forget your password ?</a>
+                    <br />
+                Don't have an account ? <a href="/signup" className="forget">Register</a>
             </div>
-        </Container>   
+        </Content>   
         <Form>
             <span>{error}</span>
         <label>  
@@ -69,7 +75,7 @@ const Login:React.FC<Props> = ({setToken}) =>{
         </label>
         <button type="submit" onClick={handleSubmit}>Login</button>
         </Form>
-      </Fragment>
+      </Container>
   ); 
 }
 

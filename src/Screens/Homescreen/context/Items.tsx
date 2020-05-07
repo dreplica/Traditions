@@ -40,7 +40,9 @@ export default function Items(props: IProps) {
     })
 
     const getItems = (data: any) => {
-        const filteredValue = data.map((item: { [key: string]: any }) => ({
+        const renderData = [...data]
+        renderData.length = 10;
+        const filteredValue = renderData.map((item: { [key: string]: any }) => ({
             name: item.name,
             desc: item.desc,
             image: item.image,
@@ -54,7 +56,7 @@ export default function Items(props: IProps) {
         return <FiActivity />
     }
 
-    const item = [0,0,0,0,0,0,0].map((item, index) => <Cards
+    const item = [0,0,0,0,0,0,0,0,0,0].map((item, index) => <Cards
         desc="{item.desc}"
         id="{item.id}"
         image="{item.image}"
