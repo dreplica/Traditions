@@ -1,49 +1,55 @@
 import React, { useState, MouseEvent, useEffect } from "react";
-import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Axios from "axios";
 
-import { objectData, itemState } from "../../store/reducers/items";
-import { removeCart } from "../../store/actionCreators/actiontypes";
-import { stateData } from "../../store/reducers/authentication";
 import CartItem from './Cart/cart'
 import { 
   Container, 
-  Content, 
-  Buy
+  Content,
+  Header,
+  Count,
+  Buy,
+  Display,
+  ShowCart,
+  Total
 } from "./style";
 
-const Carts: React.FC<{
-  data: objectData[];
-  auth: objectData;
-  remove: (id: string) => void;
-}> = ({ data, remove, auth }) => {
-  const [total, settotal] = useState(0);
+
+export default function Carts(){
+  const [state, setState] = useState<[]|string|null>([]);
   const history = useHistory();
   useEffect(() => {
-    const tot = data.reduce((acc, val) => acc + parseFloat(val.price), 0);
-    settotal(tot);
-  }, [data]);
+    //  try {
+    //   const cart:null= JSON.parse(localStorage.getItem('cart')) ?? [];
+    //   setState(cart)
+    // } catch (error) {
+    //   alert(`this item is not available ${error.message}`)
+    // }
+  }, []);
 
   const handlePurchase = (e: MouseEvent) => {
-    e.preventDefault();
-    Axios.post(`http://localhost:3000/history`, data, {
-      headers: {
-        authorization: `Bearer ${auth?.token}`,
-      },
-    });
+    // e.preventDefault();
+    // Axios.post(`http://localhost:3000/history`, data, {
+    //   headers: {
+    //     authorization: `Bearer ${auth?.token}`,
+    //   },
+    // });
+    //but payment would have to be handled 
+    //from the ayment side, after getting confirmation
     history.push("/home/payment");
   };
+
+  // const total = state.reduce((acc,items)=>items?.price? acc += items.price:acc += 0,0)
 
   return (
     <Container>
       <Content>
-        <div className="head-cart">
-          <h3>Cart {data.length} items</h3>
+        <Header>
+          <Count>Cart {0} items</Count>
           <Buy onClick={handlePurchase}>Buy Now</Buy>
-        </div>
-        <div className="main-cart">
-          <div className="cart">
+        </Header>
+        <ShowCart>
+          <Display>
             {[0,0,0].map((item, index) => <CartItem 
             cartId={'0'}
             key={index}
@@ -51,25 +57,10 @@ const Carts: React.FC<{
             name={"kawasaki"}
             price={'9000'}
             />)}
-          </div>
-          <div className="total">
-            <h2>
-              <strong>total: &#8358;{total}</strong>
-            </h2>
-          </div>
-        </div>
+          </Display>
+          <Total>total: &#8358;{0}</Total>
+        </ShowCart>
       </Content>
     </Container>
   );
 };
-const mapStateToProps = ({
-  ItemsReducer,
-  authenticate,
-}: {
-  ItemsReducer: itemState;
-  authenticate: stateData;
-}) => ({
-  data: ItemsReducer.cart,
-  auth: authenticate.data?.auth as objectData,
-});
-export default connect(mapStateToProps, { remove: removeCart })(Carts);

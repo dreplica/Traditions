@@ -39,34 +39,13 @@ export const Content = styled.div`
   display: column;
   justify-content: center;
   align-items: center;
-
-  .main-cart {
-    width: 100%;
-    .cart {
-      width: 100%;
-      height: 50vh;
-      overflow-y: auto;
-    }
-    .total {
-      width: 90%;
-      text-align: right;
-    }
-  }
-
-  .head-cart {
-    width: 89.9%;
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
 `;
 
 export const Buy = styled.button`
   width: 30%;
   padding: 10px;
   border: 0px;
-  font-weight:bold;
+  font-weight: bold;
   background: orange;
   color: whitesmoke;
   border-radius: 20px;
@@ -74,4 +53,30 @@ export const Buy = styled.button`
   :hover {
     color: black;
   }
+`;
+
+export const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px auto;
+`;
+
+export const Count = styled.p`
+  font-size: 20px;
+`;
+
+export const Display = styled.div`
+  width: 100%;
+  height: 60vh;
+  overflow-y: auto;
+`;
+
+export const ShowCart = styled.div`
+  width: 100%;
+  position: relative;
+`;
+
+export const Total = styled.h2`
+  margin-top: 10px;
 `;
