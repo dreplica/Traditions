@@ -1,19 +1,40 @@
 import styled from 'styled-components';
 
 export const Container = styled.section`
-    width:300px;
+    min-width:300px;
+    max-width:300px;
+    position:relative;
+    z-index:5;
     align-self:flex-start;
     background:grey;
+
     @media(max-width:999px){
-        display:none;
+        position:absolute;
+        left:-300px; 
     }
         
 `;
+
+export const Ball = styled.div`
+    width:50px;
+    display:none;
+    height:50px;
+    position:absolute;
+    right:-30px;
+    z-index:-1;
+    border-radius:25px;
+    background:linear-gradient(to right, orange,purple);
+
+     @media(max-width:999px){
+        display:block;
+    }
+`
 
 export const Content = styled.h2`
     width:100%;
     text-align:center;
     padding-top:10px;
+    z-index:2;
     background:black;
     height:50px;
 `
@@ -40,6 +61,10 @@ export const List = styled.div`
     a{
         text-decoration:none;
         color:inherit;
+
+        :hover{
+            color:white;
+        }
     }
 
 `;

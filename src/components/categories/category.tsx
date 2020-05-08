@@ -1,53 +1,71 @@
-import React, { useState, MouseEvent } from 'react';
+import React, { useState, MouseEvent } from "react";
 
 import Data from "../../util/categories.json";
 import CategoryItem from ".";
-import {
-    Container,
-    Content
-} from './style'
+import { Container, Content, Ball } from "./style";
 
-export interface dropdown{
-    women:string;
-    men:string;
-    access:string;
-    wfoot:string;
-    mfoot:string;
+export interface dropdown {
+  women: string;
+  men: string;
+  access: string;
+  wfoot: string;
+  mfoot: string;
+  display: "show" | "hide" | "";
 }
 
-const dropit:dropdown = {
-    women:"none",
-    men:"none",
-    access:"none",
-    wfoot:"none",
-    mfoot:"none",
-}
+const dropit: dropdown = {
+  women: "none",
+  men: "none",
+  access: "none",
+  wfoot: "none",
+  mfoot: "none",
+  display: "",
+};
 
-type List = ["Women", "Men", "Accessories", "Women Foot Wears", "Men Foot Wears"]
+type List = [
+  "Women",
+  "Men",
+  "Accessories",
+  "Women Foot Wears",
+  "Men Foot Wears"
+];
 
-export default function Categories(){
-    const [drop, setdrop] = useState<dropdown>(dropit)
-    const handleDrop = (e:MouseEvent)=>{
-        e.preventDefault();
-        console.log("hello")
-        const classy = e.currentTarget.className
-        classy === "none"?setdrop({...drop,[e.currentTarget.id]:'block'}):setdrop({...drop,[e.currentTarget.id]:'none'})
-        console.log(drop)
+export default function Categories() {
+  const [drop, setdrop] = useState<dropdown>(dropit);
+
+  const DataList: List = Object.keys(Data) as List;
+
+  const showCategory = (e: MouseEvent) => {
+    e.preventDefault();
+
+    window.innerWidth > 999 && setdrop({ ...drop, display: "" });
+
+    switch (drop.display) {
+      case "":
+        setdrop({ ...drop, display: "show" });
+        return;
+      case "show":
+        setdrop({ ...drop, display: "hide" });
+        return;
+      case "hide":
+        setdrop({ ...drop, display: "show" });
+        return;
+      default:
+        return;
     }
-
-    const DataList:List = Object.keys(Data) as List
-    console.log(DataList)
+  };
 
   return (
-      <Container>
-          <Content>Category</Content>
-          {
-              DataList.map((item, index) => <CategoryItem
-                  key={index}
-                  name={item}
-                  list={Data[item].list}
-              />)
-          }
+    <Container
+      className={drop.display}
+      onMouseEnter={showCategory}
+      onMouseLeave={showCategory}
+    >
+      <Ball />
+      <Content>Category</Content>
+      {DataList.map((item, index) => (
+        <CategoryItem key={index} name={item} list={Data[item].list} />
+      ))}
     </Container>
   );
 }
