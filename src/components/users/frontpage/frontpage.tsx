@@ -1,11 +1,10 @@
 import React,{useEffect} from 'react';
 import { Front } from '../../../style/navigation';
 import Categories from '../../categories/category';
-import Search from '../search/search';
 import { RightComponent } from '../../../style/categories';
 import MakePayment from '../../../util/Payment/index'
 import { Switch, Route, useHistory,} from 'react-router-dom';
-import SearchDisplay from '../search/searchDisplay';
+import SearchDisplay from '../../search/searchDisplay';
 import { connect } from 'react-redux';
 import { stateData } from '../../../store/reducers/authentication';
 
@@ -23,7 +22,6 @@ function Frontpage(props:Iprops) {
     <Front>
         <Categories />
         <RightComponent>
-            <Search />
             {/* search is here */}
             <Switch> 
               <Route path='/home/payment'>

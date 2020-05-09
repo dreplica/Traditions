@@ -26,7 +26,7 @@ function Maincomponent({ getLocal }: Iprops) {
         <Route exact path='/'>
           <Screens.Homepage />
         </Route>
-        <Route path='/items'>
+        <Route path='/items/:id'>
           <Frontpage />
         </Route>
         <Route path='/sale/:category/:type'>

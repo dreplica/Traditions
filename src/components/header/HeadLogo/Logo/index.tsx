@@ -12,6 +12,7 @@ import {
   Logo,
   Image
 } from './style' 
+import Search from '../../../search';
 
 
 interface MenuView{
@@ -44,6 +45,7 @@ function Header(props:MenuView){
             <span>Tradishion <sup>&reg;</sup></span>
             <span onClick={Shownav} className='menu-but'><FiAlignLeft /></span>
         </Logo>
+        <Search />
       </Content>
       <ProfileDropdown drop={drop}/>
     </Container>

@@ -3,15 +3,15 @@ import { useParams } from 'react-router-dom';
 import Axios from 'axios';
 import { connect } from 'react-redux';
 
-import { objectData } from '../../../store/reducers/items';
-import { getItem } from '../../../store/actionCreators/actiontypes';
-import { stateData } from '../../../store/reducers/authentication';
-import Categories from '../../categories/category';
-import { Front } from '../../../style/navigation';
-import Cards from '../../../ReusableComponents/Cards';
+import { objectData } from '../../store/reducers/items';
+import { getItem } from '../../store/actionCreators/actiontypes';
+import { stateData } from '../../store/reducers/authentication';
+import Categories from '../categories/category';
+import { Front } from '../../style/navigation';
+import Cards from '../../ReusableComponents/Cards';
 import {
     RightComponent
-} from '../../../style/categories';
+} from '../../style/categories';
 
 type Props = {
     auth:objectData; 

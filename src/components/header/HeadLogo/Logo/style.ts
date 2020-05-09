@@ -13,14 +13,15 @@ export const Container = styled.header`
 
 export const Content = styled.div`
     display:flex;
+    flex-wrap:wrap;
     flex:3;
-    justify-content:center;
+    justify-content:flex-start;
     align-items:center;
 `
 
 export const Logo = styled.div`
      display:flex;
-     width:90%;
+     width:50%;
      justify-content:space-between;
      align-items:center;
 
@@ -39,6 +40,7 @@ export const Logo = styled.div`
         }
     
     @media(max-width:999px){
+        width:80%;
         .menu-but{
             display:block;
         }
