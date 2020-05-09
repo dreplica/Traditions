@@ -9,7 +9,7 @@ export const Container = styled.section`
     background:grey;
 
     @media(max-width:999px){
-        position:absolute;
+        position:fixed;
         left:-300px; 
     }
         

@@ -46,7 +46,7 @@ export const Nav = styled.nav`
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    padding-top: 15%;
+    padding-top: 5%;
 
     a {
       margin: 20px;

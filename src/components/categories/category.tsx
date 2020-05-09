@@ -38,7 +38,10 @@ export default function Categories() {
   const showCategory = (e: MouseEvent) => {
     e.preventDefault();
 
-    window.innerWidth > 999 && setdrop({ ...drop, display: "" });
+    if(window.innerWidth >= 999){
+      setdrop({ ...drop, display: "" });
+      return
+    }
 
     switch (drop.display) {
       case "":

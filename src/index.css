@@ -19,11 +19,11 @@ body {
 
 *::-webkit-scrollbar {
   width: 10px;
-  height:8px;
+  height: 8px;
 }
 
 *::-webkit-scrollbar-track {
-  background: rgba(255,255,255,0.2);
+  background: rgba(255, 255, 255, 0.2);
 }
 
 /* Handle */
@@ -37,24 +37,28 @@ code {
     monospace;
 }
 
-    .show{
-
-        animation: show 1s forwards linear;
-    }
-
-    .hide{
-        animation: hide 1s forwards linear;
-    }
-    
-
-
-
-@keyframes show{
-  from{transform: translateX(0px);}
-  to{transform: translateX(300px);}
+.show {
+  animation: show 0.5s forwards linear;
 }
 
-@keyframes hide{
-  from{transform: translateX(300px);}
-  to{transform: translateX(0px);}
+.hide {
+  animation: hide 0.09s forwards linear;
+}
+
+@keyframes show {
+  from {
+    transform: translateX(0px);
+  }
+  to {
+    transform: translateX(300px);
+  }
+}
+
+@keyframes hide {
+  from {
+    transform: translateX(300px);
+  }
+  to {
+    transform: translateX(0px);
+  }
 }
