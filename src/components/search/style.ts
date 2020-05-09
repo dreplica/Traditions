@@ -3,10 +3,11 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display:flex;
   width:40%;
+  min-height:45px;
   margin:auto;
+  position:relative;
   background:white;
   border-radius:20px;
-  min-height:45px;
   flex-direction:column;
   justify-content:center;
   align-items:center;
@@ -36,35 +37,25 @@ export const Searchinput = styled.form`
 `;
 
 
-export const DropList = styled.ul`
-  width:40%;
+export const DropList = styled.div`
+  width:100%;
   height:auto;
-  margin: 6% auto;
+  top:50px;
   padding: 0px;
+  display:flex;
+  flex-direction:column;
   position: absolute;
   background:white;
+  
+  a{
+    text-decoration:none;
+    color: #000;
+    padding:10px 10px;
+    font-size:15px;
 
-  li{
-      width:100%;
-      padding:10px 0px; 
-      border-bottom:1px solid black;
-      list-style:none;
-      text-decoration:justify;
-      text-align:left;
-      font-weight:bolder;
-      color:black;
-      
-      :hover{
-          cursor:pointer;
-          background:black;
-          color:white;
-        }
-      
-        a{
-           color:inherit;
-           margin-left:10px;
-           text-decoration:none;
-
-        }
+    :hover{
+      background:black;
+      color:white;
+    }
   }
 `;
