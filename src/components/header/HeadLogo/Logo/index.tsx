@@ -42,7 +42,7 @@ function Header(props:MenuView){
       <Content>
         {auth && ShowImage } 
           <Logo>
-            <span>Tradishion <sup>&reg;</sup></span>
+            <span>Tradishion&nbsp;<sup>&reg;</sup></span>
             <span onClick={Shownav} className='menu-but'><FiAlignLeft /></span>
         </Logo>
         <Search />

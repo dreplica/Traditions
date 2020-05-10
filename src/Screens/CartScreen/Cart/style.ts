@@ -40,7 +40,7 @@ export const RemoveItem = styled.h2`
   color:white;
   font-weight:bolder; 
   transition: transform 0.5s;
-  right: 5%;
+  right: 3%;
 
   :hover{
       transform:scale(1.5)rotate(360deg);
