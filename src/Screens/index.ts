@@ -6,6 +6,7 @@ import Register from "./AuthScreen/Register/signup";
 import Cart from "./CartScreen/index";
 import ProfileScreen from "./ProfileScreen/index";
 import Sales from "./Sales/index";
+import SearchRoute from "./searchScreen/index";
 
 
 export default {
@@ -16,5 +17,6 @@ export default {
     Cart,
     ProfileScreen,
     Homepage,
-    Sales
+    Sales,
+    SearchRoute
 }
