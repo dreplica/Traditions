@@ -4,18 +4,22 @@ import Cards from "../Cards";
 import { Container, Sort, Items } from "./style";
 
 interface Iprops {
-  id: string;
-  image: string;
-  description: string;
-  itemname: string;
-  price: string;
+  data: {
+    id: string;
+    image: string;
+    description: string;
+    itemname: string;
+    price: string;
+  }[];
 }
 
-export default function SpreadContent(props: Iprops[]) {
+
+export default function SpreadContent(props: Iprops) {
   const [state, setState] = useState<"cheap" | "costly">("cheap");
-  const [stateData, setStateData] = useState<Iprops[]>([]);
+  const [stateData, setStateData] = useState<Iprops["data"]>(props.data);
 
   useEffect(() => {
+      console.log(stateData)
     switch (state) {
       case "cheap":
         sort("cheap");
@@ -30,7 +34,7 @@ export default function SpreadContent(props: Iprops[]) {
 
   const sort = (arg: string) => {
     console.log(arg);
-    let data: Iprops[];
+    let data: Iprops["data"];
     if (arg === "cheap") {
       data = [...stateData].sort(
         (first, second) => parseInt(first.price) - parseInt(second.price)
@@ -44,16 +48,17 @@ export default function SpreadContent(props: Iprops[]) {
     setStateData(data);
   };
 
-  const Spread = stateData.map((x, i) => (
+  const Spread = stateData.map((item, index) => (
     <Cards
-      key={i}
-      id={x.id}
-      image={x.image}
-      desc={x.description}
-      name={x.itemname}
-      price={x.price}
+      key={index}
+      id={item.id}
+      image={item.image}
+      description={item.description}
+      itemname={item.itemname}
+      price={item.price}
     />
   ));
+
   return (
     <Container>
       <Sort>

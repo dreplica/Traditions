@@ -8,19 +8,19 @@ import Cards from '../../ReusableComponents/Cards';
 import { FiActivity } from 'react-icons/fi';
 
 interface IProps {
-    desc: string;
+    description: string;
     id: string;
     image: string;
-    name: string;
+    itemname: string;
     price: string;
 }
 
 const InitialState: IProps[] = [
     {
-        desc: "",
+        description: "",
         id: "",
         image: "",
-        name: "",
+        itemname: "",
         price: "",
     }
 ]
@@ -40,8 +40,8 @@ export default function TopSales() {
 
     const getItems = (data: any) => {
         const filteredValue = data.map((item: { [key: string]: any }) => ({
-            name: item.name,
-            desc: item.desc,
+            itemname: item.itemname,
+            description: item.description,
             image: item.image,
             price: item.price,
             id: item.id
@@ -54,10 +54,10 @@ export default function TopSales() {
     }
 
     return state.map((item, index) => <Cards
-        desc={item.desc}
+        description={item.description}
         id={item.id}
         image={item.image}
-        name={item.name}
+        itemname={item.itemname}
         price={item.price}
         key={index}
     />)

@@ -9,19 +9,19 @@ interface IProps {
 }
 
 interface State {
-    desc: string;
+    description: string;
     id: string;
     image: string;
-    name: string;
+    itemname: string;
     price: string;
 }
 
 const InitialState: State[] = [
     {
-        desc: "",
+        description: "",
         id: "",
         image: "",
-        name: "",
+        itemname: "",
         price: "",
     }
 ]
@@ -43,8 +43,8 @@ export default function Items(props: IProps) {
         const renderData = [...data]
         renderData.length = 10;
         const filteredValue = renderData.map((item: { [key: string]: any }) => ({
-            name: item.name,
-            desc: item.desc,
+            itemname: item.itemname,
+            description: item.description,
             image: item.image,
             price: item.price,
             id: item.id
@@ -57,10 +57,10 @@ export default function Items(props: IProps) {
     }
 
     const item = [0,0,0,0,0,0,0,0,0,0].map((item, index) => <Cards
-        desc="{item.desc}"
+        description="{item.description}"
         id="{item.id}"
         image="{item.image}"
-        name="Ankara"
+        itemname="Ankara"
         price="2000"
         key={index}
     />)

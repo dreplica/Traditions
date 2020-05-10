@@ -4,203 +4,204 @@ import { FiActivity } from "react-icons/fi";
 
 import Cards from "../../ReusableComponents/Cards";
 import { Container } from "./style";
+import SpreadContent from "../../ReusableComponents/Spread";
 
 interface IProps {
-  desc: string;
+  description: string;
   id: string;
   image: string;
-  name: string;
+  itemname: string;
   price: string;
 }
 
 const InitialState: IProps[] = [
   {
-    desc: "",
+    description: "",
     id: "",
     image: "",
-    name: "",
+    itemname: "",
     price: "",
   },
   {
-    desc: "",
+    description: "",
     id: "",
     image: "",
-    name: "",
+    itemname: "",
     price: "",
   },
   {
-    desc: "",
+    description: "",
     id: "",
     image: "",
-    name: "",
+    itemname: "",
     price: "",
   },
   {
-    desc: "",
+    description: "",
     id: "",
     image: "",
-    name: "",
+    itemname: "",
     price: "",
   },
   {
-    desc: "",
+    description: "",
     id: "",
     image: "",
-    name: "",
+    itemname: "",
     price: "",
   },
   {
-    desc: "",
+    description: "",
     id: "",
     image: "",
-    name: "",
+    itemname: "",
     price: "",
   },
   {
-    desc: "",
+    description: "",
     id: "",
     image: "",
-    name: "",
+    itemname: "",
     price: "",
   },
   {
-    desc: "",
+    description: "",
     id: "",
     image: "",
-    name: "",
+    itemname: "",
     price: "",
   },
   {
-    desc: "",
+    description: "",
     id: "",
     image: "",
-    name: "",
+    itemname: "",
     price: "",
   },
   {
-    desc: "",
+    description: "",
     id: "",
     image: "",
-    name: "",
+    itemname: "",
     price: "",
   },
   {
-    desc: "",
+    description: "",
     id: "",
     image: "",
-    name: "",
+    itemname: "",
     price: "",
   },
   {
-    desc: "",
+    description: "",
     id: "",
     image: "",
-    name: "",
+    itemname: "",
     price: "",
   },
   {
-    desc: "",
+    description: "",
     id: "",
     image: "",
-    name: "",
+    itemname: "",
     price: "",
   },
   {
-    desc: "",
+    description: "",
     id: "",
     image: "",
-    name: "",
+    itemname: "",
     price: "",
   },
   {
-    desc: "",
+    description: "",
     id: "",
     image: "",
-    name: "",
+    itemname: "",
     price: "",
   },
   {
-    desc: "",
+    description: "",
     id: "",
     image: "",
-    name: "",
+    itemname: "",
     price: "",
   },
   {
-    desc: "",
+    description: "",
     id: "",
     image: "",
-    name: "",
+    itemname: "",
     price: "",
   },
   {
-    desc: "",
+    description: "",
     id: "",
     image: "",
-    name: "",
+    itemname: "",
     price: "",
   },
   {
-    desc: "",
+    description: "",
     id: "",
     image: "",
-    name: "",
+    itemname: "",
     price: "",
   },
   {
-    desc: "",
+    description: "",
     id: "",
     image: "",
-    name: "",
+    itemname: "",
     price: "",
   },
   {
-    desc: "",
+    description: "",
     id: "",
     image: "",
-    name: "",
+    itemname: "",
     price: "",
   },
   {
-    desc: "",
+    description: "",
     id: "",
     image: "",
-    name: "",
+    itemname: "",
     price: "",
   },
   {
-    desc: "",
+    description: "",
     id: "",
     image: "",
-    name: "",
+    itemname: "",
     price: "",
   },
   {
-    desc: "",
+    description: "",
     id: "",
     image: "",
-    name: "",
+    itemname: "",
     price: "",
   },
   {
-    desc: "",
+    description: "",
     id: "",
     image: "",
-    name: "",
+    itemname: "",
     price: "",
   },
   {
-    desc: "",
+    description: "",
     id: "",
     image: "",
-    name: "",
+    itemname: "",
     price: "",
   },
   {
-    desc: "",
+    description: "",
     id: "",
     image: "",
-    name: "",
+    itemname: "",
     price: "",
   },
 ];
@@ -220,8 +221,8 @@ export default function Newsales() {
 
   const getItems = (data: any) => {
     const filteredValue = data.map((item: { [key: string]: any }) => ({
-      name: item.name,
-      desc: item.desc,
+      itemname: item.itemname,
+      description: item.description,
       image: item.image,
       price: item.price,
       id: item.id,
@@ -233,16 +234,5 @@ export default function Newsales() {
     return <FiActivity />;
   }
 
-  const items = state.map((item, index) => (
-    <Cards
-      desc={item.desc}
-      id={item.id}
-      image={item.image}
-      name={item.name}
-      price={item.price}
-      key={index}
-    />
-  ));
-
-  return <Container>{items}</Container>;
+  return <SpreadContent data={state} />;
 }

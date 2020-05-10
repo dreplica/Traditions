@@ -2,27 +2,39 @@ import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import { FiActivity } from 'react-icons/fi';
 
-import Cards from '../../ReusableComponents/Cards';
-import {
-    Container
-} from './style'
+import SpreadContent from '../../ReusableComponents/Spread';
 
 interface IProps {
-    desc: string;
+    description: string;
     id: string;
     image: string;
-    name: string;
+    itemname: string;
     price: string;
 }
 
 const InitialState: IProps[] = [
     {
-        desc: "",
-        id: "",
+        description: "",
+        id: "t",
         image: "",
-        name: "",
+        itemname: "prop gen",
         price: "",
-    }
+    },
+    {
+        description: "",
+        id: "t",
+        image: "",
+        itemname: "prop gen",
+        price: "",
+    },
+    {
+        description: "",
+        id: "t",
+        image: "",
+        itemname: "prop gen",
+        price: "",
+    },
+    
 ]
 
 export default function Topsales() {
@@ -32,7 +44,7 @@ export default function Topsales() {
     useEffect(() => {
         (async function () {
             const result = await Axios.get('http://localhost:3000/history')
-            // i need to reference a route that provides topsales
+            // i need to reference a route that provides topsales from express
             const Data = getItems(result.data)
             setstate(Data)
             setLoading(false)
@@ -41,8 +53,8 @@ export default function Topsales() {
 
     const getItems = (data: any) => {
         const filteredValue = data.map((item: { [key: string]: any }) => ({
-            name: item.name,
-            desc: item.desc,
+            itemname: item.itemname,
+            description: item.description,
             image: item.image,
             price: item.price,
             id: item.id
@@ -54,18 +66,6 @@ export default function Topsales() {
         return <FiActivity />
     }
 
-    const items = state.map((item, index) => <Cards
-        desc={item.desc}
-        id={item.id}
-        image={item.image}
-        name={item.name}
-        price={item.price}
-        key={index}
-    />)
 
-    return (
-        <Container>
-            {items}
-        </Container>
-    )
+    return <SpreadContent data={state} />
 }

@@ -18,9 +18,9 @@ import {
 
 interface IProps {
     image: string;
-    name: string;
+    itemname: string;
     price: string;
-    desc: string;
+    description: string;
     id: string;
     modal: string;
     current: (args: string) => void
@@ -39,7 +39,7 @@ function Card(props: IProps) {
         e.preventDefault();
         props.cart({
             image: props.image,
-            itemname: props.name,
+            itemname: props.itemname,
             price: props.price,
             id: props.id
         })
@@ -60,7 +60,7 @@ function Card(props: IProps) {
             >View</View>
             <Price><strong>&#8358;{props.price}</strong></Price>
             <Details>
-                <Name><strong>{props.name}</strong></Name>
+                <Name><strong>{props.itemname}</strong></Name>
                 <CartButton onClick={addCart}><strong>Add to Cart</strong></CartButton>
             </Details>
         </Container>

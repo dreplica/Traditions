@@ -25,8 +25,8 @@ export default function Products({ id, token }: Iprops) {
         {products.map((_, index) => <Cards
             key={index}
             id={"0"}
-            name={"gro"}
-            desc={"jnjknjn"}
+            itemname={"gro"}
+            description={"jnjknjn"}
             image={"Agbada1582886477226.jpg"}
             price={"90909"} />
         )}
