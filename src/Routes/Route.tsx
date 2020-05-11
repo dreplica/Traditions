@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import Screens from "../Screens/index";
 // import Frontpage from "../components/users/frontpage/frontpage";
-import { checkLocal } from "../store/actionCreators/actiontypes";
+import { checkLocal } from "../store/actionCreators/authenticate";
 import Categories from "../components/categories/category";
 import { Container } from "./style";
 

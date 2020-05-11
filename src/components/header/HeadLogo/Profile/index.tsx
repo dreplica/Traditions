@@ -22,15 +22,14 @@ export default function ProfileDropdown(props: Iprops) {
 
   return (
     <Container style={{ display: show }}>
-      <Cancel onClick={hide}>Close</Cancel>
-      <Link to={"/Admin"} onClick={hide}>
+      <Link to={"/Admin"}>
         <FiUser /> <Menu>Admin</Menu>
       </Link>
 
-      <Link to={"/History"} onClick={hide}>
+      <Link to={"/History"}>
         <FiWatch /> <Menu>History</Menu>
       </Link>
-      <Link to={"/signin"} onClick={hide}>
+      <Link to={"/signin"}>
         <FaSignOutAlt /> <Menu>Logout</Menu>
       </Link>
     </Container>

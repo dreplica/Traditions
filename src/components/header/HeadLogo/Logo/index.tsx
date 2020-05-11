@@ -28,7 +28,7 @@ function Header(props: MenuView) {
   };
 
   const ShowImage = (
-    <Image onMouseEnter={showProfile} onMouseOut={showProfile}>
+    <Image onMouseEnter={showProfile} onMouseLeave={showProfile}>
       <img src={prof} alt="" />
       <ProfileDropdown drop={drop} />
     </Image>
@@ -42,9 +42,7 @@ function Header(props: MenuView) {
           <span>
             Tradishion&nbsp;<sup>&reg;</sup>
           </span>
-          <span onMouseEnter={Shownav} className="menu-but">
-            <FiAlignLeft />
-          </span>
+            <FiAlignLeft className="menu-but" onMouseEnter={Shownav} />
         </Logo>
         <Search />
       </Content>
