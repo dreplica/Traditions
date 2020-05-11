@@ -1,20 +1,21 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { itemState, objectData } from '../../../store/reducers/items';
+import { itemState } from '../../../store/reducers/items';
 import { stateData } from '../../../store/reducers/authentication';
-import { menuView } from '../../../store/actionCreators/actiontypes';
+import { menuView } from '../../../store/actionCreators/effects';
 import { Modal } from '../../../store/reducers/effects';
 import { Link } from 'react-router-dom';
 import { FiShoppingCart } from 'react-icons/fi';
 import { FaStoreAlt, FaRegEnvelope, FaSignOutAlt, FaTags, FaGlobeAfrica } from 'react-icons/fa';
 
 import { Nav } from './style';
+import { ITEMS } from '../../../ReusableComponents/theme/types';
 
 interface Iprops {
   menu: string;
   auth: string;
-  view: (args: string) => void;
-  data: objectData[]
+  view: (args: "none" | "block"|"flex") => void;
+  data: ITEMS[]
 }
 
 
@@ -56,7 +57,7 @@ function Navigation({ menu, view, auth, data }: Iprops) {
 
 const mapStateToProps = ({ EffectReducers, ItemsReducer, authenticate }: { authenticate: stateData; EffectReducers: Modal, ItemsReducer: itemState }) => ({
   menu: EffectReducers.menu,
-  auth: authenticate.data?.auth?.token as string,
+  auth: authenticate.auth.token ,
   data: ItemsReducer.cart
 })
 

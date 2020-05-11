@@ -1,46 +1,53 @@
-import { action } from "../actionCreators/actiontypes"
-
-export type objectData = {[key:string]:string}
+import { action } from "../actionCreators/items";
+import { ITEMS } from "../../ReusableComponents/theme/types";
 
 export type itemState = {
-    data:objectData[]; 
-    cart:objectData[];
-    currentItem:objectData
-}
+  data: ITEMS[];
+  cart: ITEMS[];
+  currentItem: ITEMS;
+};
 
-const intitialState:itemState = {
-    data:[{}],
-    cart:[{}],
-    currentItem:{}
-}
+const state_value: ITEMS = {
+  description: "",
+  image: "",
+  itemname: "",
+  id: "",
+  price: "",
+};
 
-const ItemsReducer = (state = intitialState,action:action) =>{
-    switch (action.type) {
-        case "getItems":
-            return {
-                ...state,
-                data:action.payload
-            }
-        case 'Preview':
-            return {
-                ...state,
-                currentItem:state.data.filter((item:objectData)=>item.id === action.payload)[0] 
-            }
-        case 'addCart':
-            const addcart = action.payload as objectData[]
-            return {
-                ...state,
-                cart:[...addcart]
-            }
-        case 'removeCart':
-            const removecart = action.payload as objectData[]
-            return {
-                ...state,
-                cart:[...removecart]
-            }
-        default:
-            return state;
-    }
-}
+const intitialState: itemState = {
+  data: [state_value],
+  cart: [state_value],
+  currentItem: state_value,
+};
 
-export default ItemsReducer
+const ItemsReducer = (state = intitialState, action: action) => {
+  switch (action.type) {
+    case "Get items":
+      return {
+        ...state,
+        data: action.payload,
+      };
+    case "Preview":
+      return {
+        ...state,
+        currentItem: state.data.filter(
+          (item: ITEMS) => item.id === action.payload
+        )[0],
+      };
+    case "Add cart":
+      return {
+        ...state,
+        cart: [...action.payload],
+      };
+    case "Remove cart":
+      return {
+        ...state,
+        cart: [...action.payload],
+      };
+    default:
+      return state;
+  }
+};
+
+export default ItemsReducer;

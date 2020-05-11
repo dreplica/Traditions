@@ -3,7 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
 
 import Screens from "../Screens/index";
-import Frontpage from "../components/users/frontpage/frontpage";
+// import Frontpage from "../components/users/frontpage/frontpage";
 import { checkLocal } from "../store/actionCreators/actiontypes";
 import Categories from "../components/categories/category";
 import { Container } from "./style";
@@ -24,9 +24,9 @@ function Maincomponent({ getLocal }: Iprops) {
         <Route exact path="/">
           <Screens.Homepage />
         </Route>
-        <Route path="/items/:id">
+        {/* <Route path="/items/:id">
           <Frontpage />
-        </Route>
+        </Route> */}
         <Route path="/sale/:category/:type">
           <Screens.Sales.Salesroutes />
         </Route>
@@ -48,9 +48,9 @@ function Maincomponent({ getLocal }: Iprops) {
         <Route path="/signin">
           <Screens.Login />
         </Route>
-        <Route path="/history">
+        {/* <Route path="/history">
           <Screens.History />
-        </Route>
+        </Route> */}
         <Route path="/admin">
           <Screens.Upload />
         </Route>

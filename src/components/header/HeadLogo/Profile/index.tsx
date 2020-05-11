@@ -1,22 +1,38 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
-import { Container } from './style'
-import { FiUser, FiWatch } from 'react-icons/fi';
-import { FaSignOutAlt } from 'react-icons/fa';
+import { Container, Menu, Cancel } from "./style";
+import { FiUser, FiWatch } from "react-icons/fi";
+import { FaSignOutAlt } from "react-icons/fa";
 
 interface Iprops {
-    drop: 'hidden' | 'visible';
+  drop: "none" | "block"|"flex";
 }
 
 export default function ProfileDropdown(props: Iprops) {
+  const [show, setShow] = useState("none");
+  useEffect(()=>{
+    setShow(props.drop)
+  },[props.drop])
 
-    return (
-        <Container style={{ visibility: props.drop }}>
-            <Link to={'/Admin'}><FiUser /> <span>Admin</span></Link>
-            <Link to={'/History'}><FiWatch /> <span>History</span></Link>
-            <Link to={'/signin'}><FaSignOutAlt /> <span>Logout</span></Link>
-        </Container>
-    );
+  const hide = () => {
+    // setDisplay("hidden")
+    setShow("hidden");
+  };
+
+  return (
+    <Container style={{ display: show }}>
+      <Cancel onClick={hide}>Close</Cancel>
+      <Link to={"/Admin"} onClick={hide}>
+        <FiUser /> <Menu>Admin</Menu>
+      </Link>
+
+      <Link to={"/History"} onClick={hide}>
+        <FiWatch /> <Menu>History</Menu>
+      </Link>
+      <Link to={"/signin"} onClick={hide}>
+        <FaSignOutAlt /> <Menu>Logout</Menu>
+      </Link>
+    </Container>
+  );
 }
-

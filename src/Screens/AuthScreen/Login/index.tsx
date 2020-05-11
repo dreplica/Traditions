@@ -1,13 +1,13 @@
 import React, { FormEvent, ChangeEvent, useState } from "react";
 import { connect } from "react-redux";
-import { loadData } from "../../../store/actionCreators/actiontypes";
+import { loadData, Auth_Action } from "../../../store/actionCreators/authenticate";
 import { useHistory } from "react-router-dom";
 import { Container, Content, Form, Error } from "../style";
 
 export type dataType = { [key: string]: number | string };
 
 type Props = {
-  setToken: (args: string) => void;
+  setToken: (args: Auth_Action['payload']) => void;
 };
 
 interface Form {

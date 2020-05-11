@@ -3,20 +3,22 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { stateData } from "../../../store/reducers/authentication";
 import { Form } from "./style";
+import { ITEMS } from "../../../ReusableComponents/theme/types";
 
-interface AdminForm {
+interface Iprops {
+  auth: string;
+}
+
+interface AdminForm extends ITEMS {
   category: string;
   type: string;
-  itemname: string;
-  price: string;
-  description: string;
-  image: string;
   quantity: number;
 }
 
 const initialForm: AdminForm = {
   category: "",
   type: "",
+  id: "",
   itemname: "",
   price: "",
   image: "",
@@ -24,7 +26,7 @@ const initialForm: AdminForm = {
   quantity: 0,
 };
 
-function Admin({ auth }: { auth: any }) {
+function Admin({ auth }: Iprops) {
   const [form, setForm] = useState<AdminForm>(initialForm);
   const image = useRef<HTMLInputElement>(null);
   const handleChange = (
@@ -49,7 +51,7 @@ function Admin({ auth }: { auth: any }) {
           { ...form, image: name },
           {
             headers: {
-              authorization: `Bearer ${auth?.token}`,
+              authorization: `Bearer ${auth}`,
               "content-type": "application/json",
             },
           }
@@ -187,6 +189,6 @@ function Admin({ auth }: { auth: any }) {
 }
 
 const mapStateToProps = ({ authenticate }: { authenticate: stateData }) => ({
-  auth: authenticate.data?.auth,
+  auth: authenticate.auth.token,
 });
 export default connect(mapStateToProps)(Admin);
