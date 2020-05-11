@@ -3,35 +3,31 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display:flex;
   flex-direction:column;
+  justify-content:flex-start;
+  align-items:center;
   width:70%;
+  height:100vh;
 
-  @media(max-width:1000px){
+  @media(max-width:999px){
       width:100%;
   }
 `
 
 export const Content = styled.div`
     width:350px;
-    position:relative;
-    top:10vh;
+    margin-top:40px;
     text-align:center;
-    margin:auto;
-
         & .log{
-            width:50%;
+            
             margin:10px auto;
             text-align:center;
             font-size:25px;
 
-            & h3{
-                margin:15px 0px;
-            }
-
             & .line{
-                width:100%;
+                width:50%;
+                margin:10px auto;
                 height:5px;
-                margin:0px;
-                border-radius:20px;
+                border-radius:30px;
                 background:linear-gradient(to right, orange,purple);
             }
         }
@@ -40,6 +36,10 @@ export const Content = styled.div`
             font-weight:bolder;
             color:purple;
             text-decoration:none;
+
+            :hover{
+                color:white;
+            }
         }
         @media(max-width:500px){
             width:90%;
@@ -58,25 +58,13 @@ export const AdminForm = styled.div`
 `
 export const Form = styled.form`
     width:350px;
-    position:relative;
-    top:15vh;
-    margin:auto;
-    height:auto;
     display:flex;
     flex-direction:column;
     justify-content:space-between;
-    padding:10px;
-    border:0px;
-    box-shadow: 5px light-grey;
-    border-radius:20px;
-    color:black;
-    
-    span{
-        color:white;
-    }
+    color:white;
 
-    label,h2{
-        color:white;
+    label{
+        margin-top:5px;
     }
 
      .checkbox{
@@ -118,12 +106,13 @@ export const Form = styled.form`
         background:white;
         margin:10px 0px;
         border:0px;
-        transition:width 1s;
-        border-bottom:1px grey solid;
+        font-weight:bold;
+        font-size:20px;
+        color:black;
 
         &:focus{
-        background:grey;
-        color:white;  
+        background:white;
+        color:black;  
         }
 
     }

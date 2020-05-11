@@ -25,7 +25,7 @@ const initialForm:Form = {
     email:"",
 }
 
-const Login:React.FC<Props> = ({setToken}) =>{
+function Login({setToken}:Props){
     const [form, setForm] = useState<Form>(initialForm)
     const history = useHistory()
     const [error, setError] = useState<string>("")
