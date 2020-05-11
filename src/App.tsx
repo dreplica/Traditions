@@ -1,12 +1,20 @@
 import React from 'react';
-import {BrowserRouter} from 'react-router-dom'
-import Maincomponent from './components/main';
+import store from './store/store';
+import { Provider } from 'react-redux'
+import Maincomponent from './Routes/Route';
+import Header from './components/header';
+import Modal from './components/Modal';
+import { BrowserRouter as Router } from 'react-router-dom';
 const App = () => {
   return (
-    <BrowserRouter>
-      <Maincomponent />
-    </BrowserRouter>
-  );
+    <Provider store={store}>
+      <Router>
+        <Modal />
+        <Header />
+        <Maincomponent />
+      </Router>
+    </Provider>
+  )
 }
 
 export default App;

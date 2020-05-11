@@ -3,14 +3,14 @@ import styled from 'styled-components';
 export const Category = styled.nav`
     display:flex;
     flex-direction:column;
-    max-width:35%;
+    width:300px;
     justify-content:start;
-    background:lightgrey;
     align-items:start;
     
     .head{
         font-size:20px;
         width:100%;
+        color:white;
         padding:10px 0px;
         text-align:center;
         position:relative;
@@ -28,6 +28,25 @@ export const Category = styled.nav`
         align-items:start;
         padding:10px 10px;
 
+    .dropdown{
+        transition:3s;
+        text-align:center;
+        margin-left:20px;
+        height:auto;
+
+        li{
+            font-weight:bolder;
+            text-align:left;
+            width:100%;
+            
+            &:hover{
+                border-bottom:1px solid white;
+                color:white;
+                cursor:pointer;
+            }
+        }
+
+    }
     .space{
         margin-top:30px;
     }
@@ -45,7 +64,7 @@ export const Category = styled.nav`
                 list-style:none;
                 color:black;
                 padding:10px 0px;
-                margin:auto
+                margin:auto;
                 text-decoration:none;
                 
                 & a{
@@ -60,24 +79,20 @@ export const Category = styled.nav`
             }
         }
     }
-    @media(max-width:800px){
+    @media(max-width:999px){
         display:none;
-
     }
         
-`
+`;
 
 export const RightComponent = styled.div`
     display:flex;
     width:100%;
-    background:red;
     justify-content:flex-start;
     align-items:center;
     flex-direction:column;
 
     @media(max-width:800px){
         width:100%;
-        background:pink;
-        margin:center;
     }
 ` 

@@ -1,12 +1,64 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+/* p,a{
+  font-size: 150%;
+} */
+
 body {
-  margin: 0;
-  font-family: 'nunito regular';
-  background:rgb(24, 17, 17);
-  color:rgb(230, 208, 208);
+  font-family: "Fira Code";
+  background: rgb(24, 17, 17);
+  max-width: 1700px;
+  min-width: 400px;
+  margin: auto;
+  color: rgb(230, 208, 208);
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Handle */
+*::-webkit-scrollbar-thumb {
+  background: rgb(226, 122, 52);
+  border-radius: 20px;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
- 
+
+.show {
+  animation: show 0.5s forwards linear;
+}
+
+.hide {
+  animation: hide 0.09s forwards linear;
+}
+
+@keyframes show {
+  from {
+    transform: translateX(0px);
+  }
+  to {
+    transform: translateX(300px);
+  }
+}
+
+@keyframes hide {
+  from {
+    transform: translateX(300px);
+  }
+  to {
+    transform: translateX(0px);
+  }
+}

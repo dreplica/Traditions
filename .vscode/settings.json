@@ -1,0 +1,13 @@
+{
+  "window.zoomLevel": 2,
+  "workbench.colorTheme": "Monokai",
+  "editor.fontFamily": "Fira Code",
+  "editor.fontLigatures": true,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "workbench.editor.highlightModifiedTabs": true,
+  "explorer.sortOrder": "default",
+  "editor.cursorStyle": "underline",
+  "editor.cursorBlinking": "phase",
+  "files.trimFinalNewlines": true
+}

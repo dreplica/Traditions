@@ -1,13 +1,26 @@
-import {action} from '../actionCreators/actiontypes'
+import { action } from '../actionCreators/actiontypes'
 
-export type dataType = {[key:string]:number|string|[]|Array<{[key:string]:object|[]|string}>}
+
+export interface authe {
+    token:string;
+    admin:string;
+}  
+
+export type dataType = {
+    [key:string]:Array<{[key:string]:string}>|{[key:string]:object|[]|string}
+}
 export interface stateData {
     error:boolean|string,
     loading:boolean | string,
-    data:dataType
+    data: {
+        auth?: {
+            token?: string;
+            admin?: boolean|string;
+        }
+    }
 }
 
-const initialState:stateData= {error:false,loading:false,data:{}}
+const initialState:stateData= {error:false,loading:false,data:{auth:{token:"",admin:""}}}
 
 const authenticate = (state = initialState,action:action):stateData =>{
     switch (action.type) {
@@ -17,22 +30,29 @@ const authenticate = (state = initialState,action:action):stateData =>{
                 loading:true,
             }
         case 'uploading':
+            localStorage['auth'] = JSON.stringify(action.payload)
             return {
                 ...state,
                 data:{...state.data,'auth':action.payload} as dataType,
                 loading:false,
             }
-        case 'profile':
+        case 'checkLocal':
+        const auth:string | {[key: string]: string;}= JSON.parse(localStorage['auth']);
             return {
                 ...state,
-                data:{...state.data,user:action.payload} as dataType,
+                data:{...state.data,'auth':auth} as dataType,
+                loading:false,
             }
-        case 'cart':
-            console.log(typeof state.data)
-            const cart = (state.data.cart as Array<object>).push(action.payload as object)//.push() //,action.payload]
-            return{
+        case 'logout':
+            delete localStorage['auth'];
+            return {
                 ...state,
-                data:{...state.data,cart},
+                data:{}
+            }
+        case 'profile':
+            return {
+                ...state, 
+                data:{...state.data,user:action.payload} as dataType,
             }
         case 'error':
             return{
