@@ -56,6 +56,13 @@ export const AdminForm = styled.div`
         max-height:150px;
     }
 `
+export const Error = styled.p`
+    text-align:center;
+    margin:10px auto;
+    background:red;
+    padding:5px;
+`
+
 export const Form = styled.form`
     width:350px;
     display:flex;
