@@ -18,32 +18,45 @@ const InitialState: IProps[] = [
     description: "",
     id: "",
     image: "",
-    itemname: "",
-    price: "",
+    itemname: "dragon5",
+    price: "2000",
   },
   {
     description: "",
     id: "",
     image: "",
-    itemname: "",
-    price: "",
+    itemname: "dragon4",
+    price: "3000",
   },
   {
     description: "",
     id: "",
     image: "",
-    itemname: "",
-    price: "",
+    itemname: "dragon3",
+    price: "5000",
   },
   {
     description: "",
     id: "",
     image: "",
-    itemname: "",
-    price: "",
+    itemname: "dragon2",
+    price: "4000",
+  },{
+    description: "",
+    id: "",
+    image: "",
+    itemname: "dragon1",
+    price: "6000",
+  }, {
+    description: "",
+    id: "",
+    image: "",
+    itemname: "dragon1",
+    price: "6000",
   },
-]
 
+]
+    
 
 export default function SaleRoutes() {
   const { category, type } = useParams()

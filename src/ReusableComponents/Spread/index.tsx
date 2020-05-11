@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Cards from "../Cards";
 
-import { Container, Sort, Items } from "./style";
+import { 
+  Container, 
+  Sort,
+  Filter,
+  Button,
+  Items } from "./style";
 
 interface Iprops {
   data: {
@@ -33,7 +38,6 @@ export default function SpreadContent(props: Iprops) {
   }, [state]);
 
   const sort = (arg: string) => {
-    console.log(arg);
     let data: Iprops["data"];
     if (arg === "cheap") {
       data = [...stateData].sort(
@@ -43,7 +47,7 @@ export default function SpreadContent(props: Iprops) {
       return;
     }
     data = [...stateData].sort(
-      (first, second) => parseInt(first.price) - parseInt(second.price)
+      (first, second) => parseInt(second.price) - parseInt(first.price)
     );
     setStateData(data);
   };
@@ -62,11 +66,11 @@ export default function SpreadContent(props: Iprops) {
   return (
     <Container>
       <Sort>
-        <div>
+        <Filter>
           <p>Filter By:</p>
-          <button onClick={(e) => setState("costly")}>Price Top</button>
-          <button onClick={(e) => setState("cheap")}>Price Down</button>
-        </div>
+          <Button onClick={(e) => setState("costly")}>Price Top</Button>
+          <Button onClick={(e) => setState("cheap")}>Price Down</Button>
+        </Filter>
       </Sort>
       <Items>{Spread}</Items>
     </Container>

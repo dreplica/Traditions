@@ -64,7 +64,7 @@ function Search(props:Iprops) {
           value={search}
           onChange={handleSearch}
         />
-        <FiSearch color='black'/>
+        <FiSearch color='black'size={30}/>
       </Searchinput>
       <DropList>
         {data.map((item, index) => (<Link 

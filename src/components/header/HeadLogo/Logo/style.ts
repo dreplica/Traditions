@@ -41,6 +41,7 @@ export const Logo = styled.div`
     
     @media(max-width:999px){
         width:80%;
+        margin:auto;
         .menu-but{
             display:block;
         }

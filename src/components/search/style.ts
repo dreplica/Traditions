@@ -41,6 +41,7 @@ export const DropList = styled.div`
   width:100%;
   height:auto;
   top:50px;
+  z-index:5;
   padding: 0px;
   display:flex;
   flex-direction:column;
