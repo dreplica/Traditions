@@ -4,6 +4,13 @@ import { useParams } from 'react-router-dom';
 
 import SpreadContent from '../../ReusableComponents/Spread';
 import { FiActivity } from 'react-icons/fi';
+import img1 from '../../img/agba2.jpg'
+import img2 from '../../img/back.jpg'
+import img3 from '../../img/mshirt.jpg'
+import img4 from '../../img/shirt.jpg'
+import img5 from '../../img/womgowncan.jpg'
+import img6 from '../../img/skirt.jpg'
+
 
 interface IProps {
   description: string;
@@ -17,40 +24,40 @@ const InitialState: IProps[] = [
   {
     description: "",
     id: "",
-    image: "",
+    image: img1,
     itemname: "dragon5",
     price: "2000",
   },
   {
     description: "",
     id: "",
-    image: "",
+    image: img2,
     itemname: "dragon4",
     price: "3000",
   },
   {
     description: "",
     id: "",
-    image: "",
+    image: img3,
     itemname: "dragon3",
     price: "5000",
   },
   {
     description: "",
     id: "",
-    image: "",
+    image: img4,
     itemname: "dragon2",
     price: "4000",
   },{
     description: "",
     id: "",
-    image: "",
+    image: img5,
     itemname: "dragon1",
     price: "6000",
   }, {
     description: "",
     id: "",
-    image: "",
+    image: img6,
     itemname: "dragon1",
     price: "6000",
   },

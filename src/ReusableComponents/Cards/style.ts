@@ -33,7 +33,7 @@ export const View = styled.button`
     position:absolute;
     z-index:3;
     top:110px;
-    left:30%;
+    left:35%;
     border:1px solid white;
     color:grey;
     font-weight:bold;

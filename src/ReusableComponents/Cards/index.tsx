@@ -53,7 +53,7 @@ function Card(props: IProps) {
     return (
         <Container onMouseEnter={showCover} onMouseLeave={showCover}>
             <Cover style={{ display: display }} />
-            <Image src={img} />
+            <Image src={(props.image ?? img)} />
             <View
                 style={{ display: display }}
                 onClick={showModal}
