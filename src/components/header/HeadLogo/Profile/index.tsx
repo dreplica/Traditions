@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import { Container, Menu, Cancel } from "./style";
+import { Container, Menu } from "./style";
 import { FiUser, FiWatch } from "react-icons/fi";
 import { FaSignOutAlt } from "react-icons/fa";
 

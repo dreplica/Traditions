@@ -63,21 +63,4 @@ export const Menu = styled.span`
   margin-left: 4px;
 `;
 
-export const Cancel = styled.span`
-  display: none;
-  @media (max-width: 999px) {
-    display: block;
-    position: absolute;
-    top: 30px;
-    right: 10%;
-    font-size: 20px;
-    font-weight: bold;
-    transition: transform 1s;
 
-    :hover {
-      color: whitesmoke;
-      transform: scale(1.2);
-      cursor: pointer;
-    }
-  }
-`;

@@ -42,7 +42,7 @@ function Header(props: MenuView) {
           <span>
             Tradishion&nbsp;<sup>&reg;</sup>
           </span>
-            <FiAlignLeft className="menu-but" onMouseEnter={Shownav} />
+            <FiAlignLeft className="menu-but" onMouseEnter={Shownav}/>
         </Logo>
         <Search />
       </Content>
