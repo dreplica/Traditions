@@ -30,15 +30,15 @@ function Signup({ setToken }: iProps) {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    const formData = new FormData();
-    const name = (form?.companyname as string) + Date.now() + ".jpg";
-    setForm({ ...form, logo: name });
-    const img = logo.current?.files?.item(0) as Blob;
-    formData.set("file", img as File, name);
-    Axios.post("http://localhost:3000/upload", formData).then(() => {
+    // const formData = new FormData();
+    // const name = (form?.companyname as string) + Date.now() + ".jpg";
+    // setForm({ ...form, logo: name });
+    // const img = logo.current?.files?.item(0) as Blob;
+    // formData.set("file", img as File, name);
+    // Axios.post("http://localhost:3000/upload", formData).then(() => {
       Axios.post(
         "http://localhost:3000/signup",
-        { ...form, logo: name },
+        { ...form },
         {
           headers: {
             "content-type": "application/json",
@@ -51,7 +51,7 @@ function Signup({ setToken }: iProps) {
           token?.token && history.push("/home");
         })
         .catch((err) => console.log(err));
-    });
+    // });
   };
 
   return (

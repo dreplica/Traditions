@@ -44,6 +44,10 @@ export const Logo = styled.div`
         margin:auto;
         .menu-but{
             display:block;
+            transition:transform 0.5s;
+            :hover{
+                transform:scale(1.4);
+            }
         }
     }
     

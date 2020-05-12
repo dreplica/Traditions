@@ -9,7 +9,7 @@ export const Container = styled.div`
          background-color: whitesmoke;
          flex-direction: column;
          align-items: flex-start;
-         z-index: 2;
+         z-index: 7;
          justify-content: center;
 
          & a {
@@ -62,5 +62,3 @@ export const Container = styled.div`
 export const Menu = styled.span`
   margin-left: 4px;
 `;
-
-

@@ -2,8 +2,9 @@ import React, { useState, ChangeEvent, FormEvent, useRef } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import { stateData } from "../../../store/reducers/authentication";
-import { Form } from "./style";
 import { ITEMS } from "../../../ReusableComponents/theme/types";
+// import {Clo} from 'cloudinary-react'
+import { Form, Heading, TextArea } from "./style";
 
 interface Iprops {
   auth: string;
@@ -62,9 +63,7 @@ function Admin({ auth }: Iprops) {
 
   return (
     <Form style={{ top: "5vh" }}>
-      <h2 style={{ textAlign: "center" }}>
-        Hello Admin, Please Fill in the Form to upload an Item
-      </h2>
+      <Heading>Hello Admin, Please Fill in the Form to upload an Item</Heading>
       <label>
         {" "}
         Item Name
@@ -176,12 +175,12 @@ function Admin({ auth }: Iprops) {
       <label>
         {" "}
         Description
-        <textarea
+        <TextArea
           id="description"
           value={form.description}
           placeholder="price e.g, 6000"
           onChange={handleChange}
-        ></textarea>
+        ></TextArea>
       </label>
       <button onClick={SubmitItem}>Add Item</button>
     </Form>
