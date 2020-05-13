@@ -46,7 +46,7 @@ function Signup({ setToken }: iProps) {
       .then((res) => res.data)
       .then((token) => {
         token?.token ? setToken(token) : setError(token.error);
-        token?.token && history.push("/home");
+        token?.token && history.push("/");
       })
       .catch((err) => console.log(err));
     // });

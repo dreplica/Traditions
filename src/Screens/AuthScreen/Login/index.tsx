@@ -1,13 +1,15 @@
-import React, { FormEvent, ChangeEvent, useState } from "react";
+import React, { FormEvent, ChangeEvent, useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { loadData, Auth_Action } from "../../../store/actionCreators/authenticate";
 import { useHistory } from "react-router-dom";
 import { Container, Content, Form, Error } from "../style";
+import authenticate, { stateData } from "../../../store/reducers/authentication";
 
 export type dataType = { [key: string]: number | string };
 
-type Props = {
+type Iprops = {
   setToken: (args: Auth_Action['payload']) => void;
+  auth:string;
 };
 
 interface Form {
@@ -20,10 +22,11 @@ const initialForm: Form = {
   email: "",
 };
 
-function Login({ setToken }: Props) {
+function Login(props: Iprops) {
   const [form, setForm] = useState<Form>(initialForm);
   const history = useHistory();
   const [error, setError] = useState<string>("");
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     setError("");
@@ -42,11 +45,15 @@ function Login({ setToken }: Props) {
       .then((res) => res.json())
       .then((token) => {
         console.log(token);
-        token?.token ? setToken(token) : setError(token.error);
-        token?.token && history.push("/home");
+        token?.token ? props.setToken(token) : setError(token.error);
+        token?.token && history.push("/");
       })
       .catch((err) => setError(err.error));
   };
+
+  if(props.auth.length){
+    history.push('/')
+  }
   
   return (
     <Container>
@@ -99,4 +106,10 @@ function Login({ setToken }: Props) {
   );
 }
 
-export default connect(null, { setToken: loadData })(Login);
+const mapStateToProps = ({authenticate}:{authenticate:stateData}) => {
+  return {
+    auth: authenticate.auth.token
+  }
+}
+
+export default connect(mapStateToProps, { setToken: loadData })(Login);
