@@ -4,19 +4,23 @@ import { Link } from "react-router-dom";
 import { Container, Menu } from "./style";
 import { FiUser, FiWatch } from "react-icons/fi";
 import { FaSignOutAlt } from "react-icons/fa";
+import { connect } from "react-redux";
+import { loadData } from "../../../../store/actionCreators/authenticate";
 
 interface Iprops {
-  drop: "none" | "block"|"flex";
+  drop: "none" | "block" | "flex";
+  removeAuth:(auth:{admin:string,token:string})=>void
 }
 
-export default function ProfileDropdown(props: Iprops) {
+function ProfileDropdown(props: Iprops) {
   const [show, setShow] = useState("none");
-  useEffect(()=>{
-    setShow(props.drop)
-  },[props.drop])
+  useEffect(() => {
+    setShow(props.drop);
+  }, [props.drop]);
 
-  const logout = (e:MouseEvent) => {
-    delete localStorage['auth']
+  const logout = (e: MouseEvent) => {
+    delete localStorage["auth"];
+    props.removeAuth({ admin: "", token: "" });
   };
 
   return (
@@ -34,3 +38,6 @@ export default function ProfileDropdown(props: Iprops) {
     </Container>
   );
 }
+
+
+export default connect(null, {removeAuth:loadData})(ProfileDropdown);
