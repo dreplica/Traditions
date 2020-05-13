@@ -52,13 +52,17 @@ function Admin({ auth }: Iprops) {
   const SubmitItem = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      await handle_image_upload(pic as FileList);
-      await Axios.post("http://localhost:3000/items", form, {
-        headers: {
-          authorization: `Bearer ${auth}`,
-          "content-type": "application/json",
-        },
-      }).then((_) => console.log(form));
+      const links = await handle_image_upload(pic as FileList);
+      await Axios.post(
+        "http://localhost:3000/items",
+        { ...form, image: links },
+        {
+          headers: {
+            authorization: `Bearer ${auth}`,
+            "content-type": "application/json",
+          },
+        }
+      ).then((_) => console.log(form));
     } catch (error) {
       console.log("this form", form);
       console.log(error);
@@ -87,7 +91,7 @@ function Admin({ auth }: Iprops) {
         return;
       }
     }
-    setForm({ ...form, image: get_link.join(",") });
+    return get_link.join(",");
   };
   return (
     <Form style={{ top: "5vh" }} encType="multipart/">
