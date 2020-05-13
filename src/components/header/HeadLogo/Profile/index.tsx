@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, MouseEvent } from "react";
 import { Link } from "react-router-dom";
 
 import { Container, Menu } from "./style";
@@ -15,9 +15,8 @@ export default function ProfileDropdown(props: Iprops) {
     setShow(props.drop)
   },[props.drop])
 
-  const hide = () => {
-    // setDisplay("hidden")
-    setShow("hidden");
+  const logout = (e:MouseEvent) => {
+    delete localStorage['auth']
   };
 
   return (
@@ -29,7 +28,7 @@ export default function ProfileDropdown(props: Iprops) {
       <Link to={"/History"}>
         <FiWatch /> <Menu>History</Menu>
       </Link>
-      <Link to={"/signin"}>
+      <Link to={"/signin"} onClick={logout}>
         <FaSignOutAlt /> <Menu>Logout</Menu>
       </Link>
     </Container>
