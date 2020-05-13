@@ -94,6 +94,7 @@ export const TextArea = styled.textarea`
 
 export const Input = styled.input`
 width:100%;
+height:50px !important;
 border:0px;
 padding-left:0px !important;
   ::-webkit-file-upload-button {
