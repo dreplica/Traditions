@@ -1,10 +1,17 @@
-import React, { useState, ChangeEvent, FormEvent, useRef } from "react";
+import React, {
+  useState,
+  ChangeEvent,
+  FormEvent,
+  useRef,
+  useContext,
+} from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import { stateData } from "../../../store/reducers/authentication";
 import { ITEMS } from "../../../ReusableComponents/theme/types";
-// import {Clo} from 'cloudinary-react'
-import { Form, Heading, TextArea } from "./style";
+import { CloudinaryContext } from "cloudinary-react";
+import { Form, Heading, TextArea, Input } from "./style";
+import Axios from "axios";
 
 interface Iprops {
   auth: string;
@@ -29,6 +36,10 @@ const initialForm: AdminForm = {
 
 function Admin({ auth }: Iprops) {
   const [form, setForm] = useState<AdminForm>(initialForm);
+  const [pic, setPic] = useState<FileList | null>();
+  const { cloudname, upload_preset } = useContext(
+    CloudinaryContext.contextType
+  );
   const image = useRef<HTMLInputElement>(null);
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -37,36 +48,67 @@ function Admin({ auth }: Iprops) {
     setForm({ ...form, [e.currentTarget?.id]: e.target?.value });
   };
 
-  const SubmitItem = (e: FormEvent) => {
-    e.preventDefault();
-    const data = new FormData();
-    const name = form.itemname + Date.now() + ".jpg";
-    setForm({ ...form, image: name });
-    const img = image.current?.files?.item(0) as Blob;
-    data.set("file", img as File, name);
-    axios
-      .post("http://localhost:3000/upload", data, {})
-      .then((_) => {
-        axios.post(
-          "http://localhost:3000/items",
-          { ...form, image: name },
-          {
-            headers: {
-              authorization: `Bearer ${auth}`,
-              "content-type": "application/json",
-            },
-          }
-        );
-      })
-      .catch((err) => console.log(err.message));
+  const HandleImage = (e: ChangeEvent<HTMLInputElement>) => {
+    // e.preventDefault();
+    console.log("hello");
+    const d = e.currentTarget.files;
+    setPic(d);
+    console.log("first", pic);
   };
 
+  const SubmitItem = (e: FormEvent) => {
+    e.preventDefault();
+    handle_image_upload(pic as FileList);
+    // const data = new FormData();
+    // const name = form.itemname + Date.now() + ".jpg";
+    // setForm({ ...form, image: name });
+    // const img = image.current?.files?.item(0) as Blob;
+    // data.set("file", img as File, name);
+    // axios
+    //   .post("http://localhost:3000/upload", data, {})
+    //   .then((_) => {
+    //     axios.post(
+    //       "http://localhost:3000/items",
+    //       { ...form, image: name },
+    //       {
+    //         headers: {
+    //           authorization: `Bearer ${auth}`,
+    //           "content-type": "application/json",
+    //         },
+    //       }
+    //     );
+    //   })
+    //   .catch((err) => console.log(err.message));
+  };
+
+  const handle_image_upload = async (files: FileList) => {
+    const uri = `https://api.cloudinary.com/v1_1/${"dyypxjmx9"}/upload`;
+
+    for (let file of files) {
+      try {
+        const Data = new FormData();
+        Data.append('file', file);
+        Data.append('Content','');
+        Data.append('tags','items')
+        Data.append("upload_preset","yem27xol",)
+
+        const response = await fetch(uri, {
+          method: "POST",
+          body: Data,
+        });
+        console.log(response);
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+  };
   return (
-    <Form style={{ top: "5vh" }}>
+    <Form style={{ top: "5vh" }} encType="multipart/">
       <Heading>Hello Admin, Please Fill in the Form to upload an Item</Heading>
       <label>
         {" "}
-        Item Name
+        {console.log("cloudname", cloudname)}
+        Item Name {console.log(process.env["CLOUDNAME"])}
         <input
           type="text"
           id="itemname"
@@ -75,6 +117,7 @@ function Admin({ auth }: Iprops) {
           onChange={handleChange}
         />
       </label>
+
       <label>
         {" "}
         Price
@@ -162,10 +205,13 @@ function Admin({ auth }: Iprops) {
       </label>
       <label>
         {" "}
-        Image
-        <input
+        Image {pic?.length}
+        <Input
           type="file"
           id="image"
+          accept="image/*"
+          multiple
+          onChange={HandleImage}
           name="file"
           placeholder="Upload view image"
           ref={image}

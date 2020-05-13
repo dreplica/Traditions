@@ -12,14 +12,9 @@ export const Form = styled.form`
   border: 0px;
   box-shadow: 5px light-grey;
   border-radius: 20px;
-  color: black;
+  color: white;
 
   span {
-    color: white;
-  }
-
-  label,
-  h2 {
     color: white;
   }
 
@@ -51,6 +46,7 @@ export const Form = styled.form`
     width: 100%;
     padding-left: 15px;
     height: 50px;
+    color:black;
     background: white;
     margin-bottom: 20px;
     border: 0px;
@@ -94,4 +90,21 @@ export const TextArea = styled.textarea`
   padding: 8px;
   min-height: 100px;
   max-height: 100px;
+`;
+
+export const Input = styled.input`
+width:100%;
+border:0px;
+padding-left:0px !important;
+  ::-webkit-file-upload-button {
+    /* visibility: hidden; */
+    width:100%;
+    height:100%;
+    background:linear-gradient(to bottom,orange,purple);
+    border: 1px solid #999;
+    color:white;
+    border-radius: 3px;
+    padding: 5px 8px;
+  }
+
 `;
