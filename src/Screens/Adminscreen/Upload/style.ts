@@ -18,45 +18,12 @@ export const Form = styled.form`
     color: white;
   }
 
-  .checkbox {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  input[type="checkbox"] {
-    width: 20px;
-    height: 20px;
-    margin-left: 10px;
-  }
-  input[type="file"] {
-    height: 29px;
-    background: lightgrey;
-    color: white;
-  }
-
   select {
     width: 100%;
-    margin: 20px auto;
+    margin-bottom: 20px;
     padding: 5px;
     height: 50px;
-  }
-
-  input {
-    width: 100%;
-    padding-left: 15px;
-    height: 50px;
-    color:black;
-    background: white;
-    margin-bottom: 20px;
-    border: 0px;
-    transition: width 1s;
-    border-bottom: 1px grey solid;
-
-    &:focus {
-      background: grey;
-      color: white;
-    }
+    font-size: 20px;
   }
 
   & button {
@@ -88,24 +55,49 @@ export const TextArea = styled.textarea`
   min-width: 100%;
   max-width: 100%;
   padding: 8px;
+  font-size: 16px;
   min-height: 100px;
   max-height: 100px;
 `;
 
-export const Input = styled.input`
-width:100%;
-height:50px !important;
-border:0px;
-padding-left:0px !important;
+export const ImageInput = styled.input`
+  width: 100%;
+  margin-bottom: 20px;
+  height: 50px !important;
+  border: 0px;
+  background: transparent !important;
   ::-webkit-file-upload-button {
     /* visibility: hidden; */
-    width:100%;
-    height:100%;
-    background:linear-gradient(to bottom,orange,purple);
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, orange, purple);
     border: 1px solid #999;
-    color:white;
+    color: white;
+    font-weight: bolder;
     border-radius: 3px;
     padding: 5px 8px;
-  }
 
+    :hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+`;
+
+export const Input = styled.input`
+  width: 100%;
+  padding-left: 15px;
+  height: 50px;
+  color: black;
+  font-size: 20px;
+  background: white;
+  margin-bottom: 20px;
+  border: 0px;
+  transition: width 1s;
+  border-bottom: 1px grey solid;
+
+  :focus {
+    background: grey;
+    border: 2px solid orange;
+    color: white;
+  }
 `;

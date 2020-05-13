@@ -10,8 +10,6 @@ import {
 import { SIGNUP_FORM } from "../../../ReusableComponents/theme/types";
 import { Container, Form, Content, AdminForm } from "../style";
 
-export type dataType = { [key: string]: number | string };
-
 interface iProps {
   setToken: (args: Auth_Action["payload"]) => void;
 }
@@ -36,21 +34,21 @@ function Signup({ setToken }: iProps) {
     // const img = logo.current?.files?.item(0) as Blob;
     // formData.set("file", img as File, name);
     // Axios.post("http://localhost:3000/upload", formData).then(() => {
-      Axios.post(
-        "http://localhost:3000/signup",
-        { ...form },
-        {
-          headers: {
-            "content-type": "application/json",
-          },
-        }
-      )
-        .then((res) => res.data)
-        .then((token) => {
-          token?.token ? setToken(token) : setError(token.error);
-          token?.token && history.push("/home");
-        })
-        .catch((err) => console.log(err));
+    Axios.post(
+      "http://localhost:3000/signup",
+      { ...form },
+      {
+        headers: {
+          "content-type": "application/json",
+        },
+      }
+    )
+      .then((res) => res.data)
+      .then((token) => {
+        token?.token ? setToken(token) : setError(token.error);
+        token?.token && history.push("/home");
+      })
+      .catch((err) => console.log(err));
     // });
   };
 

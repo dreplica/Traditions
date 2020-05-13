@@ -1,0 +1,30 @@
+{
+    "women": [
+        "top",
+        "gowns",
+        "skirts",
+        "style"
+    ],
+    "men": [
+        "shirts",
+        "trousers",
+        "short",
+        "style"
+    ],
+    "accessories": [
+        "bangles",
+        "necklace",
+        "waistbid",
+        "ring"
+    ],
+    "womenfoot": [
+        "sandal",
+        "shoe",
+        "hills",
+        "slippers"
+    ],
+    "menfoot": [
+        "sandal",
+        "shoe"
+    ]
+}
