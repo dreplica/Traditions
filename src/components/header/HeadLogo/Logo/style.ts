@@ -21,11 +21,12 @@ export const Content = styled.div`
 
 export const Logo = styled.div`
      display:flex;
-     width:50%;
+     width:70%;
      justify-content:space-between;
      align-items:center;
 
         & span{
+            font-size:1em;
             background:linear-gradient(to right, orange,purple);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -37,6 +38,7 @@ export const Logo = styled.div`
         }
         .menu-but{
             display:none;
+            width:150px;
         }
     
     @media(max-width:999px){

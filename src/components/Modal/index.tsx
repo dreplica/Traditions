@@ -2,7 +2,7 @@ import React, { MouseEvent } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { modalView } from '../../store/actionCreators/actiontypes';
+import { modalView } from '../../store/actionCreators/effects';
 import { Modal } from '../../store/reducers/effects';
 import { ITEMS } from '../../ReusableComponents/theme/types';
 import { itemState } from '../../store/reducers/items';
@@ -17,12 +17,13 @@ import {
 
 interface Iprops {
     modal: string;
-    RemoveModal: (arg: string) => void;
+    RemoveModal: (arg: "none" | "flex" | "block") => void;
     current: ITEMS;
 }
 
 function Modalview({ current, modal, RemoveModal }: Iprops) {
     const close = () => {
+        window.alert("clicked")
         RemoveModal('none')
     }
 
