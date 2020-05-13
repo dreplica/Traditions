@@ -101,3 +101,11 @@ export const Input = styled.input`
     color: white;
   }
 `;
+
+export const Error= styled.h5`
+  width: 90%;
+  margin:10px auto;
+  text-align: center;
+  height: auto;
+  color:yellow;
+`;
