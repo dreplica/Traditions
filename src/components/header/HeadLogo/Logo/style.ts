@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.header`
-    width:90%;
+    width:100%; 
     display:flex;
     flex-direction:row;
     justify-content:space-around;
@@ -14,14 +14,14 @@ export const Container = styled.header`
 export const Content = styled.div`
     display:flex;
     flex-wrap:wrap;
-    flex:3;
+    width:90%;
     justify-content:flex-start;
     align-items:center;
 `
 
 export const Logo = styled.div`
      display:flex;
-     width:70%;
+     width:40%;
      justify-content:space-between;
      align-items:center;
 

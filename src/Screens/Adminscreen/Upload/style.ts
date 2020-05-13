@@ -65,6 +65,7 @@ export const ImageInput = styled.input`
   margin-bottom: 20px;
   height: 50px !important;
   border: 0px;
+  padding-left:0px !important;
   background: transparent !important;
   ::-webkit-file-upload-button {
     /* visibility: hidden; */

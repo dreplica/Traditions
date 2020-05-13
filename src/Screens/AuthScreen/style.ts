@@ -83,6 +83,7 @@ export const Form = styled.form`
         min-width:100%;
         max-width:100%;
         padding:8px;
+        margin-bottom:20px;
         min-height:100px;
         max-height:100px;
     } 
@@ -110,7 +111,7 @@ export const Form = styled.form`
         padding-left:15px;
         height:50px;
         background:white;
-        margin:10px 0px;
+        margin-bottom:20px;
         border:0px;
         font-weight:bold;
         font-size:20px;

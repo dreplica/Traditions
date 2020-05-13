@@ -9,12 +9,15 @@ import {
 } from "../../../store/actionCreators/authenticate";
 import { SIGNUP_FORM } from "../../../ReusableComponents/theme/types";
 import { Container, Form, Content, AdminForm } from "../style";
+import { stateData } from "../../../store/reducers/authentication";
+import { ImageInput } from "../../Adminscreen/Upload/style";
 
-interface iProps {
+interface Iprops {
   setToken: (args: Auth_Action["payload"]) => void;
+  auth:string;
 }
 
-function Signup({ setToken }: iProps) {
+function Signup(props: Iprops) {
   const [form, setForm] = useState<SIGNUP_FORM>(SIGNUP_FORM);
   const logo = useRef<HTMLInputElement>(null);
   const [error, setError] = useState<string>("");
@@ -45,12 +48,16 @@ function Signup({ setToken }: iProps) {
     )
       .then((res) => res.data)
       .then((token) => {
-        token?.token ? setToken(token) : setError(token.error);
+        token?.token ? props.setToken(token) : setError(token.error);
         token?.token && history.push("/");
       })
       .catch((err) => console.log(err));
     // });
   };
+
+   if (props.auth.length) {
+     history.push("/");
+   }
 
   return (
     <Container>
@@ -133,7 +140,14 @@ function Signup({ setToken }: iProps) {
           <label>
             {" "}
             Company Logo
-            <input type="file" id="logo" ref={logo} />
+            <ImageInput
+              type="file"
+              id="image"
+              accept="image/*"
+              required
+              // onChange={HandleImage}
+              name="file"
+            />
           </label>
           <label>
             {" "}
@@ -206,4 +220,11 @@ function Signup({ setToken }: iProps) {
   );
 }
 
-export default connect(null, { setToken: loadData })(Signup);
+const mapStateToProps = ({ authenticate }: { authenticate: stateData }) => {
+  return {
+    auth: authenticate.auth.token,
+  };
+};
+
+
+export default connect(mapStateToProps, { setToken: loadData })(Signup);

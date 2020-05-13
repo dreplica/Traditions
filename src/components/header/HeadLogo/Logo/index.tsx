@@ -8,10 +8,12 @@ import prof from "../../../../img/prof.jpg";
 import ProfileDropdown from "../Profile";
 import Search from "../../../search";
 import { Container, Content, Logo, Image } from "./style";
+import { stateData } from "../../../../store/reducers/authentication";
 
 interface MenuView {
   toggleMenu: (args: "none" | "block"|"flex") => void;
   Menu: string;
+  auth:string;
 }
 
 function Header(props: MenuView) {
@@ -37,7 +39,7 @@ function Header(props: MenuView) {
   return (
     <Container>
       <Content>
-        {auth && ShowImage}
+        {props.auth.length ? ShowImage:null}
         <Logo>
           <span>
             Tradishion&nbsp;<sup>&reg;</sup>
@@ -50,8 +52,9 @@ function Header(props: MenuView) {
   );
 }
 
-const mapStateToProps = ({ EffectReducers }: { EffectReducers: Modal }) => ({
+const mapStateToProps = ({ EffectReducers,authenticate}: { EffectReducers: Modal,authenticate:stateData }) => ({
   Menu: EffectReducers.menu,
+  auth:authenticate.auth.token
 });
 
 export default connect(mapStateToProps, { toggleMenu: menuView })(Header);
