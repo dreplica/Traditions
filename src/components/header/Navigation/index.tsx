@@ -76,7 +76,7 @@ function Navigation({ menu, view, auth, data }: Iprops) {
         <FaRegEnvelope />
         <span>Contact</span>
       </Link>
-      {!auth && Login}
+      {!auth.length && Login}
     </Container>
   );
 }
