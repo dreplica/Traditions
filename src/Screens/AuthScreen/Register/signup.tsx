@@ -121,7 +121,7 @@ function Signup(props: Iprops) {
             type="checkbox"
             id="admin"
             onChange={(e) =>
-              setForm({ ...form, admin: form.admin ? false : true })
+              setForm({ ...form, admin: form.admin ? 0 : 1 })
             }
           />
         </label>
