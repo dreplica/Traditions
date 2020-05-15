@@ -19,7 +19,6 @@ interface Iprops {
 
 function Signup(props: Iprops) {
   const [form, setForm] = useState<SIGNUP_FORM>(SIGNUP_FORM);
-  const logo = useRef<HTMLInputElement>(null);
   const [error, setError] = useState<string>("");
   const history = useHistory();
 
