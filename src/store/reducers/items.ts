@@ -1,10 +1,11 @@
 import { action } from "../actionCreators/items";
-import { ITEMS } from "../../ReusableComponents/theme/types";
+import { ITEMS, SIGNUP_FORM } from "../../ReusableComponents/theme/types";
 
 export type itemState = {
   data: ITEMS[];
   cart: ITEMS[];
   currentItem: ITEMS;
+  reg_form:SIGNUP_FORM
 };
 
 const state_value: ITEMS = {
@@ -19,6 +20,7 @@ const intitialState: itemState = {
   data: [state_value],
   cart: [state_value],
   currentItem: state_value,
+  reg_form:SIGNUP_FORM
 };
 
 const ItemsReducer = (state = intitialState, action: action) => {
@@ -48,7 +50,7 @@ const ItemsReducer = (state = intitialState, action: action) => {
     case 'Updating_Registragtion':
       return{
         ...state,
-        form:{...state.form,payload}
+        reg_form:{...state.reg_form, ...action.reg_payload}
       }
     default:
       return state;

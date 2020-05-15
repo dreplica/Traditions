@@ -1,11 +1,11 @@
 import { Dispatch } from "redux";
-
 import { isloading, isError } from "./actiontypes";
-import { ITEMS, SIGNUP_FORM } from "../../ReusableComponents/theme/types";
+import { ITEMS } from "../../ReusableComponents/theme/types";
 
 export interface action {
-  type: "Get items" | "Preview" | "Add cart"|"Remove cart";
-  payload:ITEMS[]|string|SIGNUP_FORM;
+  type: "Get items" | "Preview" | "Add cart" | "Remove cart"|"Updating_Registragtion"
+  payload:ITEMS[]|string;
+  reg_payload:{[key:string]:string|number}
 }
 
 export const getItem = (payload: ITEMS[]) => (dispatch: Dispatch) => {
@@ -52,7 +52,7 @@ export const removeCart = (payload:ITEMS) =>(dispatch:Dispatch)=>{
 
 //i stopped here to continue when necessary
 
-export const registrationFrom = (payload: {[key:string]:string}) => (dispatch: Dispatch) =>{
+export const registrationFrom = (payload:action['reg_payload']) => (dispatch: Dispatch) =>{
 try {
   dispatch(isloading())
   dispatch({type:"Updating_Registration",payload})
