@@ -20,7 +20,7 @@ export const SIGNUP_FORM: SIGNUP_FORM = {
   username: "",
   password: "",
   email: "",
-  admin: 1,
+  admin: 0,
   phone: "",
   companyname: "",
   logo: "",
