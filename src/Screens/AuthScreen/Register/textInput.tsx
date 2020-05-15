@@ -1,15 +1,20 @@
 import React, { Fragment, ChangeEvent, useState } from "react";
 import { AdminForm } from "../../Adminscreen/Upload";
+import { connect } from "react-redux";
+import { itemState } from "../../../store/reducers/items";
+import { SIGNUP_FORM, SIGNUP_KEY } from "../../../ReusableComponents/theme/types";
+import { registrationFrom } from "../../../store/actionCreators/items";
 
 interface Iprops {
-  setForm: string;
-  value: string;
+  setForm: (arg:{[key:string]:string|number})=>void;
+  reg_form:SIGNUP_FORM
+  value:SIGNUP_KEY; 
 }
 
-export default function TextInput(props: Iprops) {
-  const [state, setstate] = useState("");
+function TextInput(props: Iprops) {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setstate(e.currentTarget.value);
+    const item = {[props.value]:e.currentTarget.value}
+    props.setForm(item);
   };
 
   const setType = (e: string) => {
@@ -32,18 +37,26 @@ export default function TextInput(props: Iprops) {
         placeholder={`${props.value}`}
         type={setType(props.value)}
         id={props.value}
-        value={state}
+        value={props.reg_form[props.value]}
         onChange={handleChange}
       />
     </Fragment>
   );
 }
 
+const mapStateToProps = ({ItemsReducer}:{ItemsReducer:itemState}) => {
+  return {
+    reg_form: ItemsReducer.reg_form
+  }
+}
+
+export default connect(mapStateToProps,{setForm:registrationFrom})(TextInput)
+
 export const inputRef = [
-  "First name",
-  "Last Name",
-  "Username",
-  "Email",
+  "firstname",
+  "lastname",
+  "username",
+  "email",
   "Phone",
   "Passowrd",
 ];

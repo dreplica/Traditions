@@ -14,6 +14,21 @@ export interface SIGNUP_FORM {
   instagram?: string;
 }
 
+export type SIGNUP_KEY =
+  | "firstname"
+  | "lastname"
+  | "username"
+  | "password"
+  | "email"
+  | "admin"
+  | "phone"
+  | "companyname"
+  | "companydesc"
+  | "logo"
+  | "facebook"
+  | "twitter"
+  | "instagram";
+
 export const SIGNUP_FORM: SIGNUP_FORM = {
   firstname: "",
   lastname: "",
