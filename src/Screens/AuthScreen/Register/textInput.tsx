@@ -9,7 +9,7 @@ interface Iprops {
 export default function TextInput(props: Iprops) {
   const [state, setstate] = useState("");
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    // setstate();
+    setstate(e.currentTarget.value);
   };
 
   const setType = (e: string) => {

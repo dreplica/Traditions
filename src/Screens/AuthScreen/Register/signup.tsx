@@ -33,7 +33,7 @@ function Signup(props: Iprops) {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    alert(form.admin)
+    
     const valid = validateRegistration(form);
 
     if (valid) {
