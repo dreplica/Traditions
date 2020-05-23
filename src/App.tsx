@@ -8,7 +8,6 @@ import Header from './components/header';
 import Modal from './components/Modal';
 
 
-
 const App = () => {
   return (
     <Provider store={store}>

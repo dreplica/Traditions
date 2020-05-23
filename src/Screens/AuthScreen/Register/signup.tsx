@@ -7,7 +7,10 @@ import {
   loadData,
   Auth_Action,
 } from "../../../store/actionCreators/authenticate";
-import { SIGNUP_FORM } from "../../../ReusableComponents/theme/types";
+import {
+  SIGNUP_FORM,
+  SIGNUP_KEY,
+} from "../../../ReusableComponents/theme/types";
 import { Container, Form, Content, AdminForm } from "../style";
 import { stateData } from "../../../store/reducers/authentication";
 import { ImageInput } from "../../Adminscreen/Upload/style";
@@ -33,12 +36,12 @@ function Signup(props: Iprops) {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    
+
     const valid = validateRegistration(form);
 
     if (valid) {
       setError(valid as string);
-      return
+      return;
     }
 
     try {
@@ -51,7 +54,6 @@ function Signup(props: Iprops) {
       console.log("error", error.message);
     }
   };
-
 
   if (props.auth.length) {
     history.push("/");
@@ -76,7 +78,7 @@ function Signup(props: Iprops) {
       <Form>
         <span>{error}</span>
         {inputRef.map((item, index) => (
-          <TextInput setForm={""} value={item} />
+          <TextInput value={item} />
         ))}
         <label className="checkbox">
           Sell Cloths
@@ -100,7 +102,6 @@ function Signup(props: Iprops) {
             />
           </label>
           <label>
-            
             Company Logo
             <ImageInput
               type="file"
@@ -112,7 +113,6 @@ function Signup(props: Iprops) {
             />
           </label>
           <label>
-            
             company description
             <textarea
               placeholder="e.g we are the largest..."

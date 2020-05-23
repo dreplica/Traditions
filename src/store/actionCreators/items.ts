@@ -1,11 +1,11 @@
 import { Dispatch } from "redux";
 import { isloading, isError } from "./actiontypes";
-import { ITEMS } from "../../ReusableComponents/theme/types";
+import { ITEMS, SIGNUP_KEY } from "../../ReusableComponents/theme/types";
 
 export interface action {
-  type: "Get items" | "Preview" | "Add cart" | "Remove cart"|"Updating_Registragtion"
+  type: "Get items" | "Preview" | "Add cart" | "Remove cart"|"Updating_Registration"
   payload:ITEMS[]|string;
-  reg_payload:{[key:string]:string|number}
+  reg_payload:{[key:string]:string};
 }
 
 export const getItem = (payload: ITEMS[]) => (dispatch: Dispatch) => {
@@ -14,7 +14,7 @@ export const getItem = (payload: ITEMS[]) => (dispatch: Dispatch) => {
     dispatch({ type: "Get items", payload });
   } catch (error) {
     dispatch(isError());
-  }
+  }    
 };
 
 export const getPreview = (payload: string) => (dispatch: Dispatch) => {
@@ -52,10 +52,10 @@ export const removeCart = (payload:ITEMS) =>(dispatch:Dispatch)=>{
 
 //i stopped here to continue when necessary
 
-export const registrationFrom = (payload:action['reg_payload']) => (dispatch: Dispatch) =>{
+export const registrationFrom = (reg_payload:action['reg_payload']) => (dispatch: Dispatch) =>{
 try {
   dispatch(isloading())
-  dispatch({type:"Updating_Registration",payload})
+  dispatch({type:"Updating_Registration",reg_payload})
 
 } catch (error) {
   dispatch(isError())

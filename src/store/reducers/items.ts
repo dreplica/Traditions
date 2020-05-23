@@ -47,10 +47,11 @@ const ItemsReducer = (state = intitialState, action: action) => {
         ...state,
         cart: [...action.payload],
       };
-    case 'Updating_Registragtion':
+    case 'Updating_Registration':
+      console.log(state.reg_form)
       return{
         ...state,
-        reg_form:{...state.reg_form, ...action.reg_payload}
+        reg_form: { ...state.reg_form, ...action.reg_payload,}
       }
     default:
       return state;
