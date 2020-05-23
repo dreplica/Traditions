@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Nav = styled.nav`
+export const Container = styled.nav`
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -39,19 +39,47 @@ export const Nav = styled.nav`
   }
 
   @media (max-width: 999px) {
-    height: 87vh;
-    background-color: rgba(24, 17, 17, 0.8);
-    border-top: 1px solid orange;
-    border-bottom: 1px solid orange;
+    height: 100vh;
+    top: 0px;
+    position: fixed;
+    padding-top: 15vh;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.9);
     flex-direction: column;
+    overflow-y: auto;
     justify-content: flex-start;
     align-items: center;
-    padding-top: 5%;
 
     a {
-      margin: 20px;
+      margin-top: 20px;
       width: 200px;
-      padding: 5px;
+      font-size:1.5rem;
+      transition: transform 0.5s;
+
+      :hover {
+        color: whitesmoke;
+        transform: scale(1.2);
+        cursor: pointer;
+      }
+    }
+  }
+`;
+
+export const Cancel = styled.span`
+  display: none;
+  @media (max-width: 999px) {
+    display: block;
+    position: absolute;
+    top: 10vh;
+    right: 20%;
+    font-size: 1.5rem;
+    font-weight: bold;
+    transition: transform 0.5s;
+
+    :hover {
+      color: white;
+      transform: scale(1.2);
+      cursor: pointer;
     }
   }
 `;

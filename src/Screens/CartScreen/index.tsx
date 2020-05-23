@@ -16,7 +16,7 @@ import {
 
 
 export default function Carts(){
-  const [state, setState] = useState<[]|string|null>([]);
+  const [state, setState] = useState<[]>([]);
   const history = useHistory();
   useEffect(() => {
     //  try {
@@ -45,7 +45,7 @@ export default function Carts(){
     <Container>
       <Content>
         <Header>
-          <Count>Cart {0} items</Count>
+          <Count>Cart {state.length} items</Count>
           <Buy onClick={handlePurchase}>Buy Now</Buy>
         </Header>
         <ShowCart>

@@ -1,13 +1,14 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import Logo from './HeadLogo/Logo/index'
 import Navigation from './Navigation';
-import Cards from '../../ReusableComponents/Cards';
+import {Container} from './style'
+
 export default function Header() {
     return (
-        <Fragment>
+        <Container >
             <Logo />
             <Navigation />
-        </Fragment>
+        </Container>
     );
 }

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import { FiActivity } from 'react-icons/fi';
 
+import { ITEMS } from '../../ReusableComponents/theme/types';
 import img1 from '../../img/agba2.jpg'
 import img2 from '../../img/back.jpg'
 import img3 from '../../img/mshirt.jpg'
@@ -10,13 +11,7 @@ import img5 from '../../img/womgowncan.jpg'
 import img6 from '../../img/skirt.jpg'
 import SpreadContent from '../../ReusableComponents/Spread';
 
-interface IProps {
-    description: string;
-    id: string;
-    image: string;
-    itemname: string;
-    price: string;
-}
+interface IProps extends ITEMS{}
 
 const InitialState: IProps[] = [
     {

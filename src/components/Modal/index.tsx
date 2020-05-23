@@ -2,9 +2,10 @@ import React, { MouseEvent } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { modalView, addCart } from '../../store/actionCreators/actiontypes';
+import { modalView } from '../../store/actionCreators/effects';
 import { Modal } from '../../store/reducers/effects';
-import { itemState, objectData } from '../../store/reducers/items';
+import { ITEMS } from '../../ReusableComponents/theme/types';
+import { itemState } from '../../store/reducers/items';
 import {
     Container,
     Image,
@@ -16,26 +17,25 @@ import {
 
 interface Iprops {
     modal: string;
-    RemoveModal: (arg: string) => void;
-    current: objectData;
-    AddCart: (args: objectData) => void
+    RemoveModal: (arg: "none" | "flex" | "block") => void;
+    current: ITEMS;
 }
 
-function Modalview({ current, modal, RemoveModal, AddCart }: Iprops) {
+function Modalview({ current, modal, RemoveModal }: Iprops) {
     const close = () => {
+        window.alert("clicked")
         RemoveModal('none')
     }
 
     const addCart = (e: MouseEvent) => {
         e.preventDefault();
-        AddCart(current)
+        // AddCart(current)
     }
 
     return (
         <Container style={{ display: modal }}>
             <span className='close' onClick={close}><strong>X</strong></span>
             <Content>
-                {/* <div className='nav' ><p>previous</p><p>next</p></div> */}
                 <Image><img src={`http://localhost:3000/images/${current?.image}`} alt='' /></Image>
                 <Description>
                     <h2>{current?.itemname}</h2>
@@ -62,4 +62,4 @@ const mapStateToProps = ({ EffectReducers, ItemsReducer }: { EffectReducers: Mod
     modal: EffectReducers.modal,
     current: ItemsReducer.currentItem
 })
-export default connect(mapStateToProps, { RemoveModal: modalView, AddCart: addCart })(Modalview)
+export default connect(mapStateToProps, { RemoveModal: modalView})(Modalview)

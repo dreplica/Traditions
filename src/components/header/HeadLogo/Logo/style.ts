@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.header`
-    width:90%;
+    width:100%; 
     display:flex;
     flex-direction:row;
     justify-content:space-around;
@@ -14,18 +14,19 @@ export const Container = styled.header`
 export const Content = styled.div`
     display:flex;
     flex-wrap:wrap;
-    flex:3;
+    width:90%;
     justify-content:flex-start;
     align-items:center;
 `
 
 export const Logo = styled.div`
      display:flex;
-     width:50%;
+     width:40%;
      justify-content:space-between;
      align-items:center;
 
         & span{
+            font-size:1em;
             background:linear-gradient(to right, orange,purple);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -37,6 +38,7 @@ export const Logo = styled.div`
         }
         .menu-but{
             display:none;
+            width:150px;
         }
     
     @media(max-width:999px){
@@ -44,18 +46,24 @@ export const Logo = styled.div`
         margin:auto;
         .menu-but{
             display:block;
+            transition:transform 0.5s;
+            :hover{
+                transform:scale(1.4);
+            }
         }
     }
     
 `;
 
 export const Image = styled.div`
-    width:50px;
-    margin-right:10px;
-    height:50px;
+    width:auto;
+    position:relative;
+    align-self:center;
+    margin-right:3px;
+    height:auto;
     
     img{
-        width:100%;
+        width:50px;
         border-radius:25px;
 
             :hover{

@@ -1,0 +1,35 @@
+{
+    "women": [
+        "select option",
+        "top",
+        "gowns",
+        "skirts",
+        "style"
+    ],
+    "men": [
+        "select option",
+        "shirts",
+        "trousers",
+        "short",
+        "style"
+    ],
+    "accessories": [
+        "select option",
+        "bangles",
+        "necklace",
+        "waistbid",
+        "ring"
+    ],
+    "womenfoot": [
+        "select option",
+        "sandal",
+        "shoe",
+        "hills",
+        "slippers"
+    ],
+    "menfoot": [
+        "select option",
+        "sandal",
+        "shoe"
+    ]
+}

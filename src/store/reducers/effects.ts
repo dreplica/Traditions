@@ -1,4 +1,4 @@
-import { action } from "../actionCreators/actiontypes";
+import { action } from "../actionCreators/effects";
 
 export interface Modal{
     modal:string;
@@ -17,13 +17,13 @@ const EffectReducers = (state = modalView,action:action) =>{
         case "view":
             return{
                 ...state,
-                modal:action.modal,
+                modal:action.payload,
                 // data:action.payload
             }
         case "menu":
             return{
                 ...state,
-                menu:action.modal,
+                menu:action.payload,
                 // data:action.payload
             }
     
