@@ -12,9 +12,7 @@ export const Container = styled.div`
 `;
 
 export const Sort = styled.div`
-  align-self:flex-start;
-  width:90%;
-  margin:20px auto;
+  align-self:flex-end;
 `
 
 export const Filter = styled.div`
@@ -37,11 +35,10 @@ export const Button = styled.button`
 export const Items = styled.div`
   display:flex;
   flex-wrap:wrap;
-  margin:auto;
-  justify-content:flex-start;
+  justify-content:space-evenly;
   align-items:center;
   /* padding:20px; */
-  width:90%;
+  width:100%;
 
   :after{
     content:"";

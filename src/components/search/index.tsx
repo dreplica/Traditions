@@ -1,16 +1,25 @@
-import React, { useState, ChangeEvent, MouseEvent } from "react";
+import React, { useState, ChangeEvent, MouseEvent} from "react";
 import Axios from "axios";
 import { FiSearch } from "react-icons/fi";
+import { objectData } from "../../store/reducers/items";
 import { Link } from "react-router-dom";
 
-import { Container, DropList, Searchinput } from "./style";
+import { stateData } from "../../store/reducers/authentication";
+import { connect } from "react-redux";
+import { 
+  Container, 
+  DropList, 
+  Searchinput 
+} from "./style";
 
-interface search {
-  itemname: string;
-  id: number;
+type Iprops = objectData
+
+interface search{
+  itemname:string;
+  id:number;
 }
 
-export default function Search() {
+function Search(props:Iprops) {
   const [search, setSearch] = useState("");
   const [data, setdata] = useState<search[]>([]);
 
@@ -18,17 +27,17 @@ export default function Search() {
     e.preventDefault();
     if (e.currentTarget?.value === "") {
       setdata([]);
-      setSearch(e.currentTarget.value);
+      setSearch(e.currentTarget.value)
       return;
     }
 
-    setSearch(e.currentTarget.value);
-    const value_to_search = new RegExp(e.currentTarget.value, "ig");
-    console.log(value_to_search);
+    setSearch(e.currentTarget.value)
+    const value_to_search = new RegExp(e.currentTarget.value,'ig')
+    console.log(value_to_search)
     searching(value_to_search);
   };
 
-  const searching = async (input: RegExp) => {
+  const searching = async (input:RegExp) =>{
     // const result = await Axios.get(`http://localhost:3000/search/${item.toLowerCase()}`, {
     //   headers: {
     //     authorization: `Bearer ${props?.token}`,
@@ -36,16 +45,16 @@ export default function Search() {
     // })
     // return result.data
 
-    const result = dataToSearch.filter((item) => item.itemname.match(input));
-    setdata(result);
-    console.log(result);
-  };
+    const result = dataToSearch.filter(item=>item.itemname.match(input))
+    setdata(result)
+    console.log(result)
+  }
 
-  const hideList = (e: MouseEvent) => {
+  const hideList = (e:MouseEvent)=>{
     // e.preventDefault();
-    setdata([]);
-    setSearch("");
-  };
+    setdata([])
+    setSearch("")
+  }
   return (
     <Container>
       <Searchinput>
@@ -55,42 +64,50 @@ export default function Search() {
           value={search}
           onChange={handleSearch}
         />
-        <FiSearch color="black" size={30} />
+        <FiSearch color='black'size={30}/>
       </Searchinput>
       <DropList>
-        {data.map((item, index) => (
-          <Link key={index} onClick={hideList} to={`/search/${item.id}`}>
-            {item.itemname}
-          </Link>
-        ))}
+        {data.map((item, index) => (<Link 
+        key={index}
+        onClick={hideList}
+        to={`/search/${item.id}`}>
+          {item.itemname}
+          </Link>))}
       </DropList>
     </Container>
   );
 }
 
-const dataToSearch: search[] = [
+const mapStateToProps = ({authenticate}:{authenticate:stateData}) =>({
+auth:authenticate.data?.auth as objectData
+})
+
+export default connect(mapStateToProps)(Search);
+
+
+const dataToSearch:search[] = [
   {
-    itemname: "ab",
-    id: 0,
+    itemname:"ab",
+    id:0
   },
   {
     itemname: "ac",
-    id: 1,
+    id: 1
   },
   {
     itemname: "ad",
-    id: 2,
+    id: 2
   },
   {
     itemname: "bb",
-    id: 3,
+    id: 3
   },
   {
     itemname: "bc",
-    id: 4,
+    id: 4
   },
   {
     itemname: "col",
-    id: 5,
+    id: 5
   },
-];
+]

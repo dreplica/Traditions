@@ -6,6 +6,7 @@ export const Container = styled.div`
   justify-content:flex-start;
   align-items:center;
   width:70%;
+  height:100vh;
 
   @media(max-width:999px){
       width:100%;
@@ -55,13 +56,6 @@ export const AdminForm = styled.div`
         max-height:150px;
     }
 `
-export const Error = styled.p`
-    text-align:center;
-    margin:10px auto;
-    background:red;
-    padding:5px;
-`
-
 export const Form = styled.form`
     width:350px;
     display:flex;
@@ -83,7 +77,6 @@ export const Form = styled.form`
         min-width:100%;
         max-width:100%;
         padding:8px;
-        margin-bottom:20px;
         min-height:100px;
         max-height:100px;
     } 
@@ -111,7 +104,7 @@ export const Form = styled.form`
         padding-left:15px;
         height:50px;
         background:white;
-        margin-bottom:20px;
+        margin:10px 0px;
         border:0px;
         font-weight:bold;
         font-size:20px;
