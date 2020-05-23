@@ -1,61 +1,46 @@
-import { action } from "../actionCreators/items";
-import { ITEMS, SIGNUP_FORM } from "../../ReusableComponents/theme/types";
+import { action } from "../actionCreators/actiontypes"
+
+export type objectData = {[key:string]:string}
 
 export type itemState = {
-  data: ITEMS[];
-  cart: ITEMS[];
-  currentItem: ITEMS;
-  reg_form:SIGNUP_FORM
-};
+    data:objectData[]; 
+    cart:objectData[];
+    currentItem:objectData
+}
 
-const state_value: ITEMS = {
-  description: "",
-  image: "",
-  itemname: "",
-  id: "",
-  price: "",
-};
+const intitialState:itemState = {
+    data:[{}],
+    cart:[{}],
+    currentItem:{}
+}
 
-const intitialState: itemState = {
-  data: [state_value],
-  cart: [state_value],
-  currentItem: state_value,
-  reg_form:SIGNUP_FORM
-};
+const ItemsReducer = (state = intitialState,action:action) =>{
+    switch (action.type) {
+        case "getItems":
+            return {
+                ...state,
+                data:action.payload
+            }
+        case 'Preview':
+            return {
+                ...state,
+                currentItem:state.data.filter((item:objectData)=>item.id === action.payload)[0] 
+            }
+        case 'addCart':
+            const addcart = action.payload as objectData[]
+            return {
+                ...state,
+                cart:[...addcart]
+            }
+        case 'removeCart':
+            const removecart = action.payload as objectData[]
+            return {
+                ...state,
+                cart:[...removecart]
+            }
+        default:
+            return state;
+    }
+}
 
-const ItemsReducer = (state = intitialState, action: action) => {
-  switch (action.type) {
-    case "Get items":
-      return {
-        ...state,
-        data: action.payload,
-      };
-    case "Preview":
-      return {
-        ...state,
-        currentItem: state.data.filter(
-          (item: ITEMS) => item.id === action.payload
-        )[0],
-      };
-    case "Add cart":
-      return {
-        ...state,
-        cart: [...action.payload],
-      };
-    case "Remove cart":
-      return {
-        ...state,
-        cart: [...action.payload],
-      };
-    case 'Updating_Registration':
-      console.log(state.reg_form)
-      return{
-        ...state,
-        reg_form: { ...state.reg_form, ...action.reg_payload,}
-      }
-    default:
-      return state;
-  }
-};
-
-export default ItemsReducer;
+export default ItemsReducer

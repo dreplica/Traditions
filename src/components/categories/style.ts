@@ -1,18 +1,19 @@
 import styled from 'styled-components';
 
 export const Container = styled.section`
-         min-width: 300px;
-         max-width: 300px;
-         position: relative;
-         z-index: 5;
-         align-self: flex-start;
-         background: grey;
+    min-width:300px;
+    max-width:300px;
+    position:relative;
+    z-index:5;
+    align-self:flex-start;
+    background:grey;
 
-         @media (max-width: 999px) {
-           position: absolute;
-           left: -300px;
-         }
-       `;
+    @media(max-width:999px){
+        position:fixed;
+        left:-300px; 
+    }
+        
+`;
 
 export const Ball = styled.div`
     width:50px;

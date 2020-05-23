@@ -1,69 +1,68 @@
-import {Auth_Action } from "../actionCreators/authenticate";
+import { action } from '../actionCreators/actiontypes'
 
-export interface Auth {
-  token: string;
-  admin: string | boolean;
+
+export interface authe {
+    token:string;
+    admin:string;
+}  
+
+export type dataType = {
+    [key:string]:Array<{[key:string]:string}>|{[key:string]:object|[]|string}
 }
 export interface stateData {
-  error: boolean | string;
-  loading: boolean | string;
-  auth: Auth;
+    error:boolean|string,
+    loading:boolean | string,
+    data: {
+        auth?: {
+            token?: string;
+            admin?: boolean|string;
+        }
+    }
 }
 
-const initialState: stateData = {
-  error: false,
-  loading: false,
-  auth: { token: "", admin: "" },
-};
+const initialState:stateData= {error:false,loading:false,data:{auth:{token:"",admin:""}}}
 
-const authenticate = (state = initialState, action: Auth_Action): stateData => {
-  const { payload } = action;
-  switch (action.type) {
-    case "loading":
-      return {
-        ...state,
-        loading: true,
-      };
-    case "uploading":
-      localStorage["auth"] = JSON.stringify(payload);
-      return {
-        ...state,
-        auth: {
-          token: payload.token,
-          admin: payload.admin,
-        },
-        loading: false,
-      };
-    case "Check local":
-      return {
-        ...state,
-        auth: {
-          ...state.auth,
-          admin: payload.admin,
-          token: payload.token,
-        },
-        loading: false,
-      };
-    case "logout":
-      delete localStorage["auth"];
-      return {
-        ...state,
-        auth: { admin: "", token: "" },
-      };
-    // case "profile":
-    //   return {
-    //     ...state,
-    //     data: { ...state.data, user: action.payload },
-    //   };
-    case "error":
-      return {
-        ...state,
-        error: true,
-      };
-    default:
-      return state;
-  }
-};
+const authenticate = (state = initialState,action:action):stateData =>{
+    switch (action.type) {
+        case 'loading':
+            return {
+                ...state,
+                loading:true,
+            }
+        case 'uploading':
+            localStorage['auth'] = JSON.stringify(action.payload)
+            return {
+                ...state,
+                data:{...state.data,'auth':action.payload} as dataType,
+                loading:false,
+            }
+        case 'checkLocal':
+        const auth:string | {[key: string]: string;}= JSON.parse(localStorage['auth']);
+            return {
+                ...state,
+                data:{...state.data,'auth':auth} as dataType,
+                loading:false,
+            }
+        case 'logout':
+            delete localStorage['auth'];
+            return {
+                ...state,
+                data:{}
+            }
+        case 'profile':
+            return {
+                ...state, 
+                data:{...state.data,user:action.payload} as dataType,
+            }
+        case 'error':
+            return{
+                ...state,
+                error:true,
+            }
+        default:
+            return state;
+    }
+}
 
 // authenticate(initialState,{type:'cart'})
 export default authenticate;

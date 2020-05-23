@@ -9,5 +9,5 @@
   "explorer.sortOrder": "default",
   "editor.cursorStyle": "underline",
   "editor.cursorBlinking": "phase",
-  // "files.trimFinalNewlines": true
+  "files.trimFinalNewlines": true
 }

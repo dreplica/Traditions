@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.header`
-    width:100%; 
+    width:90%;
     display:flex;
     flex-direction:row;
     justify-content:space-around;
@@ -14,19 +14,18 @@ export const Container = styled.header`
 export const Content = styled.div`
     display:flex;
     flex-wrap:wrap;
-    width:90%;
+    flex:3;
     justify-content:flex-start;
     align-items:center;
 `
 
 export const Logo = styled.div`
      display:flex;
-     width:40%;
+     width:50%;
      justify-content:space-between;
      align-items:center;
 
         & span{
-            font-size:1em;
             background:linear-gradient(to right, orange,purple);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -38,7 +37,6 @@ export const Logo = styled.div`
         }
         .menu-but{
             display:none;
-            width:150px;
         }
     
     @media(max-width:999px){
@@ -46,24 +44,18 @@ export const Logo = styled.div`
         margin:auto;
         .menu-but{
             display:block;
-            transition:transform 0.5s;
-            :hover{
-                transform:scale(1.4);
-            }
         }
     }
     
 `;
 
 export const Image = styled.div`
-    width:auto;
-    position:relative;
-    align-self:center;
-    margin-right:3px;
-    height:auto;
+    width:50px;
+    margin-right:10px;
+    height:50px;
     
     img{
-        width:50px;
+        width:100%;
         border-radius:25px;
 
             :hover{
