@@ -15,14 +15,17 @@ export const Container = styled.section`
        `;
 
 export const Ball = styled.div`
-    width:50px;
+    width:auto;
     display:none;
-    height:50px;
+    height:30px;
+    padding:5px 10px;
     position:absolute;
-    right:-30px;
-    z-index:-1;
-    border-radius:25px;
-    background:linear-gradient(to right, orange,purple);
+    right:-74px;
+    top:40px;
+    color:white;
+    font-weight:bold;
+    transform:rotate(90deg);
+    background:black;
 
      @media(max-width:999px){
         display:block;

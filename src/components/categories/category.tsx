@@ -64,7 +64,7 @@ export default function Categories() {
       onMouseEnter={showCategory}
       onMouseLeave={showCategory}
     >
-      <Ball />
+      <Ball>Categories</Ball>
       <Content>Category</Content>
       {DataList.map((item, index) => (
         <CategoryItem key={index} name={item} list={Data[item].list} />
