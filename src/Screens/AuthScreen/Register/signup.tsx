@@ -75,7 +75,7 @@ function Signup(props: Iprops) {
       <Form>
         <span>{error}</span>
         {inputRef.map((item, index) => (
-          <TextInput value={item} />
+          <TextInput value={item} key={index}/>
         ))}
         <label className="checkbox">
           Sell Cloths
@@ -120,7 +120,7 @@ function Signup(props: Iprops) {
             ></textarea>
           </label>
           {mediaLinks.map((link, index) => (
-            <Socialmedia setForm={"f"} value={link} />
+            <Socialmedia setForm={"f"} value={link} key={index}/>
           ))}
         </AdminForm>
         <button type="submit" onClick={handleSubmit}>
