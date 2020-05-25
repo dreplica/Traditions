@@ -1,4 +1,4 @@
-import React, { FormEvent, ChangeEvent, useState, useRef } from "react";
+import React, { FormEvent, ChangeEvent, useState } from "react";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Axios from "axios";
@@ -7,16 +7,13 @@ import {
   loadData,
   Auth_Action,
 } from "../../../store/actionCreators/authenticate";
-import {
-  SIGNUP_FORM,
-  SIGNUP_KEY,
-} from "../../../ReusableComponents/theme/types";
-import { Container, Form, Content, AdminForm } from "../style";
+import { SIGNUP_FORM } from "../../../ReusableComponents/theme/types";
 import { stateData } from "../../../store/reducers/authentication";
 import { ImageInput } from "../../Adminscreen/Upload/style";
 import Socialmedia, { mediaLinks } from "./socialmedia";
 import TextInput, { inputRef } from "./textInput";
 import validateRegistration from "./validateForm";
+import { Container, Form, Content, AdminForm } from "../style";
 
 interface Iprops {
   setToken: (args: Auth_Action["payload"]) => void;
