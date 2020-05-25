@@ -4,7 +4,8 @@ export const Container = styled.section`
          min-width: 300px;
          max-width: 300px;
          height:80vh;
-         position: relative;
+         position: sticky;
+         top:160px;
          z-index: 5;
          align-self: flex-start;
          background: grey;

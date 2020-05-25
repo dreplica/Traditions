@@ -23,7 +23,6 @@ interface Iprops {
 
 function Modalview({ current, modal, RemoveModal }: Iprops) {
     const close = () => {
-        window.alert("clicked")
         RemoveModal('none')
     }
 
