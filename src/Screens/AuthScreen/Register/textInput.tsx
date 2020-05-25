@@ -32,7 +32,7 @@ function TextInput(props: Iprops) {
     switch (e) {
       case "Email":
         return "email";
-      case "Password":
+      case "password":
         return "password";
       case "Phone":
         return "tel";

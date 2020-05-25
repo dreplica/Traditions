@@ -14,35 +14,34 @@ import Socialmedia, { mediaLinks } from "./socialmedia";
 import TextInput, { inputRef } from "./textInput";
 import validateRegistration from "./validateForm";
 import { Container, Form, Content, AdminForm } from "../style";
+import { itemState } from "../../../store/reducers/items";
+import { registrationFrom } from "../../../store/actionCreators/items";
 
 interface Iprops {
   setToken: (args: Auth_Action["payload"]) => void;
   auth: string;
+  form: SIGNUP_FORM;
+  setForm: (arg: any) => void;
 }
 
 function Signup(props: Iprops) {
-  const [form, setForm] = useState<SIGNUP_FORM>(SIGNUP_FORM);
+  // const [form, setForm] = useState<SIGNUP_FORM>(props.form);
   const [error, setError] = useState<string>("");
   const history = useHistory();
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    setError("");
-    setForm({ ...form, [e.target?.id]: e.target?.value });
-  };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-
-    const valid = validateRegistration(form);
+    console.log(props.form);
+    const valid = validateRegistration(props.form);
 
     if (valid) {
       setError(valid as string);
-      return;
+      return; 
     }
 
     try {
-      const result = await Axios.post("http://localhost:3000/signup", form);
+      const result = await Axios.post("http://localhost:3000/signup", props.form);
       props.setToken(result.data);
       console.log("res", result.data);
       // history.push("/");
@@ -75,27 +74,29 @@ function Signup(props: Iprops) {
       <Form>
         <span>{error}</span>
         {inputRef.map((item, index) => (
-          <TextInput value={item} key={index}/>
+          <TextInput value={item} key={index} />
         ))}
         <label className="checkbox">
           Sell Cloths
           <input
             placeholder=""
             type="checkbox"
-            value={form.admin}
+            value={props.form.admin}
             id="admin"
-            onChange={(e) => setForm({ ...form, admin: form.admin ? 0 : 1 })}
+            onChange={(e) => props.setForm({ ...props.form, admin: props.form.admin ? 0 : 1 })}
           />
         </label>
-        <AdminForm style={{ display: form.admin ? "block" : "none" }}>
+        <AdminForm style={{ display: props.form.admin ? "block" : "none" }}>
           <label>
             Company Name
             <input
               placeholder="e.g Versace"
               type="text"
               id="companyname"
-              value={form.companyname}
-              onChange={handleChange}
+              value={props.form.companyname}
+              onChange={(e) =>
+                props.setForm({ ...props.form, companyname: e.target.value })
+              }
             />
           </label>
           <label>
@@ -113,14 +114,14 @@ function Signup(props: Iprops) {
             company description
             <textarea
               placeholder="e.g we are the largest..."
-              value={form.companydesc}
+              value={props.form.companydesc}
               onChange={(e) =>
-                setForm({ ...form, companydesc: e.target.value })
+                props.setForm({ ...props.form, companydesc: e.target.value })
               }
             ></textarea>
           </label>
           {mediaLinks.map((link, index) => (
-            <Socialmedia setForm={"f"} value={link} key={index}/>
+            <Socialmedia value={link} key={index} />
           ))}
         </AdminForm>
         <button type="submit" onClick={handleSubmit}>
@@ -131,10 +132,17 @@ function Signup(props: Iprops) {
   );
 }
 
-const mapStateToProps = ({ authenticate }: { authenticate: stateData }) => {
+const mapStateToProps = ({
+  authenticate,
+  ItemsReducer,
+}: {
+  authenticate: stateData;
+  ItemsReducer: itemState;
+}) => {
   return {
     auth: authenticate.auth.token,
+    form: ItemsReducer.reg_form,
   };
 };
 
-export default connect(mapStateToProps, { setToken: loadData })(Signup);
+export default connect(mapStateToProps, { setToken: loadData, setForm: registrationFrom  })(Signup);
