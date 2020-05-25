@@ -13,7 +13,7 @@ export const Container = styled.section`
            position: fixed;
            left: -300px;
            /* top:30px; */
-           z-index:15;
+           z-index:9;
          }
        `;
 
@@ -29,8 +29,8 @@ export const Ball = styled.div`
     height:30px;
     padding:5px 10px;
     position:absolute;
-    right:-74px;
-    top:40px;
+    right:-73px;
+    top:44px;
     color:white;
     font-weight:bold;
     transform:rotate(90deg);
