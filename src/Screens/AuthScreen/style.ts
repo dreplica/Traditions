@@ -64,6 +64,7 @@ export const Error = styled.p`
 
 export const Form = styled.form`
     width:350px;
+    margin-top:20px;
     display:flex;
     flex-direction:column;
     justify-content:space-between;
