@@ -37,7 +37,7 @@ function TextInput(props: Iprops) {
       case "Phone":
         return "tel";
       default:
-        return "text";
+        return "text"; 
     }
   };
 

@@ -42,7 +42,7 @@ function Header(props: MenuView) {
         {props.auth.length ? ShowImage:null}
         <Logo>
           <span>
-            Tradishion&nbsp;<sup>&reg;</sup>
+            Thradishion&nbsp;<sup>&reg;</sup>
           </span>
             <FiAlignLeft className="menu-but" onClick={Shownav}/>
         </Logo>
