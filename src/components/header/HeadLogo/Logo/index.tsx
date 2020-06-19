@@ -40,10 +40,12 @@ function Header(props:MenuView){
   return (
     <Container>
       <Content>
-        {auth && ShowImage } 
-          <Logo>
-            <span>Tradishion&nbsp;<sup>&reg;</sup></span>
-            <span onClick={Shownav} className='menu-but'><FiAlignLeft /></span>
+        {props.auth.length ? ShowImage:null}
+        <Logo>
+          <span>
+            Thradishion&nbsp;<sup>&reg;</sup>
+          </span>
+            <FiAlignLeft className="menu-but" onClick={Shownav}/>
         </Logo>
         <Search />
       </Content>

@@ -7,7 +7,7 @@ export const Container = styled.div`
   overflow-y:auto;
   position:fixed;
   top: 0px;
-  z-index:10;
+  z-index:100;
   background:rgba(0,0,0,0.6);
 
    .check_designer{

@@ -14,7 +14,7 @@ export const Container = styled.div`
 
   @media(max-width:999px){
     margin:10px auto;
-    width:50%;
+    width:65%;
     align-self:center;
   }
 `

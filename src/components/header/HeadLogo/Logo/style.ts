@@ -14,7 +14,7 @@ export const Container = styled.header`
 export const Content = styled.div`
     display:flex;
     flex-wrap:wrap;
-    flex:3;
+    width:100%;
     justify-content:flex-start;
     align-items:center;
 `

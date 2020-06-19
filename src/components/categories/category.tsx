@@ -2,7 +2,7 @@ import React, { useState, MouseEvent } from "react";
 
 import Data from "../../util/categories.json";
 import CategoryItem from ".";
-import { Container, Content, Ball } from "./style";
+import { Container,Cat, Content, Ball } from "./style";
 
 export interface dropdown {
   women: string;
@@ -64,11 +64,13 @@ export default function Categories() {
       onMouseEnter={showCategory}
       onMouseLeave={showCategory}
     >
-      <Ball />
+      <Cat>
+      <Ball>Categories</Ball>
       <Content>Category</Content>
       {DataList.map((item, index) => (
         <CategoryItem key={index} name={item} list={Data[item].list} />
       ))}
+      </Cat>
     </Container>
   );
 }

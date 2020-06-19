@@ -1,55 +1,55 @@
-import React, { FormEvent, ChangeEvent, useState, useRef } from 'react';
-import { connect } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import Axios from 'axios';
+import React, { FormEvent, ChangeEvent, useState } from "react";
+import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
+import Axios from "axios";
 
 import { loadData } from '../../../store/actionCreators/actiontypes';
 import { SIGNUP_FORM } from '../../../ReusableComponents/theme/types';
 import {
-    Container,
-    Form,
-    Content,
-    AdminForm
-} from '../style';
+  loadData,
+  Auth_Action,
+} from "../../../store/actionCreators/authenticate";
+import { SIGNUP_FORM } from "../../../ReusableComponents/theme/types";
+import { stateData } from "../../../store/reducers/authentication";
+import { ImageInput } from "../../Adminscreen/Upload/style";
+import Socialmedia, { mediaLinks } from "./socialmedia";
+import TextInput, { inputRef } from "./textInput";
+import validateRegistration from "./validateForm";
+import { Container, Form, Content, AdminForm } from "../style";
+import { itemState } from "../../../store/reducers/items";
+import { registrationFrom } from "../../../store/actionCreators/items";
 
-
-export type dataType = {[key:string]:number|string}
-
-interface iProps {
-    setToken:(args:string)=>void
+interface Iprops {
+  setToken: (args: Auth_Action["payload"]) => void;
+  auth: string;
+  form: SIGNUP_FORM;
+  setForm: (arg: any) => void;
 }
 
-function Signup({setToken}:iProps){
-    const [form, setForm] = useState<SIGNUP_FORM>(SIGNUP_FORM)
-    const logo = useRef<HTMLInputElement>(null)
-    const [error, setError] = useState<string>("")
-    const history = useHistory()
+function Signup(props: Iprops) {
+  // const [form, setForm] = useState<SIGNUP_FORM>(props.form);
+  const [error, setError] = useState<string>("");
+  const history = useHistory();
 
-    const handleChange = (e:ChangeEvent<HTMLInputElement>) =>{
-        e.preventDefault();
-        setError("")
-        setForm({...form,[e.target?.id]:e.target?.value})
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    console.log(props.form);
+    const valid = validateRegistration(props.form);
+
+    if (valid) {
+      setError(valid as string);
+      return; 
     }
-    
-    const handleSubmit = (e:FormEvent) =>{
-        e.preventDefault()
-        const formData = new FormData();
-        const name = ((form?.companyname as string) + Date.now() + ".jpg")
-        setForm({ ...form, logo: name })
-        const img = logo.current?.files?.item(0) as Blob
-        formData.set('file', img as File, name)
-        Axios.post('http://localhost:3000/upload',formData)
-        .then(()=>{
-            Axios.post('http://localhost:3000/signup',{...form,logo:name},{
-            headers:{
-                'content-type':'application/json'
-            }}
-            ).then((res)=>res.data)
-            .then((token)=>{ 
-                (token?.token)?setToken(token):setError(token.error);
-                (token?.token && history.push('/home'))
-            }).catch(err=>console.log(err))
-        })
+
+    try {
+      const result = await Axios.post("http://localhost:3000/signup", props.form);
+      props.setToken(result.data);
+      console.log("res", result.data);
+      // history.push("/");
+    } catch (error) {
+      setError(error.message);
+      console.log("error", error.message);
     }
 
     return (
@@ -66,44 +66,56 @@ function Signup({setToken}:iProps){
     </Content>
     <Form> 
         <span>{error}</span>
-        <label> 
-        <input placeholder="first name" type='text'  id="firstname" value={form.firstname} onChange={handleChange} />
+        {inputRef.map((item, index) => (
+          <TextInput value={item} key={index} />
+        ))}
+        <label className="checkbox">
+          Sell Cloths
+          <input
+            placeholder=""
+            type="checkbox"
+            value={props.form.admin}
+            id="admin"
+            onChange={(e) => props.setForm({ ...props.form, admin: props.form.admin ? 0 : 1 })}
+          />
         </label>
-        <label>
-        <input placeholder="last name" type='text'  id="lastname" value={form.lastname} onChange={handleChange} />
-        </label>
-        <label> 
-        <input placeholder="username" type='text' id="username"  value={form.username} onChange={handleChange} />
-        </label>
-        <label> 
-        <input placeholder="email"type='email' id="email"  value={form.email} onChange={handleChange} />
-        </label>
-        <label className='checkbox'> Sell Cloths
-        <input placeholder="" type='checkbox' id="admin" onChange={(e)=>setForm({...form,admin:(form.admin?false:true)})} /> 
-        </label>
-        <AdminForm style={{display:form.admin ?'block':'none'}}>
-            <label> Company Name
-                <input placeholder="e.g Versace" type='text' id="companyname"  value={form.companyname} onChange={handleChange} />
-            </label>
-            <label> Company Logo
-                <input  type='file' id="logo"  ref={logo} />
-            </label>
-            <label> company description
-                <textarea placeholder="e.g we are the largest..."
-                 value={form.companydesc} 
-                 onChange={(e)=>setForm({...form,companydesc:e.target.value})}>
-                     
-                 </textarea>
-            </label>
-            <label> facebook link
-                <input placeholder="https://facebook.com/aba.hi" type='text' id="facebook"  value={form.facebook} onChange={handleChange} />
-            </label>
-            <label> twitter link
-                <input placeholder="https://twitter.com/aba.hi" type='text' id="twitter"  value={form.twitter} onChange={handleChange} />
-            </label>
-            <label> instagram link
-                <input placeholder="https://instagram.com/aba.hi" type='text' id="instagram"  value={form.instagram} onChange={handleChange} />
-            </label>
+        <AdminForm style={{ display: props.form.admin ? "block" : "none" }}>
+          <label>
+            Company Name
+            <input
+              placeholder="e.g Versace"
+              type="text"
+              id="companyname"
+              value={props.form.companyname}
+              onChange={(e) =>
+                props.setForm({ ...props.form, companyname: e.target.value })
+              }
+            />
+          </label>
+          <label>
+            Company Logo
+            <ImageInput
+              type="file"
+              id="image"
+              accept="image/*"
+              required
+              // onChange={HandleImage}
+              name="file"
+            />
+          </label>
+          <label>
+            company description
+            <textarea
+              placeholder="e.g we are the largest..."
+              value={props.form.companydesc}
+              onChange={(e) =>
+                props.setForm({ ...props.form, companydesc: e.target.value })
+              }
+            ></textarea>
+          </label>
+          {mediaLinks.map((link, index) => (
+            <Socialmedia value={link} key={index} />
+          ))}
         </AdminForm>
         <label> 
         <input placeholder="phone" type='phone' id="phone"  value={form.phone} onChange={handleChange} />
@@ -117,6 +129,17 @@ function Signup({setToken}:iProps){
   );
 }
 
+const mapStateToProps = ({
+  authenticate,
+  ItemsReducer,
+}: {
+  authenticate: stateData;
+  ItemsReducer: itemState;
+}) => {
+  return {
+    auth: authenticate.auth.token,
+    form: ItemsReducer.reg_form,
+  };
+};
 
-
-export default connect(null,{setToken:loadData,})(Signup)
+export default connect(mapStateToProps, { setToken: loadData, setForm: registrationFrom  })(Signup);
