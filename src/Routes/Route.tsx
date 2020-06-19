@@ -39,9 +39,9 @@ function Maincomponent({ getLocal }: Iprops) {
         <Route path="/cart">
           <Screens.Cart />
         </Route>
-        <Route path="/signup">
+        {/* <Route path="/signup">
           <Screens.Register />
-        </Route>
+        </Route> */}
         <Route path="/seller">
           <Screens.ProfileScreen />
         </Route>
