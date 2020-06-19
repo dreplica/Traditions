@@ -1,4 +1,4 @@
-import { action } from "../actionCreators/actiontypes"
+import { actionType } from "../actionCreators/actiontypes"
 
 export type objectData = {[key:string]:string}
 
@@ -14,7 +14,7 @@ const intitialState:itemState = {
     currentItem:{}
 }
 
-const ItemsReducer = (state = intitialState,action:action) =>{
+const ItemsReducer = (state = intitialState,action:actionType) =>{
     switch (action.type) {
         case "getItems":
             return {

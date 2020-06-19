@@ -9,7 +9,7 @@ import Categories from "../components/categories/category";
 import { Container } from "./style";
 
 interface Iprops {
-  getLocal: () => void;
+  getLocal():void;
 }
 
 function Maincomponent({ getLocal }: Iprops) {

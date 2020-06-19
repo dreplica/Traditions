@@ -1,4 +1,3 @@
-import React from 'react';
 
 export default function getPoint(map: mapboxgl.Map) {
     map.on('load', () => {
@@ -38,4 +37,3 @@ export default function getPoint(map: mapboxgl.Map) {
 
     })
 }
-

@@ -5,6 +5,8 @@ import { FiAlignLeft} from "react-icons/fi";
 import { menuView } from '../../../../store/actionCreators/actiontypes';
 import { Modal } from '../../../../store/reducers/effects';
 import prof from '../../../../img/prof.jpg'
+import Search from '../../../search';
+import { stateData } from '../../../../store/reducers/authentication';
 import ProfileDropdown from '../Profile';
 import {
   Container,
@@ -12,8 +14,6 @@ import {
   Logo,
   Image
 } from './style' 
-import Search from '../../../search';
-import { stateData } from '../../../../store/reducers/authentication';
 
 
 interface MenuView{

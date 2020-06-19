@@ -1,11 +1,10 @@
 import React, { useState, ChangeEvent, MouseEvent} from "react";
-import Axios from "axios";
+import { connect } from "react-redux";
 import { FiSearch } from "react-icons/fi";
-import { objectData } from "../../store/reducers/items";
 import { Link } from "react-router-dom";
 
 import { stateData } from "../../store/reducers/authentication";
-import { connect } from "react-redux";
+import { objectData } from "../../store/reducers/items";
 import { 
   Container, 
   DropList, 

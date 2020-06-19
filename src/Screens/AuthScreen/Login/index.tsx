@@ -1,7 +1,8 @@
 import React, { FormEvent, ChangeEvent, useState } from 'react';
 import { connect } from 'react-redux';
-import { loadData } from '../../../store/actionCreators/actiontypes';
 import { useHistory } from 'react-router-dom';
+
+import { loadData } from '../../../store/actionCreators/actiontypes';
 import {
     Container,
     Content,

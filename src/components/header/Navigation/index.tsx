@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { itemState, objectData } from '../../../store/reducers/items';
-import { stateData } from '../../../store/reducers/authentication';
-import { menuView } from '../../../store/actionCreators/actiontypes';
-import { Modal } from '../../../store/reducers/effects';
 import { Link } from 'react-router-dom';
 import { FiShoppingCart } from 'react-icons/fi';
 import { FaStoreAlt, FaRegEnvelope, FaSignOutAlt, FaTags, FaGlobeAfrica } from 'react-icons/fa';
 
+import { itemState, objectData } from '../../../store/reducers/items';
+import { stateData } from '../../../store/reducers/authentication';
+import { menuView } from '../../../store/actionCreators/actiontypes';
+import { Modal } from '../../../store/reducers/effects';
 import { Nav } from './style';
 
 interface Iprops {
@@ -19,7 +19,6 @@ interface Iprops {
 
 
 function Navigation({ menu, view, auth, data }: Iprops) {
-  const WINDOW_WIDTH = window.innerWidth;
   useEffect(() => {
     if (window.innerWidth <= 999) {
       view('none')
@@ -34,7 +33,7 @@ function Navigation({ menu, view, auth, data }: Iprops) {
   }, [menu, view, data, auth])
 
   const closeAction = () => {
-    if (WINDOW_WIDTH >= 999) {
+    if (window.innerWidth >= 999) {
       return
     }
     view('none')
