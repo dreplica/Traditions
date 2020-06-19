@@ -1,7 +1,7 @@
 import React, { useState, MouseEvent } from "react";
 
 import Data from "../../util/categories.json";
-import CategoryItem from ".";
+import CategoryItem from "./index";
 import { Container,Cat, Content, Ball } from "./style";
 
 export interface dropdown {
