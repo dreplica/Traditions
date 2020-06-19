@@ -13,10 +13,12 @@ import {
   Image
 } from './style' 
 import Search from '../../../search';
+import { stateData } from '../../../../store/reducers/authentication';
 
 
 interface MenuView{
-  toggleMenu:(args:string)=>void; 
+  toggleMenu(args:string):void; 
+  auth?:string;
   Menu:string;
 }
 function Header(props:MenuView){
@@ -40,7 +42,7 @@ function Header(props:MenuView){
   return (
     <Container>
       <Content>
-        {props.auth.length ? ShowImage:null}
+        {props.auth?.length ? ShowImage:null}
         <Logo>
           <span>
             Thradishion&nbsp;<sup>&reg;</sup>
@@ -54,8 +56,9 @@ function Header(props:MenuView){
   );
 }
 
-const mapStateToProps = ({EffectReducers}:{EffectReducers:Modal})=>({
-  Menu : EffectReducers.menu
+const mapStateToProps = ({ItemsReducer,EffectReducers}:{ItemsReducer:stateData,EffectReducers:Modal})=>({
+  Menu : EffectReducers.menu,
+  auth : ItemsReducer.data?.auth?.token
 })
 
 export default connect( mapStateToProps,{toggleMenu:menuView})(Header) 
