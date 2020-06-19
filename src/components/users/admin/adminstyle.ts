@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const DropIT = styled.div`
+export const DropIT = styled.div` 
   position:absolute;
   z-index:1;
   width:100%;

@@ -1,8 +1,9 @@
-import React, { useEffect, useState, ChangeEvent, FormEvent, useRef } from 'react';
-import { Form } from './style';
+import React, {  useState, ChangeEvent, FormEvent, useRef } from 'react';
 import { connect } from 'react-redux';
-import { stateData, dataType } from '../../../store/reducers/authentication'
-import axios from 'axios'
+import Axios from 'axios'
+
+import { stateData } from '../../../store/reducers/authentication'
+import { Form } from './style';
 
 interface AdminForm {
     category: string;
@@ -39,11 +40,11 @@ function Admin({ auth }:{auth:any}){
         setForm({ ...form, image: name })
         const img = image.current?.files?.item(0) as Blob
         data.set('file', img as File, name)
-        axios.post('http://localhost:3000/upload', data, {
+        Axios.post('http://localhost:3000/upload', data, {
 
         })
             .then(_ => {
-                axios.post('http://localhost:3000/items', { ...form, image: name }, {
+                Axios.post('http://localhost:3000/items', { ...form, image: name }, {
                     headers: {
                         'authorization': `Bearer ${auth?.token}`,
                         'content-type': 'application/json'

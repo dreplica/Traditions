@@ -1,4 +1,4 @@
-import React from 'react';
+import React from './screens/homescreen/context/node_modules/react';
 import { render } from '@testing-library/react';
 import App from './App';
 

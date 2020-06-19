@@ -4,9 +4,9 @@ import Axios from "axios";
 import { useParams } from "react-router-dom";
 
 import { objectData } from "../../store/reducers/items";
-import { getItem } from "../../store/actionCreators/actiontypes";
+import { getItem } from "../../store/actioncreator/actiontypes";
 import { stateData } from "../../store/reducers/authentication";
-import SpreadContent from "../../ReusableComponents/Spread";
+import SpreadContent from "../../reusablecomponents/spread";
 
 export interface IProps {
   auth: objectData;

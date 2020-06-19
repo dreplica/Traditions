@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
+
 import { objectData } from "../../../store/reducers/items";
-import AddReview from "./addReview";
+import AddReview from "./addreview";
 import { Reviews } from "./style";
 
 interface Iprops {

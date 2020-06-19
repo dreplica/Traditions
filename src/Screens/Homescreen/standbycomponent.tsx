@@ -3,9 +3,10 @@
 //i will leave this here just incase i need it later
 
 import React, { useState, useEffect } from 'react';
-import Axios from 'axios';
-import Cards from '../../ReusableComponents/Cards';
 import { FiActivity } from 'react-icons/fi';
+import Axios from 'axios';
+
+import Cards from '../../reusablecomponents/cards';
 
 interface IProps {
     description: string;

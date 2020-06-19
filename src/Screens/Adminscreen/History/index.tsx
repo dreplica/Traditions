@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Axios from 'axios';
 import { objectData } from '../../../store/reducers/items';
 import { stateData } from '../../../store/reducers/authentication';
-
+ 
 
 import {HistoryStyle,Summary} from './style' 
 

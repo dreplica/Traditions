@@ -1,7 +1,8 @@
 import React, { Fragment, useState, useRef, useEffect } from "react";
 import mapboxgl from 'mapbox-gl'
 import Axios from "axios"
-import getPoint from "./Mapconfig"
+
+import getPoint from "./mapconfig"
 
 interface Iprops{
     id: string,

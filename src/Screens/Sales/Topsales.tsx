@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import { FiActivity } from 'react-icons/fi';
 
-import SpreadContent from '../../ReusableComponents/Spread';
+import SpreadContent from '../../reusablecomponents/spread';
 import img1 from '../../img/agba2.jpg'
 import img2 from '../../img/back.jpg'
 import img3 from '../../img/mshirt.jpg'

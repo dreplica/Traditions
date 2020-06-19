@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Cards from '../../../ReusableComponents/Cards'
+import Cards from '../../../reusablecomponents/cards'
 import {
     Container
 } from './style'

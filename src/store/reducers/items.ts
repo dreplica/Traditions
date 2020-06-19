@@ -1,4 +1,4 @@
-import { actionType } from "../actionCreators/actiontypes"
+import { actionType } from "../actioncreator/actiontypes"
 
 export type objectData = {[key:string]:string}
 

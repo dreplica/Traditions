@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 
-import Logo from './HeadLogo/Logo/index'
-import Navigation from './Navigation';
+import Logo from './headlogo/logo/index'
+import Navigation from './navigation';
 
 export default function Header() {
     return (

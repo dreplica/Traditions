@@ -1,7 +1,7 @@
 import React, { useState, MouseEvent, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
-import CartItem from './Cart/cart'
+import CartItem from './cart/cart'
 import { 
   Container, 
   Content,

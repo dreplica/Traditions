@@ -1,12 +1,13 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import Products from "./Products";
-import Review from "./Review";
-import Location from "./Location";
-import About from "./About";
-import { Container, TabView } from "./style";
 import { connect } from "react-redux";
+
+import Products from "./products";
+import Review from "./review";
+import Location from "./location";
+import About from "./about";
 import { stateData } from "../../store/reducers/authentication";
+import { Container, TabView } from "./style";
 
 function ProfileScreen() {
 

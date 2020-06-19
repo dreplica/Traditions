@@ -2,7 +2,7 @@ import React,{useEffect} from 'react';
 import { Front } from '../../../style/navigation';
 import Categories from '../../categories/category';
 import { RightComponent } from '../../../style/categories';
-import MakePayment from '../../../util/Payment/index'
+import MakePayment from '../../../util/payment/index'
 import { Switch, Route, useHistory,} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { stateData } from '../../../store/reducers/authentication';
@@ -37,3 +37,6 @@ const mapStateToProp = ({authenticate}:{authenticate:stateData}) => ({
 })
 
 export default connect(mapStateToProp)(Frontpage)
+
+
+// export default {}

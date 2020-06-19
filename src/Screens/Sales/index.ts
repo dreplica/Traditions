@@ -1,6 +1,6 @@
-import Salesroutes from "./Salesroutes";
-import Topsales from "./Topsales";
-import Newsales from "./Newsales";
+import Salesroutes from "./salesroutes";
+import Topsales from "./topsales";
+import Newsales from "./newsales";
 
 export default {
     Salesroutes,

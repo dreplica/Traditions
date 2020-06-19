@@ -4,7 +4,7 @@ import img from '../../img/womgowncan.jpg'
 
 import { objectData } from '../../store/reducers/items';
 import { Modal } from '../../store/reducers/effects';
-import { modalView, getPreview, addCart } from '../../store/actionCreators/actiontypes';
+import { modalView, getPreview, addCart } from '../../store/actioncreator/actiontypes';
 import {
     Container,
     Image,

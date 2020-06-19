@@ -1,10 +1,10 @@
 import React, { Fragment } from 'react';
 
+import Items from './items';
 import {
     Container,
     Heading
 } from "./style";
-import Items from './Items';
 
 const ITEMS_TO_DISPLAY = ['Men','Women','shoe']
 const HEADER = ['Men\'s wear','Women\'s wear','Foot wears']
