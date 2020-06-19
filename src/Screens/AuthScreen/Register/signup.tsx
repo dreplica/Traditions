@@ -5,19 +5,14 @@ import Axios from "axios";
 
 import { loadData } from '../../../store/actionCreators/actiontypes';
 import { SIGNUP_FORM } from '../../../ReusableComponents/theme/types';
-import {
-  loadData,
-  Auth_Action,
-} from "../../../store/actionCreators/authenticate";
-import { SIGNUP_FORM } from "../../../ReusableComponents/theme/types";
 import { stateData } from "../../../store/reducers/authentication";
-import { ImageInput } from "../../Adminscreen/Upload/style";
+// import { ImageInput } from "../../Adminscreen/Upload/style";
 import Socialmedia, { mediaLinks } from "./socialmedia";
 import TextInput, { inputRef } from "./textInput";
-import validateRegistration from "./validateForm";
+// import validateRegistration from "./validateForm";
 import { Container, Form, Content, AdminForm } from "../style";
 import { itemState } from "../../../store/reducers/items";
-import { registrationFrom } from "../../../store/actionCreators/items";
+import { registrationFrom } from "../../../store/actionCreators/actiontypes";
 
 interface Iprops {
   setToken: (args: Auth_Action["payload"]) => void;
