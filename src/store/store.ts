@@ -1,5 +1,5 @@
 
-import thunkMiddleware from 'redux-thunk'
+import ThunkMiddleware from 'redux-thunk'
 import {createLogger} from 'redux-logger'
 import {createStore,applyMiddleware, compose,combineReducers } from 'redux'
 import authenticate from './reducers/authentication';
@@ -17,7 +17,7 @@ const loggerMiddleware = createLogger();
 const enhancers = [];
 
 
-const middleware:any[]= [thunkMiddleware];
+const middleware:any[]= [ThunkMiddleware];
 
 if (process.env.NODE_ENV === "development") {
   middleware.push(loggerMiddleware);

@@ -1,4 +1,4 @@
-import { action } from '../actionCreators/actiontypes'
+import { actionType } from '../actionCreators/actiontypes'
 
 
 export interface authe {
@@ -22,7 +22,7 @@ export interface stateData {
 
 const initialState:stateData= {error:false,loading:false,data:{auth:{token:"",admin:""}}}
 
-const authenticate = (state = initialState,action:action):stateData =>{
+const authenticate = (state = initialState,action:actionType):stateData =>{
     switch (action.type) {
         case 'loading':
             return {

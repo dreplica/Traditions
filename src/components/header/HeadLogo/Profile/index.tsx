@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-import { Container } from './style'
 import { FiUser, FiWatch } from 'react-icons/fi';
 import { FaSignOutAlt } from 'react-icons/fa';
+
+import { Container } from './style'
 
 interface Iprops {
     drop: 'hidden' | 'visible';
@@ -19,4 +19,3 @@ export default function ProfileDropdown(props: Iprops) {
         </Container>
     );
 }
-

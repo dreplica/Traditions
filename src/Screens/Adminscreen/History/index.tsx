@@ -24,6 +24,7 @@ const History:React.FC<{auth:string}> = ({auth})=> {
             console.log("uniqueness",unique(_.data?.payload))
             setLoading(false)
         })
+        console.log(loading)
     }, [auth])
     
     const unique = (history:objectData[]) =>{

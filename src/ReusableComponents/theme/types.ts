@@ -53,5 +53,3 @@ export const Colors: COLORS = {
     BG_ORANGE: 'orange',
     FONT_LIGTH: `rgb(230, 208, 208)`
 }
-
-export default {}

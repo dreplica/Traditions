@@ -36,7 +36,7 @@ export default function TopSales() {
             setstate(Data)
             setLoading(false)
         })()
-    })
+    },[])
 
     const getItems = (data: any) => {
         const filteredValue = data.map((item: { [key: string]: any }) => ({

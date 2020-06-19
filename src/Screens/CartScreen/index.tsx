@@ -1,6 +1,5 @@
 import React, { useState, MouseEvent, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import Axios from "axios";
 
 import CartItem from './Cart/cart'
 import { 

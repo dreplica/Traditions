@@ -1,26 +1,26 @@
 import { Dispatch } from "redux";
 import { objectData } from "../reducers/items";
 
-export interface action {
+export interface actionType {
     type:string;
     payload?:string|{[key:string]:string}|objectData[],
     modal?:string;
 }
 
-const isloading = ():action =>({
+const isloading = ():actionType =>({
     type:'loading',
 })
 
-const isError = ():action=>({
+const isError = ():actionType=>({
     type:'error'
 })
 
-const uploading = (payload:action['payload']):action =>({
+const uploading = (payload:actionType['payload']):actionType =>({
     type:'uploading',
     payload
 })
 
-export const loadData = (payload:action['payload']) => (dispatch:Dispatch) =>{
+export const loadData = (payload:actionType['payload']) => (dispatch:Dispatch) =>{
     try {
         dispatch(isloading())
         dispatch(uploading(payload))
@@ -42,7 +42,7 @@ export const checkLocal =()=> (dispatch:Dispatch) =>{
         dispatch(isError())
     } 
 }
-export const modalView = (arg:action['modal']) => (dispatch:Dispatch) =>{
+export const modalView = (arg:actionType['modal']) => (dispatch:Dispatch) =>{
     try {
         dispatch(isloading())
         dispatch({type:'view',modal:arg})
@@ -50,7 +50,7 @@ export const modalView = (arg:action['modal']) => (dispatch:Dispatch) =>{
         dispatch(isError())
     } 
 }
-export const menuView = (arg:action['modal']) => (dispatch:Dispatch) =>{
+export const menuView = (arg:actionType['modal']) => (dispatch:Dispatch) =>{
     try {
         dispatch(isloading())
         dispatch({type:'menu',modal:arg})

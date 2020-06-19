@@ -37,7 +37,8 @@ export default function Items(props: IProps) {
             setstate(Data)
             setLoading(false)
         })()
-    })
+        console.log(state)
+    },[])
 
     const getItems = (data: any) => {
         const renderData = [...data]

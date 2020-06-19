@@ -1,4 +1,4 @@
-import { action } from "../actionCreators/actiontypes";
+import { actionType } from "../actionCreators/actiontypes";
 
 export interface Modal{
     modal:string;
@@ -12,7 +12,7 @@ const modalView :Modal={
 }
 
 
-const EffectReducers = (state = modalView,action:action) =>{
+const EffectReducers = (state = modalView,action:actionType) =>{
     switch (action.type) {
         case "view":
             return{
