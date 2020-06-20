@@ -6,7 +6,7 @@ import React, { useState, useEffect } from 'react';
 import { FiActivity } from 'react-icons/fi';
 import Axios from 'axios';
 
-import Cards from '../../reusablecomponents/cards';
+import Cards from '../../reusablecomponent/cards';
 
 interface IProps {
     description: string;
