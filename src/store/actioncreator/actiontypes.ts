@@ -2,6 +2,7 @@ import { Dispatch } from "redux";
 
 import { objectData } from "../reducers/items";
 import { actionType, isloading, uploading, isError } from './actionfuncs'
+import { SIGNUP_FORM } from "../../reusablecomponent/theme/types";
 
 export const loadData = (payload: actionType['payload']) => (dispatch: Dispatch) => {
     try {
@@ -88,6 +89,17 @@ export const removeCart = (payload: string) => (dispatch: Dispatch) => {
     try {
         dispatch(isloading())
         dispatch({ type: 'removeCart', payload: local })
+    } catch (error) {
+        dispatch(isError())
+    }
+}
+
+
+export const registrationFrom = (reg_payload: SIGNUP_FORM) => (dispatch: Dispatch) => {
+    try {
+        dispatch(isloading())
+        dispatch({ type: "Updating_Registration", reg_payload })
+
     } catch (error) {
         dispatch(isError())
     }

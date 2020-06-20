@@ -48,13 +48,8 @@ export const Content = styled.div`
 `
 export const AdminForm = styled.div`
     width:100%;
+    margin-top:20px;
 
-    .companydesc{
-        min-width:200px;
-        max-width:200px;
-        min-height:150px;
-        max-height:150px;
-    }
 `
 export const Form = styled.form`
     width:350px;
@@ -64,15 +59,7 @@ export const Form = styled.form`
     justify-content:space-between;
     color:white;
 
-    label{
-        margin-top:5px;
-    }
-
-     .checkbox{
-        display:flex;
-        align-items:center;
-        justify-content:space-between;
-    }
+   
 
     textarea{
         min-width:100%;
@@ -103,7 +90,7 @@ export const Form = styled.form`
      input{
         width:100%;
         padding-left:15px;
-        height:50px;
+        height:40px;
         background:white;
         margin:10px 0px;
         border:0px;
@@ -137,5 +124,16 @@ export const Form = styled.form`
     @media(max-width:500px){
         width:90%;
     }
-
 `
+
+export const Input = styled.input`
+    width:100%;
+    height:20px;
+    border:0px;
+    background:white;
+    outline-width:0px;
+`; 
+
+export const Label = styled.label`
+    width:100%;
+`;
