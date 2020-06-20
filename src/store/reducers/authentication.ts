@@ -1,4 +1,4 @@
-import { actionType } from '../actioncreator/actiontypes'
+import { actionType } from '../actioncreator/actionfuncs'
 
 
 export interface authe {
