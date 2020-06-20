@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
 
-import Screens from "../screenss/index";
+import Screens from "../screens/index";
 import Frontpage from "../components/users/frontpage/frontpage";
 import { checkLocal } from "../store/actioncreator/actiontypes";
 import Categories from "../components/categories/category";
