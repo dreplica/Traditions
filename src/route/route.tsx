@@ -6,7 +6,9 @@ import Screens from "../screens/index";
 import Frontpage from "../components/users/frontpage/frontpage";
 import { checkLocal } from "../store/actioncreator/actiontypes";
 import Categories from "../components/categories/category";
-import { Container } from "./style";
+import {
+  Container
+} from "./style"; 
 
 interface Iprops {
   getLocal():void;
