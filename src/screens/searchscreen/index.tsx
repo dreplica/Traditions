@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import { objectData } from "../../store/reducers/items";
 import { getItem } from "../../store/actioncreator/actiontypes";
 import { stateData } from "../../store/reducers/authentication";
-import SpreadContent from "../../reusablecomponents/spread";
+import SpreadContent from "../../reusablecomponent/spread";
 
 export interface IProps {
   auth: objectData;

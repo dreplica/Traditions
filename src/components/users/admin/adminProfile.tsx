@@ -1,6 +1,6 @@
 // import React, {useState, useEffect } from 'react'
-// import DropTag from './dropTag'
-// import Profile from './Main/profileView'
+// import DropTag from './droptag'
+// import Profile from './Main/profileview'
 // import { useHistory } from 'react-router-dom'
 // import { stateData } from '../../../store/reducers/authentication'
 // import { connect } from 'react-redux'
