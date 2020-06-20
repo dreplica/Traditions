@@ -9,10 +9,7 @@ type User =
   | "password"
   | "email"
   | "phone";
- 
-export default function validateRegistration(
-  form: SIGNUP_FORM
-): string | boolean {
+
   const companyRequiredFields: Company[] = [
     "companyname",
     "companydesc",
@@ -26,7 +23,12 @@ export default function validateRegistration(
     "email",
     "phone",
   ];
+ 
+export default function validateRegistration(
+  form: SIGNUP_FORM
+): string | boolean {
 
+    console.log('form :>> ', form)
   const ErrorLogs: string[] = [];
 
   (form['admin'] === 1) && companyRequiredFields.map((item) =>
@@ -35,6 +37,6 @@ export default function validateRegistration(
   userRequiredField.map((item) =>
     form[item] === "" ? ErrorLogs.push(item) : null
   );
-
+    console.log('ErrorLogs :>> ', ErrorLogs);
   return ErrorLogs.length ? ErrorLogs.join(",") : false;
 }

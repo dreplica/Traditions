@@ -97,10 +97,11 @@ export const removeCart = (payload: string) => (dispatch: Dispatch) => {
 
 export const registrationFrom = (reg_payload: SIGNUP_FORM) => (dispatch: Dispatch) => {
     try {
+        console.log(reg_payload)
         dispatch(isloading())
         dispatch({ type: "Updating_Registration", reg_payload })
 
     } catch (error) {
         dispatch(isError())
     }
-}
+} 

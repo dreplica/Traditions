@@ -17,6 +17,7 @@ import {
     AdminForm,
     Label
 } from "../style";
+import imageupload from "../../adminscreen/upload/imageupload";
 
 interface iProps {
     auth?: string;
@@ -69,18 +70,19 @@ function Signup(props: iProps) {
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
-        console.log(state.form);
+        try {
         const valid = validateRegistration(state.form);
-
         if (valid) {
             setState({ ...state, error: valid as string });
             return;
         }
-        try {
-            const result = await Axios.post("http://localhost:3000/signup", state.form);
-            // props.setToken(result.data);
-            console.log("res", result.data);
-            // history.push("/");
+        const links  = state.form.admin && await imageupload(state.image as FileList) 
+
+        props.setForm({ 
+            ...state.form,
+            [state.form.logo as string]:links as string
+        })
+
         } catch (error) {
             setState({ ...state, error: error.message as string });
             console.log("error", error.message);
