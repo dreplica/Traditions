@@ -4,7 +4,7 @@ export interface SIGNUP_FORM {
     username: string;
     password: string;
     email: string;
-    admin: boolean;
+    admin: number;
     phone: string;
     companyname?: string;
     companydesc?: string;
@@ -14,13 +14,28 @@ export interface SIGNUP_FORM {
     instagram?: string;
 }
 
+export type SIGNUP_KEY =
+    | "firstname"
+    | "lastname"
+    | "username"
+    | "password"
+    | "email"
+    | "admin"
+    | "phone"
+    | "companyname"
+    | "companydesc"
+    | "logo"
+    | "facebook"
+    | "twitter"
+    | "instagram";
+
 export const SIGNUP_FORM: SIGNUP_FORM = {
     firstname: "",
     lastname: "",
     username: "",
     password: "",
     email: "",
-    admin: false,
+    admin: 0,
     phone: "",
     companyname: "",
     logo: "",
@@ -28,16 +43,16 @@ export const SIGNUP_FORM: SIGNUP_FORM = {
     facebook: "",
     twitter: "",
     instagram: "",
-}
+};
 
- interface COLORS{
+interface COLORS {
     BG_DARK: string;
     BG_LIGHT: string;
     BG_ORANGE: string;
     FONT_LIGTH: string;
 }
 
- interface FONTS{
+interface FONTS {
     MEDIUM_STYLE: string;
     BOLD_STYLE: string;
     LIGHT_STYLE: string;
@@ -46,10 +61,17 @@ export const SIGNUP_FORM: SIGNUP_FORM = {
     SMALL_SIZE: string;
 }
 
-
 export const Colors: COLORS = {
     BG_DARK: `rgb(24, 17, 17)`,
-    BG_LIGHT: 'white',
-    BG_ORANGE: 'orange',
-    FONT_LIGTH: `rgb(230, 208, 208)`
+    BG_LIGHT: "white",
+    BG_ORANGE: "orange",
+    FONT_LIGTH: `rgb(230, 208, 208)`,
+};
+
+export interface ITEMS {
+    id: string;
+    itemname: string;
+    description: string;
+    image: string;
+    price: string;
 }
