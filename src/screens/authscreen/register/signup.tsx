@@ -27,6 +27,7 @@ interface iProps {
 interface initState {
     form: SIGNUP_FORM;
     error: string;
+    image: FileList | null
 }
 
 function Signup(props: iProps) {
@@ -34,22 +35,34 @@ function Signup(props: iProps) {
     const history = useHistory();
     const [state, setState] = useState<initState>({
         form: SIGNUP_FORM,
-        error: ""
+        error: "",
+        image: null
     })
 
-    const handleChange = (type: string) => (val:ChangeEvent<HTMLInputElement>) => {
-        const text :string|number = val.currentTarget.value
+    const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+        e.preventDefault()
+        const files = e.currentTarget.files
+
         setState((previous) => {
-            console.log(text)
+            return {
+                ...previous,
+                form: { ...previous.form, image: files }
+            }
+        })
+    }
+
+    const handleChange = (type: string) => (val: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const text: string | number = val.currentTarget.value
+        setState((previous) => {
             let adminVal = 0;
             let check = false;
-            if(type === 'admin'){
+            if (type === 'admin') {
                 check = true
-                adminVal = state.form.admin?0:1
+                adminVal = state.form.admin ? 0 : 1
             }
-            return { 
+            return {
                 ...previous,
-                form: { ...previous.form, [type]: check?adminVal:text }
+                form: { ...previous.form, [type]: check ? adminVal : text }
             }
         })
     }
@@ -98,34 +111,55 @@ function Signup(props: iProps) {
                 <span>{state.error}</span>
 
                 <Label> first Name
-                <Input type='text' value={state.form.firstname} changeHandeler={handleChange('firstname')} />
+                <Input type='text'
+                        value={state.form.firstname}
+                        changeHandeler={handleChange('firstname')}
+                        placeholder='first name'
+                    />
                 </Label>
 
                 <Label> Last Name
-                <Input type='text' value={state.form.lastname} changeHandeler={handleChange('lastname')} />
+                <Input type='text'
+                        value={state.form.lastname}
+                        changeHandeler={handleChange('lastname')}
+                        placeholder='last name'
+                    />
                 </Label>
 
                 <Label> Username
-                <Input type='text' value={state.form.email} changeHandeler={handleChange('username')} />
+                <Input type='text'
+                        value={state.form.username}
+                        changeHandeler={handleChange('username')}
+                        placeholder='username' />
                 </Label>
 
                 <Label> Email
-                <Input type='text' value={state.form.email} changeHandeler={handleChange('email')} />
+                <Input type='text'
+                        value={state.form.email}
+                        changeHandeler={handleChange('email')}
+                        placeholder='email' />
                 </Label>
 
                 <Label> Phone Number
-                <Input type='text' value={state.form.phone} changeHandeler={handleChange('phone')} />
+                <Input type='text'
+                        value={state.form.phone}
+                        changeHandeler={handleChange('phone')}
+                        placeholder='phone number' />
                 </Label>
 
                 <Label> Password
-                <Input type='password' value={state.form.password} changeHandeler={handleChange('password')} />
+                <Input type='password'
+                        value={state.form.password}
+                        changeHandeler={handleChange('password')}
+                        placeholder='password' />
                 </Label>
 
 
                 <Label>
                     Sell Cloths
-                <Input type='checkbox' value={state.form.admin} changeHandeler={handleChange('admin')} />
-                    {/* onChange={(e) => props.setForm({ ...props.form, admin: props.form.admin ? 0 : 1 })} */}
+                <Input type='checkbox'
+                        value={state.form.admin}
+                        changeHandeler={handleChange('admin')} />
                 </Label>
 
 
@@ -133,43 +167,53 @@ function Signup(props: iProps) {
 
                     <Label>
                         Company Name
-                <Input type='text' value={state.form.companyname as string} changeHandeler={() => { }} />
-                        {/* onChange={(e) => props.setForm({ ...props.form, admin: props.form.admin ? 0 : 1 })} */}
+                <Input type='text'
+                            value={state.form.companyname as string}
+                            placeholder='Company name'
+                            changeHandeler={handleChange('companyname')} />
                     </Label>
+
                     <Label>
                         Company Logo
-            <ImageInput
+                        <ImageInput
                             type="file"
-                            id="image"
                             accept="image/*"
                             required
-                            // onChange={HandleImage}
-                            name="file"
+                            onChange={handleImageChange}
                         />
                     </Label>
 
                     <Label>
                         company description
-            <textarea
+                        <textarea
                             placeholder="e.g we are the largest..."
                             value={state.form.companydesc}
-                            onChange={() => { }}
+                            onChange={handleChange('companydesc')}
                         ></textarea>
                     </Label>
 
                     <Label>
                         Facebook Link
-                <Input type='text' value={state.form.companyname as string} changeHandeler={() => { }} />
+                <Input type='text'
+                            value={state.form.companyname as string}
+                            placeholder='facebook link'
+                            changeHandeler={handleChange('facebook')} />
                     </Label>
 
                     <Label>
                         Instagram Link
-                <Input type='text' value={state.form.companyname as string} changeHandeler={() => { }} />
+                <Input type='text'
+                            value={state.form.companyname as string}
+                            placeholder='instagram link'
+                            changeHandeler={handleChange('instagram')} />
                     </Label>
 
                     <Label>
                         Twitter Link
-                <Input type='text' value={state.form.companyname as string} changeHandeler={() => { }} />
+                <Input type='text'
+                            value={state.form.companyname as string}
+                            placeholder='twitter link'
+                            changeHandeler={handleChange('companydesc')} />
                     </Label>
                 </AdminForm>
 

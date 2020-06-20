@@ -69,17 +69,6 @@ export const Form = styled.form`
         max-height:100px;
     } 
 
-    input[type='checkbox']{
-        width:20px;
-        height:20px;
-        margin-left:10px;
-    }
-    input[type='file']{
-        height:29px;
-        background:lightgrey;
-        color:white;
-    } 
-
     select{
         width:100%;
         margin:20px auto;
@@ -92,7 +81,7 @@ export const Form = styled.form`
         padding-left:15px;
         height:40px;
         background:white;
-        margin:10px 0px;
+        margin:10px 0px 20px 0px;
         border:0px;
         font-weight:bold;
         font-size:20px;
