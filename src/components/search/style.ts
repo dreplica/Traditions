@@ -33,6 +33,7 @@ export const Searchinput = styled.form`
     padding:6px 15px;
     font-size:20px;
     height:40px;
+    outline-width:0px;
   }
 `;
 

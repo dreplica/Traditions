@@ -1,7 +1,6 @@
 import React, { FormEvent, useState, ChangeEvent } from "react";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
-import Axios from "axios";
 
 import { loadData } from "../../../store/actioncreator/actiontypes";
 import { SIGNUP_FORM } from "../../../reusablecomponent/theme/types";
@@ -43,11 +42,11 @@ function Signup(props: iProps) {
     const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
         e.preventDefault()
         const files = e.currentTarget.files
-
+        console.log(files)
         setState((previous) => {
             return {
                 ...previous,
-                form: { ...previous.form, image: files }
+                image:  files as FileList
             }
         })
     }
@@ -57,9 +56,9 @@ function Signup(props: iProps) {
         setState((previous) => {
             let adminVal = 0;
             let check = false;
-            if (type === 'admin') {
+            if (type === 'isadmin') {
                 check = true
-                adminVal = state.form.admin ? 0 : 1
+                adminVal = state.form.isadmin ? 0 : 1
             }
             return {
                 ...previous,
@@ -70,18 +69,22 @@ function Signup(props: iProps) {
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
+
+        let {form,image} = state
+
         try {
-        const valid = validateRegistration(state.form);
+
+        const links  = form.isadmin && await imageupload(image as FileList) 
+
+        form = {...form,logo:links as string}
+
+        const valid = validateRegistration(form);
         if (valid) {
             setState({ ...state, error: valid as string });
             return;
         }
-        const links  = state.form.admin && await imageupload(state.image as FileList) 
 
-        props.setForm({ 
-            ...state.form,
-            [state.form.logo as string]:links as string
-        })
+        props.setForm(form)
 
         } catch (error) {
             setState({ ...state, error: error.message as string });
@@ -160,12 +163,12 @@ function Signup(props: iProps) {
                 <Label>
                     Sell Cloths
                 <Input type='checkbox'
-                        value={state.form.admin}
-                        changeHandeler={handleChange('admin')} />
+                        value={state.form.isadmin}
+                        changeHandeler={handleChange('isadmin')} />
                 </Label>
 
 
-                <AdminForm style={{ display: state.form.admin ? "block" : "none" }}>
+                <AdminForm style={{ display: state.form.isadmin ? "block" : "none" }}>
 
                     <Label>
                         Company Name

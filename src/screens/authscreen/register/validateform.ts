@@ -31,7 +31,7 @@ export default function validateRegistration(
     console.log('form :>> ', form)
   const ErrorLogs: string[] = [];
 
-  (form['admin'] === 1) && companyRequiredFields.map((item) =>
+  (form['isadmin'] === 1) && companyRequiredFields.map((item) =>
     form[item] === "" ? ErrorLogs.push(item) : null
   );
   userRequiredField.map((item) =>

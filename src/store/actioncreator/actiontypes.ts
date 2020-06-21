@@ -1,8 +1,11 @@
 import { Dispatch } from "redux"; 
+import Axios from 'axios'
+
 
 import { objectData } from "../reducers/items";
 import { actionType, isloading, uploading, isError } from './actionfuncs'
 import { SIGNUP_FORM } from "../../reusablecomponent/theme/types";
+
 
 export const loadData = (payload: actionType['payload']) => (dispatch: Dispatch) => {
     try {
@@ -26,6 +29,8 @@ export const checkLocal = () => (dispatch: Dispatch) => {
         dispatch(isError())
     }
 }
+
+
 export const modalView = (arg: actionType['modal']) => (dispatch: Dispatch) => {
     try {
         dispatch(isloading())
@@ -34,6 +39,8 @@ export const modalView = (arg: actionType['modal']) => (dispatch: Dispatch) => {
         dispatch(isError())
     }
 }
+
+
 export const menuView = (arg: actionType['modal']) => (dispatch: Dispatch) => {
     try {
         dispatch(isloading())
@@ -42,6 +49,8 @@ export const menuView = (arg: actionType['modal']) => (dispatch: Dispatch) => {
         dispatch(isError())
     }
 }
+
+
 export const getItem = (payload: objectData[]) => (dispatch: Dispatch) => {
     try {
         dispatch(isloading())
@@ -59,16 +68,16 @@ export const getPreview = (payload: string) => (dispatch: Dispatch) => {
         dispatch(isError())
     }
 }
+
+
 export const addCart = (payload: objectData) => (dispatch: Dispatch) => {
     let local = []
     if (localStorage['cart']) {
         const value = JSON.parse(localStorage['cart']);
-        console.log("value local", value)
         local = [...value, { ...payload, cartid: "c" + value.length as string }];
         localStorage['cart'] = JSON.stringify(local)
     }
     else {
-        console.log("none")
         local.push(payload)
         localStorage['cart'] = JSON.stringify([{ ...payload, cartid: " c0" }]);
     }
@@ -99,6 +108,9 @@ export const registrationFrom = (reg_payload: SIGNUP_FORM) => (dispatch: Dispatc
     try {
         console.log(reg_payload)
         dispatch(isloading())
+
+        Axios.post('http://localhost:3000/signup',reg_payload)
+
         dispatch({ type: "Updating_Registration", reg_payload })
 
     } catch (error) {

@@ -119,6 +119,7 @@ export const Description = styled.div`
         width:100%;
         height:40px;
         border:0px;
+        outline-width:0px;
         color:lightgrey;
         background:linear-gradient(to right, orange,purple);
     

@@ -4,7 +4,7 @@ export interface SIGNUP_FORM {
     username: string;
     password: string;
     email: string;
-    admin: number;
+    isadmin: number;
     phone: string;
     companyname?: string;
     companydesc?: string;
@@ -20,7 +20,7 @@ export type SIGNUP_KEY =
     | "username"
     | "password"
     | "email"
-    | "admin"
+    | "isadmin"
     | "phone"
     | "companyname"
     | "companydesc"
@@ -35,7 +35,7 @@ export const SIGNUP_FORM: SIGNUP_FORM = {
     username: "",
     password: "",
     email: "",
-    admin: 0,
+    isadmin: 0,
     phone: "",
     companyname: "",
     logo: "",

@@ -15,6 +15,11 @@ export const Container = styled.div`
 export const Content = styled.div`
       color:white;
       font-weight:bold;
+      transition:background 1s;
+
+      :hover{
+           background:rgba(0,0,0,0.6);
+      }
 
  @media(max-width:700px){
       position:absolute;
@@ -24,7 +29,12 @@ export const Content = styled.div`
       justify-content:center;
       width:250px;
       height:300px;
-      background:rgba(0,0,0,0.6)
+      background:rgba(0,0,0,0.6);
+      transition:background 1.5s;
+
+      :hover{
+           background:rgba(0,0,0,0.0);
+      }
   }
 
 `;
@@ -32,6 +42,7 @@ export const Content = styled.div`
 export const Image = styled.img`
   width: 250px;
   height: 300px;
+  
 `;
 
 export const RemoveItem = styled.h2`

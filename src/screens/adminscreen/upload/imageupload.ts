@@ -1,6 +1,9 @@
 export default async function (files: FileList) {
     const uri = `https://api.cloudinary.com/v1_1/${"dyypxjmx9"}/upload`;
     const get_link: string[] = [];
+
+    console.log(files)
+
     for (let file of files) {
         try {
             const Data = new FormData();

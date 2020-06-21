@@ -97,6 +97,7 @@ export const Form = styled.form`
     & button{
         width:300px;
         padding:15px;
+        outline-width:0px;
         background:transparent;
         border:0px;
         background:linear-gradient(to right, orange,purple);
