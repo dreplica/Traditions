@@ -2,7 +2,7 @@ import React, { FormEvent, ChangeEvent, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import { login } from '../../../store/actioncreator/actiontypes';
+import { login } from '../../../store/actioncreator/auth';
 import {
     Container,
     Content,
@@ -37,7 +37,7 @@ function Login(props:iProps){
     const history = useHistory()
     const [state, setState] = useState({
         form: initialForm,
-    })
+    }) 
 
     useEffect(() => {
         (props.auth?.length) &&  history.push('/')

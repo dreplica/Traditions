@@ -2,13 +2,13 @@ import React, { FormEvent, useState, ChangeEvent, useEffect } from "react";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-import { loadData } from "../../../store/actioncreator/actiontypes";
+import { loadData } from "../../../store/actioncreator/item";
 import { SIGNUP_FORM } from "../../../reusablecomponent/theme/types";
 import { stateData } from "../../../store/reducers/authentication";
 import { ImageInput } from "../../adminscreen/upload/style";
 import Input from "./textinput";
 import validateRegistration from "./validateform";
-import { registrationFrom } from "../../../store/actioncreator/actiontypes";
+import { registrationFrom } from "../../../store/actioncreator/auth";
 import imageupload from "../../adminscreen/upload/imageupload";
 import {
     Container,

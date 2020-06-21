@@ -6,7 +6,7 @@ import { FaStoreAlt, FaRegEnvelope, FaSignOutAlt, FaTags, FaGlobeAfrica } from '
 
 import { itemState, objectData } from '../../../store/reducers/items';
 import { stateData } from '../../../store/reducers/authentication';
-import { menuView } from '../../../store/actioncreator/actiontypes';
+import { menuView } from '../../../store/actioncreator/effects';
 import { Modal } from '../../../store/reducers/effects';
 import { Nav } from './style';
 

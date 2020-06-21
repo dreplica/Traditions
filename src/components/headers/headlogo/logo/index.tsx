@@ -2,7 +2,7 @@ import React, { MouseEvent, useState } from 'react';
 import { connect } from 'react-redux'; 
 import { FiAlignLeft } from "react-icons/fi";
 
-import { menuView } from '../../../../store/actioncreator/actiontypes';
+import { menuView } from '../../../../store/actioncreator/effects';
 import { Modal } from '../../../../store/reducers/effects';
 import prof from '../../../../img/prof.jpg'
 import Search from '../../../search';

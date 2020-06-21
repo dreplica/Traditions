@@ -6,7 +6,14 @@ import { stateData } from "../../../store/reducers/authentication";
 import { ITEMS } from "../../../reusablecomponent/theme/types";
 import DropDown from "./dropdown";
 import imageUpload from "./imageupload";
-import { Form, Heading, TextArea, ImageInput, Error, Input } from "./style";
+import {
+    Form,
+    Heading,
+    TextArea, 
+    ImageInput,
+    Error,
+    Input
+} from "./style";
 
 interface Iprops {
     auth?: string;
