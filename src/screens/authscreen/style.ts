@@ -118,11 +118,23 @@ export const Form = styled.form`
 
 export const Input = styled.input`
     width:100%;
-    height:20px;
     border:0px;
     background:white;
     outline-width:0px;
-`; 
+  padding-left: 15px;
+  height: 40px;
+  color: black;
+  font-size: 20px;
+  margin-bottom: 20px;
+  transition: width 1s;
+  border-bottom: 1px grey solid;
+
+  :focus {
+    background: grey;
+    border: 2px solid orange;
+    color: white;
+  }
+`;
 
 export const Label = styled.label`
     width:100%;

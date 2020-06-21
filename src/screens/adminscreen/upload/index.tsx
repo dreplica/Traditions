@@ -9,11 +9,11 @@ import imageUpload from "./imageupload";
 import {
     Form,
     Heading,
-    TextArea, 
+    TextArea,
     ImageInput,
-    Error,
-    Input
+    Error
 } from "./style";
+import InputField from "../../authscreen/register/textinput";
 
 interface Iprops {
     auth?: string;
@@ -44,22 +44,35 @@ type Keys =
     | "description"
     | "quantity";
 
-function Admin({ auth }: Iprops) {
-    const [form, setForm] = useState<AdminForm>(initialForm);
-    const [pic, setPic] = useState<FileList | null>();
-    const [error, setError] = useState<string>();
+export interface stateType {
+    form: AdminForm;
+    pic: FileList | null,
+    error: string;
+}
 
-    const handleChange = (
-        e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
-    ) => {
-        e?.preventDefault();
-        setError("");
-        setForm({ ...form, [e.currentTarget?.id]: e.target?.value });
-    };
+function Admin({ auth }: Iprops) {
+    const [state, setstate] = useState<stateType>({
+        form: initialForm,
+        pic: null,
+        error: ""
+    });
+
+    const handleChange = (type: string) => (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+        e.preventDefault();
+        const value = e.currentTarget?.value
+        setstate(prev => ({
+            ...prev,
+            form: { ...prev.form, [type]: value },
+            error: ""
+        }))
+    }
 
     const HandleImage = (e: ChangeEvent<HTMLInputElement>) => {
-        const d = e.currentTarget.files;
-        setPic(d);
+        const files = e.currentTarget.files;
+        setstate(prev => ({
+            ...prev,
+            pic: files
+        }))
     };
 
     const check_input = (form: AdminForm) => {
@@ -69,70 +82,87 @@ function Admin({ auth }: Iprops) {
         );
     };
 
+
     const SubmitItem = async (e: FormEvent) => {
         e.preventDefault();
-        setError(`don't leave "${check_input(form).join(",")}" empty`);
-        try {
-            if (error) return;
+        let { form } = state
 
-            const links = await imageUpload(pic as FileList);
-            await Axios.post(
-                "http://localhost:3000/items",
-                { ...form, image: links },
+        try {
+
+            const links = await imageUpload(state.pic as FileList);
+
+            if (!links?.length) {
+                return setstate(prev => ({
+                    ...prev,
+                    error: "uploaded failed, please try again"
+                }))
+
+            }
+
+            form = { ...form, image: links }
+
+            setstate(prev => ({
+                ...prev,
+                error: (`don't leave "${check_input(form).join(",")}" empty`)
+            }))
+
+            if (state.error.length) return;
+
+            await Axios.post("http://localhost:3000/items", form,
                 {
                     headers: {
                         authorization: `Bearer ${auth}`,
                         "content-type": "application/json",
                     },
-                }
-            );
-            setForm(initialForm);
-            setError("uploaded successfully");
+                });
+            setstate(prev => ({
+                ...prev,
+                form: initialForm,
+                error: "uploaded succesfully"
+            }))
+
         } catch (error) {
             console.log(error);
         }
     };
 
+
+    const ErrorLog = state.error.length ? <Error>{state.error}</Error>:null
+
     return (
         <Form style={{ top: "5vh" }} encType="multipart/">
             <Heading>Hello Admin, Please Fill in the Form to upload an Item</Heading>
-            {error && <Error>{error}</Error>}
+            {ErrorLog}
             <label>
                 <p> Item Name</p>
-                <Input
+                <InputField
                     type="text"
-                    id="itemname"
-                    required
                     placeholder="item name"
-                    value={form.itemname}
-                    onChange={handleChange}
+                    value={state.form.itemname}
+                    changeHandeler={handleChange('itemname')}
                 />
             </label>
             <label>
                 <p>Price</p>
-                <Input
+                <InputField
                     type="text"
-                    id="price"
-                    required
                     placeholder="price e.g, 6000"
-                    value={form.price}
-                    onChange={handleChange}
+                    value={state.form.price}
+                    changeHandeler={handleChange('price')}
                 />
             </label>
-            <DropDown setForm={setForm} form={form} />
+            <DropDown setForm={setstate} context={state} />
             <label>
                 <p>Quantity</p>
-                <Input
+                <InputField
                     type="text"
-                    required
                     placeholder="Quantity"
-                    value={form.quantity}
-                    id="quantity"
-                    onChange={handleChange}
+                    value={state.form.quantity}
+                    changeHandeler={handleChange('quantity')}
                 />
             </label>
             <label>
-                <p>Image {pic?.length}</p>
+                <p>Image {state.pic?.length}</p>
                 <ImageInput
                     type="file"
                     id="image"
@@ -146,11 +176,9 @@ function Admin({ auth }: Iprops) {
             <label>
                 <p>Description</p>
                 <TextArea
-                    id="description"
-                    required
-                    value={form.description}
+                    value={state.form.description}
                     placeholder="price e.g, 6000"
-                    onChange={handleChange}
+                    onChange={handleChange('description')}
                 ></TextArea>
             </label>
             <button onClick={SubmitItem}>Add Item</button>
