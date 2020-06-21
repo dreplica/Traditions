@@ -93,7 +93,7 @@ export const removeCart = (payload: string) => (dispatch: Dispatch) => {
     console.log("thuis is paulosad", payload)
     value.map((x: { [key: string]: string }) => console.log(typeof x.cartid))
     const local = value.filter((item: objectData) => item.cartid !== payload)
-    console.log("thgis is local", local)
+    console.log("this is local", local)
     localStorage['cart'] = JSON.stringify(local)
     try {
         dispatch(isloading())
@@ -106,13 +106,12 @@ export const removeCart = (payload: string) => (dispatch: Dispatch) => {
 
 export const registrationFrom = (reg_payload: SIGNUP_FORM) => async  (dispatch: Dispatch) => {
     try {
-        console.log(reg_payload)
         dispatch(isloading())
-
         const { data } = await Axios.post('http://localhost:3000/signup',reg_payload)
-
+        if (data.error) {
+            return dispatch(isError(data.error))
+        }
         dispatch(uploading(data))
-
     } catch (error) {
         dispatch(isError())
     }
@@ -120,13 +119,12 @@ export const registrationFrom = (reg_payload: SIGNUP_FORM) => async  (dispatch: 
 
 export const login = (payload: { email: string; password:string}) => async  (dispatch: Dispatch) => {
     try {
-        console.log(payload)
         dispatch(isloading())
-
-        const { data } = await Axios.post('http://localhost:3000/signin',payload)
-
+        const { data } = await Axios.post('http://localhost:3000/signin', payload)
+        if (data.error) {
+            return dispatch(isError(data.error))
+        }
         dispatch(uploading(data))
-
     } catch (error) {
         dispatch(isError())
     }

@@ -10,8 +10,9 @@ export const isloading = () => ({
     type: 'loading',
 })
 
-export const isError = () => ({
-    type: 'error'
+export const isError = (payload?:string) => ({
+    type: 'error',
+    payload
 })
 
 export const uploading = (payload: { token: string;isadmin:number|string}) => ({

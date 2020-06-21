@@ -9,6 +9,7 @@ import { ImageInput } from "../../adminscreen/upload/style";
 import Input from "./textinput";
 import validateRegistration from "./validateform";
 import { registrationFrom } from "../../../store/actioncreator/actiontypes";
+import imageupload from "../../adminscreen/upload/imageupload";
 import {
     Container,
     Form,
@@ -16,7 +17,6 @@ import {
     AdminForm,
     Label
 } from "../style";
-import imageupload from "../../adminscreen/upload/imageupload";
 
 interface iProps {
     auth?: string;
