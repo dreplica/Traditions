@@ -7,7 +7,7 @@ import { actionType, isloading, uploading, isError } from './actionfuncs'
 import { SIGNUP_FORM } from "../../reusablecomponent/theme/types";
 
 
-export const loadData = (payload: actionType['payload']) => (dispatch: Dispatch) => {
+export const loadData = (payload: { token: string;isadmin:string|number} ) => (dispatch: Dispatch) => {
     try {
         dispatch(isloading())
         dispatch(uploading(payload))
@@ -104,14 +104,28 @@ export const removeCart = (payload: string) => (dispatch: Dispatch) => {
 }
 
 
-export const registrationFrom = (reg_payload: SIGNUP_FORM) => (dispatch: Dispatch) => {
+export const registrationFrom = (reg_payload: SIGNUP_FORM) => async  (dispatch: Dispatch) => {
     try {
         console.log(reg_payload)
         dispatch(isloading())
 
-        Axios.post('http://localhost:3000/signup',reg_payload)
+        const { data } = await Axios.post('http://localhost:3000/signup',reg_payload)
 
-        dispatch({ type: "Updating_Registration", reg_payload })
+        dispatch(uploading(data))
+
+    } catch (error) {
+        dispatch(isError())
+    }
+} 
+
+export const login = (payload: { email: string; password:string}) => async  (dispatch: Dispatch) => {
+    try {
+        console.log(payload)
+        dispatch(isloading())
+
+        const { data } = await Axios.post('http://localhost:3000/signin',payload)
+
+        dispatch(uploading(data))
 
     } catch (error) {
         dispatch(isError())

@@ -2,7 +2,7 @@ import React, { FormEvent, ChangeEvent, useState } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import { loadData } from '../../../store/actioncreator/actiontypes';
+import { login } from '../../../store/actioncreator/actiontypes';
 import {
     Container,
     Content,
@@ -12,8 +12,8 @@ import {
 
 export type dataType = {[key:string]:number|string}
 
-type Props = {
-    setToken:(args:string)=>void
+interface iProps  {
+    login({ email, password }:{email: string;password:string}):void
 }
 
 interface Form{
@@ -26,7 +26,7 @@ const initialForm:Form = {
     email:"",
 }
 
-function Login({setToken}:Props){
+function Login(props:iProps){
     const [form, setForm] = useState<Form>(initialForm)
     const history = useHistory()
     const [error, setError] = useState<string>("")
@@ -37,20 +37,7 @@ function Login({setToken}:Props){
     }
     const handleSubmit = (e:FormEvent) =>{
         e.preventDefault()
-        fetch('http://localhost:3000/signin',{
-        method:'POST',
-        headers:{
-            'content-type':'application/json'
-        },
-        body:JSON.stringify(form)
-    }
-        ).then((res)=>res.json())
-        .then((token)=>{
-            console.log(token); 
-            (token?.token)?setToken(token):setError(token.error);
-            (token?.token && history.push('/home'))
-        })
-        .catch(err=>console.log(err.error))
+        props.login(form)
     }
     return ( 
       <Container>
@@ -81,4 +68,4 @@ function Login({setToken}:Props){
 }
 
 
-export default connect(null,{setToken:loadData,})(Login)
+export default connect(null,{login,})(Login)

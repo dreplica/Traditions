@@ -33,7 +33,7 @@ function ProfileScreen() {
 }
 
 const mapStateToProp = ({ authenticate }: { authenticate: stateData }) => ({
-    auth: authenticate.data?.auth?.admin as boolean
+    auth: authenticate.data?.auth?.isadmin as number
 })
 
 export default connect(mapStateToProp)(ProfileScreen)

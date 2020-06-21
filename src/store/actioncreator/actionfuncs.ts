@@ -6,15 +6,15 @@ export interface actionType {
     modal?: string;
 }
 
-export const isloading = (): actionType => ({
+export const isloading = () => ({
     type: 'loading',
 })
 
-export const isError = (): actionType => ({
+export const isError = () => ({
     type: 'error'
 })
 
-export const uploading = (payload: actionType['payload']): actionType => ({
+export const uploading = (payload: { token: string;isadmin:number|string}) => ({
     type: 'uploading',
-    payload
+    payload 
 })

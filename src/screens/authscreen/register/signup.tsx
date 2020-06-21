@@ -1,4 +1,4 @@
-import React, { FormEvent, useState, ChangeEvent } from "react";
+import React, { FormEvent, useState, ChangeEvent, useEffect } from "react";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 
@@ -38,6 +38,12 @@ function Signup(props: iProps) {
         error: "",
         image: null
     })
+
+    useEffect(() => {
+        if (props.auth?.length) {
+          history.push('/')
+      }
+    }, [props?.auth])
 
     const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
         e.preventDefault()
@@ -90,11 +96,11 @@ function Signup(props: iProps) {
             setState({ ...state, error: error.message as string });
             console.log("error", error.message);
         }
-    };
+    }; 
 
-    if (props.auth?.length) {
-        history.push("/");
-    }
+    // if (props.auth?.length) {
+    //     history.push("/");
+    // }
 
     return (
         <Container>
