@@ -7,7 +7,7 @@ export const Container = styled.div`
   position:relative;
   min-width:250px;
   max-width:250px;
-  margin:10px;
+  margin:0px 20px;
   height:330px;
   border-radius:0px 0px 20px 20px;
 `;

@@ -20,7 +20,25 @@ const initialState: Iprops['data'] = [{
   description: "",
   itemname: "",
   price: ""
-}]
+}, {
+    id: "",
+    image: "",
+    description: "",
+    itemname: "",
+    price: ""
+  },{
+    id: "",
+    image: "",
+    description: "",
+    itemname: "",
+    price: ""
+  },{
+    id: "",
+    image: "",
+    description: "",
+    itemname: "",
+    price: ""
+  }]
 
 export default function SpreadContent(props: Iprops) {
   const [state, setState] = useState<{
@@ -32,17 +50,8 @@ export default function SpreadContent(props: Iprops) {
   })
 
   useEffect(() => {
-    switch (state.filter) {
-      case "cheap":
-        sort("cheap");
-        return;
-      case "costly":
-        sort("costly");
-        return;
-      default:
-        break;
-    }
-  }, [state.filter]);
+  setState({...state,data:props.data})
+  }, [props.data]); 
 
   const sort = (arg: string) => {
     let data: Iprops["data"];
@@ -75,8 +84,8 @@ export default function SpreadContent(props: Iprops) {
       <Sort>
         <Filter>
           <p>Filter By:</p>
-          <Button onClick={(e) => setState({ ...state, filter: "costly" })}>Price Top</Button>
-          <Button onClick={(e) => setState({ ...state, filter: "cheap" })}>Price Down</Button>
+          <Button onClick={(e) => sort("costly")}>Price Top</Button>
+          <Button onClick={(e) => sort("cheap")}>Price Down</Button>
         </Filter>
       </Sort>
       <Items>{Spread}</Items>

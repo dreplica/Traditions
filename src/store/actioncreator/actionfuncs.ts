@@ -1,3 +1,4 @@
+import { ITEMS } from './../../reusablecomponent/theme/types';
 
 export interface actionType {
     type: string;
@@ -17,4 +18,10 @@ export const isError = (payload?:string) => ({
 export const uploading = (payload: { token: string;isadmin:number|string}) => ({
     type: 'uploading',
     payload 
+})
+
+
+export const isData = (payload: ITEMS[]) => ({
+    type: "GET_ITEMS",
+    payload
 })

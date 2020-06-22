@@ -25,25 +25,33 @@ export const Filter = styled.div`
 export const Button = styled.button`
   width:85px;
   height:30px;
+  outline-width:0px;
   border:0px;
   text-align:center;
   font-weight:bolder;
   border-radius:20px;
   margin:5px;
+
+  :hover{
+    color:white;
+    background:black;
+    border:2px solid white;
+  }
 `
 
 export const Items = styled.div`
   display:flex;
   flex-wrap:wrap;
-  justify-content:space-evenly;
+  justify-content:space-between;
   align-items:center;
   /* padding:20px; */
-  width:100%;
+  width:80%;
+  margin:20px auto;
 
   :after{
     content:"";
     flex:0 0 250px;
-    /* margin:auto; */
+    margin:0px 20px;
     /* background:red; */
     height:10px;
   } 

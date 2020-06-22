@@ -22,7 +22,7 @@ const intitialState:itemState = {
 
 const ItemsReducer = (state = intitialState,action:action) =>{
     switch (action.type) {
-        case "getItems":
+        case "GET_ITEMS":
             return {
                 ...state,
                 data:action.payload

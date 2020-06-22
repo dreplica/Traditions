@@ -2,7 +2,21 @@ import { Dispatch } from "redux";
 import Axios from 'axios'
 
 import { ITEMS } from './../../reusablecomponent/theme/types';
-import {isloading, uploading, isError } from './actionfuncs'
+import {isloading, uploading, isError,isData } from './actionfuncs'
+
+
+export const getRequest = (url: string) => async (dispatch: Dispatch) => {
+    console.log("dipatching to fetch")
+    try {
+        dispatch(isloading())
+        const { data } = await Axios.get(`http://localhost:3000/${url}`)
+        dispatch(isData(data))
+    }
+    catch (error) {
+        console.log("didnt happen")
+        dispatch(isError())
+    }
+}
 
 
 export const loadData = (payload: { token: string;isadmin:string|number} ) => (dispatch: Dispatch) => {

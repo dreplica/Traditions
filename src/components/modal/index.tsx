@@ -15,6 +15,7 @@ import {
     Price
 } from './style';
 import { ITEMS } from '../../reusablecomponent/theme/types';
+import { getImage } from '../../reusablecomponent/functions';
 
 interface Iprops {
     modal: string; 
@@ -38,7 +39,7 @@ function Modalview({ current, modal, RemoveModal, AddCart }: Iprops) {
             <span className='close' onClick={close}><strong>X</strong></span>
             <Content>
                 {/* <div className='nav' ><p>previous</p><p>next</p></div> */}
-                <Image><img src={`http://localhost:3000/images/${current?.image}`} alt='' /></Image>
+                <Image><img src={getImage(current.image)} alt='' /></Image>
                 <Description>
                     <h2>{current?.itemname}</h2>
                     <p className="desc">{current?.description}</p>

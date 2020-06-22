@@ -5,6 +5,7 @@ import img from '../../img/womgowncan.jpg'
 import { Modal } from '../../store/reducers/effects';
 import { modalView } from '../../store/actioncreator/effects';
 import { getPreview, addCart } from '../../store/actioncreator/item';
+import { ITEMS } from '../theme/types';
 import {  
     Container,
     Image,
@@ -15,7 +16,6 @@ import {
     Name,
     Price
 } from './style';
-import { ITEMS } from '../theme/types';
 
 interface IProps {
     image: string;
@@ -56,13 +56,14 @@ function Card(props: IProps) {
     
     const getImage = (arg:string) => {
         const img = arg.split(',')[0]
-        return `https://res.cloudinary.com/dyypxjmx9/image/upload/v1592830732/${'traditions/items/wp1822759-rick-and-morty-wallpapers_kqaqff.jpg'}`
+        console.log(img)
+        return `https://res.cloudinary.com/dyypxjmx9/image/upload/v1592830732/${img}`
     }
 
     return (
         <Container onMouseEnter={showCover} onMouseLeave={showCover}>
             <Cover style={{ display: display }} />
-            <Image src={getImage("lo,lo")} />
+            <Image src={getImage(props.image)} />
             <View
                 style={{ display: display }}
                 onClick={showModal}
