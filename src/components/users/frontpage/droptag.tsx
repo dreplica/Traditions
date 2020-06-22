@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react'
-import { DropIT } from './adminstyle'
+import { DropIT } from '../admin/adminstyle'
 
 const DropTag:React.FC<{name:string}> = ({name})=>{
   const [count, setcount] = useState<number>(90)
