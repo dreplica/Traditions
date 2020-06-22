@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 
-import { objectData } from "../../../store/reducers/items";
 import AddReview from "./addreview";
 import { Reviews } from "./style";
 
@@ -11,8 +10,9 @@ interface Iprops {
 }
 
 export default function Review({ id, token }: Iprops) {
-    const [reviews, setReviews] = useState<objectData[]>([])
-    console.log('review')
+    const [reviews, setReviews] = useState<[{
+        [key: string]: string
+    }]>([{}])
     useEffect(() => {
         Axios.get(`http://localhost:3000/reviews/${id}`, {
             headers: {
@@ -21,7 +21,7 @@ export default function Review({ id, token }: Iprops) {
         }).then((res) => setReviews(res.data))//get just the location
     }, [])
     return (
-        <Reviews>
+        <Reviews> 
         <AddReview id={id} />
         <div className='reviews' >
             {

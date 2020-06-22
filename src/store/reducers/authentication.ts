@@ -9,6 +9,7 @@ export interface authe {
 export type dataType = {
     [key:string]:Array<{[key:string]:string}>|{[key:string]:object|[]|string}
 }
+
 export interface stateData {
     error:boolean|string,
     loading:boolean | string,
@@ -30,7 +31,7 @@ const initialState: stateData = {
     }
 }
 
-const authenticate = (state = initialState,action:actionType):stateData =>{
+const authenticate = (state = initialState,action:actionType) =>{
     switch (action.type) {
         case 'loading':
             return {
@@ -42,7 +43,7 @@ const authenticate = (state = initialState,action:actionType):stateData =>{
             localStorage['auth'] = JSON.stringify(action.payload)
             return {
                 ...state,
-                data:{...state.data,'auth':action.payload} as dataType,
+                data:{...state.data,auth:action.payload} ,
                 loading:false,
             }
         

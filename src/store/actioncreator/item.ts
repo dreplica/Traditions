@@ -1,8 +1,7 @@
 import { Dispatch } from "redux"; 
 import Axios from 'axios'
 
-
-import { objectData } from "../reducers/items";
+import { ITEMS } from './../../reusablecomponent/theme/types';
 import {isloading, uploading, isError } from './actionfuncs'
 
 
@@ -15,7 +14,7 @@ export const loadData = (payload: { token: string;isadmin:string|number} ) => (d
     }
 }
 export const checkLocal = () => (dispatch: Dispatch) => {
-    let local: objectData[] = []
+    let local: ITEMS[] = []
     if (localStorage['cart']) {
         const value = JSON.parse(localStorage['cart'])
         local = [...value]
@@ -32,7 +31,7 @@ export const checkLocal = () => (dispatch: Dispatch) => {
 
 
 
-export const getItem = (payload: objectData[]) => (dispatch: Dispatch) => {
+export const getItem = (payload: ITEMS[]) => (dispatch: Dispatch) => {
     try {
         dispatch(isloading())
         dispatch({ type: 'getItems', payload })
@@ -51,7 +50,7 @@ export const getPreview = (payload: string) => (dispatch: Dispatch) => {
 }
 
 
-export const addCart = (payload: objectData) => (dispatch: Dispatch) => {
+export const addCart = (payload: ITEMS) => (dispatch: Dispatch) => {
     let local = []
     if (localStorage['cart']) {
         const value = JSON.parse(localStorage['cart']);
@@ -62,6 +61,7 @@ export const addCart = (payload: objectData) => (dispatch: Dispatch) => {
         local.push(payload)
         localStorage['cart'] = JSON.stringify([{ ...payload, cartid: " c0" }]);
     }
+    
     try {
         dispatch(isloading())
         dispatch({ type: 'addCart', payload: local })
@@ -70,11 +70,11 @@ export const addCart = (payload: objectData) => (dispatch: Dispatch) => {
     }
 }
 export const removeCart = (payload: string) => (dispatch: Dispatch) => {
+
     const value = JSON.parse(localStorage['cart'])
-    console.log("thuis is paulosad", payload)
     value.map((x: { [key: string]: string }) => console.log(typeof x.cartid))
-    const local = value.filter((item: objectData) => item.cartid !== payload)
-    console.log("this is local", local)
+
+    const local = value.filter((item: ITEMS) => item.cartid !== payload)
     localStorage['cart'] = JSON.stringify(local)
     try {
         dispatch(isloading())

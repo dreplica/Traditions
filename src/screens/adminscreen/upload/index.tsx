@@ -22,7 +22,7 @@ interface Iprops {
 export interface AdminForm extends Omit<ITEMS, "id"> {
     category: "accessories" | "men" | "menfoot" | "women" | "womenfoot";
     type: string;
-    quantity: number;
+    quantity: string|number; 
 }
 
 const initialForm: AdminForm = {

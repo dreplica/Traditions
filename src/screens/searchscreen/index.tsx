@@ -3,13 +3,12 @@ import { connect } from "react-redux";
 import Axios from "axios";
 import { useParams } from "react-router-dom";
 
-import { objectData } from "../../store/reducers/items";
 import { getItem } from "../../store/actioncreator/item";
 import { stateData } from "../../store/reducers/authentication";
 import SpreadContent from "../../reusablecomponent/spread";
 
 export interface IProps {
-  auth: objectData;
+  auth?: string;
 }
 
 interface incomingData {
@@ -33,9 +32,10 @@ function SearchRoute(props: IProps) {
   const [state, setState] = useState<incomingData[]>([initialState]);
 
   useEffect(() => {
+    //search doesnt need users to signin
     Axios.get(`http://localhost:3000/items/${item}`, {
       headers: {
-        authorization: `bearer ${props.auth?.token}`,
+        // authorization: `bearer ${props.auth?.token}`,
       },
     }).then((res) => setState(res.data));
   }, [item]);
@@ -44,7 +44,7 @@ function SearchRoute(props: IProps) {
 }
 
 const mapStateToProps = ({ authenticate }: { authenticate: stateData }) => ({
-  auth: authenticate.data?.auth as objectData,
+  auth: authenticate.data.auth?.token,
 });
 
 export default connect(mapStateToProps, { getitems: getItem })(SearchRoute);

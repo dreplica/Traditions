@@ -4,21 +4,21 @@ import { FiSearch } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
 import { stateData } from "../../store/reducers/authentication";
-import { objectData } from "../../store/reducers/items";
+import { ITEMS } from "../../reusablecomponent/theme/types";
+import InputField from "../../screens/authscreen/register/textinput";
 import { 
   Container, 
   DropList, 
   Searchinput 
 } from "./style";
 
-type Iprops = objectData
 
 interface search{
   itemname:string;
   id:number;
 }
 
-function Search(props:Iprops) {
+export default function Search() {
   const [search, setSearch] = useState("");
   const [data, setdata] = useState<search[]>([]);
 
@@ -61,7 +61,7 @@ function Search(props:Iprops) {
           type="search"
           placeholder="search items"
           value={search}
-          onChange={handleSearch}
+          onChange={handleSearch} 
         />
         <FiSearch color='black'size={30}/>
       </Searchinput>
@@ -76,13 +76,7 @@ function Search(props:Iprops) {
     </Container>
   );
 }
-
-const mapStateToProps = ({authenticate}:{authenticate:stateData}) =>({
-auth:authenticate.data?.auth as objectData
-})
-
-export default connect(mapStateToProps)(Search);
-
+ 
 
 const dataToSearch:search[] = [
   {

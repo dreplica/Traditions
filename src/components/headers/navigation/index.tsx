@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom';
 import { FiShoppingCart } from 'react-icons/fi';
 import { FaStoreAlt, FaRegEnvelope, FaSignOutAlt, FaTags, FaGlobeAfrica } from 'react-icons/fa';
 
-import { itemState, objectData } from '../../../store/reducers/items';
+import { itemState } from '../../../store/reducers/items';
 import { stateData } from '../../../store/reducers/authentication';
+import { ITEMS } from '../../../reusablecomponent/theme/types';
 import { menuView } from '../../../store/actioncreator/effects';
 import { Modal } from '../../../store/reducers/effects';
 import { Nav } from './style';
@@ -14,7 +15,7 @@ interface Iprops {
   menu: string;
   auth: string;
   view: (args: string) => void;
-  data: objectData[]
+  data: ITEMS[]
 }
 
 

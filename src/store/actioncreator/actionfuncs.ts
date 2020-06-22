@@ -1,8 +1,7 @@
-import { objectData } from "../reducers/items"
 
 export interface actionType {
     type: string;
-    payload?: string | { [key: string]: string } | objectData[],
+    payload?: string | { [key: string]: string };
     modal?: string;
 }
 

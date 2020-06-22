@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { modalView,  } from '../../store/actioncreator/effects';
 import {  addCart } from '../../store/actioncreator/item';
 import { Modal } from '../../store/reducers/effects';
-import { itemState, objectData } from '../../store/reducers/items';
+import { itemState } from '../../store/reducers/items';
 import {
     Container,
     Image,
@@ -14,12 +14,13 @@ import {
     Description,
     Price
 } from './style';
+import { ITEMS } from '../../reusablecomponent/theme/types';
 
 interface Iprops {
-    modal: string;
+    modal: string; 
     RemoveModal: (arg: string) => void;
-    current: objectData;
-    AddCart: (args: objectData) => void
+    current: ITEMS;
+    AddCart: (args: ITEMS) => void
 }
 
 function Modalview({ current, modal, RemoveModal, AddCart }: Iprops) {
@@ -44,11 +45,11 @@ function Modalview({ current, modal, RemoveModal, AddCart }: Iprops) {
 
                     <Size>
                         <p>select size:</p>
-                        <select>
+                        {/* <select>
                             <option value='135'>135</option>
                             <option value='135'>105</option>
                             <option value='135'>135</option>
-                        </select>
+                        </select> */}
                     </Size>
                     <Price><h3>&#8358;{current?.price}</h3></Price>
                     <Link to={`/seller`} onClick={close} className='check_designer'>Check Designer</Link>
