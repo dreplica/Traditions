@@ -2,7 +2,7 @@ import React, { MouseEvent, useState } from 'react';
 import { connect } from 'react-redux'; 
 import { FiAlignLeft } from "react-icons/fi";
 
-import { menuView } from '../../../../store/actioncreator/actiontypes';
+import { menuView } from '../../../../store/actioncreator/effects';
 import { Modal } from '../../../../store/reducers/effects';
 import prof from '../../../../img/prof.jpg'
 import Search from '../../../search';
@@ -16,14 +16,13 @@ import {
 } from './style'
 
 
-interface MenuView {
+interface Iprops {
   toggleMenu(args: string): void;
   auth?: string;
   Menu: string;
 }
-function Header(props: MenuView) {
+function Header(props: Iprops) {
   const [drop, setDrop] = useState<'hidden' | 'visible'>('hidden')
-  const auth = true;
 
   const Shownav = (e: MouseEvent) => {
     e.preventDefault();
@@ -35,14 +34,14 @@ function Header(props: MenuView) {
   }
 
   const ShowImage = <Image>
-    <img src={prof} alt='' onClick={showProfile} />
+    <img src={prof} alt='profile image' onClick={showProfile} />
   </Image>
 
 
   return (
-    <Container>
+    <Container> 
       <Content>
-        {props.auth?.length ? ShowImage : null}
+        {props.auth?.length ? ShowImage:null }
         <Logo>
           <span>
             Thradishion&nbsp;<sup>&reg;</sup>
@@ -56,9 +55,9 @@ function Header(props: MenuView) {
   );
 }
 
-const mapStateToProps = ({ ItemsReducer, EffectReducers }: { ItemsReducer: stateData, EffectReducers: Modal }) => ({
+const mapStateToProps = ({ authenticate, EffectReducers }: { authenticate: stateData, EffectReducers: Modal }) => ({
   Menu: EffectReducers.menu,
-  auth: ItemsReducer.data?.auth?.token
+  auth: authenticate.data?.auth?.token 
 })
 
 export default connect(mapStateToProps, { toggleMenu: menuView })(Header)

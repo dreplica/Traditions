@@ -32,6 +32,7 @@ export const View = styled.button`
     height:35px;
     position:absolute;
     z-index:3;
+    outline-width:0px;
     top:110px;
     left:35%;
     border:1px solid white;
@@ -47,6 +48,7 @@ export const View = styled.button`
 export const CartButton = styled.button`
     border-radius:0px 0px 20px 20px;
     width:100%;
+    outline-width:0px;
     height:35px;
     border:0px;
     color:lightgrey;

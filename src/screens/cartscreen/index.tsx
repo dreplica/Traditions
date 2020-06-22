@@ -43,6 +43,7 @@ export default function Carts(){
   return (
     <Container>
       <Content>
+            <Total>Total: &#8358;{0}</Total>
         <Header>
           <Count>Cart {0} items</Count>
           <Buy onClick={handlePurchase}>Buy Now</Buy>
@@ -57,7 +58,6 @@ export default function Carts(){
             price={'9000'}
             />)}
           </Display>
-          <Total>total: &#8358;{0}</Total>
         </ShowCart>
       </Content>
     </Container>

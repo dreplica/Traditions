@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import Screens from "../screens/index";
 import Frontpage from "../components/users/frontpage/frontpage";
-import { checkLocal } from "../store/actioncreator/actiontypes";
+import { checkLocal } from "../store/actioncreator/item";
 import Categories from "../components/categories/category";
 import {
   Container
@@ -41,9 +41,9 @@ function Maincomponent({ getLocal }: Iprops) {
         <Route path="/cart">
           <Screens.Cart />
         </Route>
-        {/* <Route path="/signup">
+        <Route path="/signup">
           <Screens.Register />
-        </Route> */}
+        </Route>
         <Route path="/seller">
           <Screens.ProfileScreen />
         </Route>

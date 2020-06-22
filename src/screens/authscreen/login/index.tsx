@@ -1,57 +1,64 @@
-import React, { FormEvent, ChangeEvent, useState } from 'react';
+import React, { FormEvent, ChangeEvent, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import { loadData } from '../../../store/actioncreator/actiontypes';
+import { login } from '../../../store/actioncreator/auth';
 import {
     Container,
     Content,
-    Form
+    Form,
+    Label,
+    Input
 } from '../style';
+import { stateData } from '../../../store/reducers/authentication';
+import InputField from '../register/textinput';
 
 
 export type dataType = {[key:string]:number|string}
-
-type Props = {
-    setToken:(args:string)=>void
-}
 
 interface Form{
     password:string;
     email:string;
 }
 
+interface iProps  {
+    login({ email, password }: Form): void;
+    auth?: string;
+    error:string
+}
+
+
 const initialForm:Form = {
     password:"",
     email:"",
 }
 
-function Login({setToken}:Props){
-    const [form, setForm] = useState<Form>(initialForm)
+function Login(props:iProps){
     const history = useHistory()
-    const [error, setError] = useState<string>("")
-    const handleChange = (e:ChangeEvent<HTMLInputElement>) =>{
+    const [state, setState] = useState({
+        form: initialForm,
+    }) 
+
+    useEffect(() => {
+        (props.auth?.length) &&  history.push('/')
+    }, [props.auth]) 
+
+    const handleChange =(type:string)=> (e:ChangeEvent<HTMLInputElement>) =>{
         e.preventDefault();
-        setError("")
-        setForm({...form,[e.target?.id]:e.target?.value}) 
+        const value = e.currentTarget.value
+        setState(prev => {
+            return {
+                ...prev,
+                form:{...prev.form,[type]:value}
+            }
+        }) 
     }
     const handleSubmit = (e:FormEvent) =>{
         e.preventDefault()
-        fetch('http://localhost:3000/signin',{
-        method:'POST',
-        headers:{
-            'content-type':'application/json'
-        },
-        body:JSON.stringify(form)
+        props.login(state.form)
     }
-        ).then((res)=>res.json())
-        .then((token)=>{
-            console.log(token); 
-            (token?.token)?setToken(token):setError(token.error);
-            (token?.token && history.push('/home'))
-        })
-        .catch(err=>console.log(err.error))
-    }
+
+
     return ( 
       <Container>
       <Content>
@@ -67,18 +74,25 @@ function Login({setToken}:Props){
             </div>
         </Content>   
         <Form>
-            <span>{error}</span>
-        <label>  
-        <input placeholder='Email' type='email' id="email"  value={form.email} onChange={handleChange} required/>
-        </label>
-        <label>  
-        <input placeholder='Password' type='password' id="password"  value={form.password} onChange={handleChange} required/>
-        </label>
+            <span>{props.error}</span>
+        <Label>  
+        <InputField placeholder='Email' type='email'  value={state.form.email} changeHandeler={(e)=>handleChange('email')(e)} />
+        </Label>
+        <Label>  
+        <InputField  placeholder='Password' type='password' value={state.form.password} changeHandeler={(e)=>handleChange('password')(e)} />
+        </Label>
         <button type="submit" onClick={handleSubmit}>Login</button>
         </Form>
       </Container>
   ); 
-}
+} 
+
+const mapStateToProps = ({authenticate}:{authenticate:stateData}) => {
+    return {
+        auth:authenticate.data.auth?.token,
+        error:authenticate.error as string
+    }
+} 
 
 
-export default connect(null,{setToken:loadData,})(Login)
+export default connect(mapStateToProps,{login,})(Login)

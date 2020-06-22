@@ -1,4 +1,4 @@
-import { actionType } from '../actioncreator/actiontypes'
+import { actionType } from '../actioncreator/actionfuncs'
 
 
 export interface authe {
@@ -15,12 +15,20 @@ export interface stateData {
     data: {
         auth?: {
             token?: string;
-            admin?: boolean|string;
+            isadmin?: number|string;
         }
     }
 }
 
-const initialState:stateData= {error:false,loading:false,data:{auth:{token:"",admin:""}}}
+const initialState: stateData = {
+    error: false,
+    loading: false,
+    data: {
+        auth: {
+            token: "", isadmin: 0
+        }
+    }
+}
 
 const authenticate = (state = initialState,action:actionType):stateData =>{
     switch (action.type) {
@@ -29,6 +37,7 @@ const authenticate = (state = initialState,action:actionType):stateData =>{
                 ...state,
                 loading:true,
             }
+        
         case 'uploading':
             localStorage['auth'] = JSON.stringify(action.payload)
             return {
@@ -36,29 +45,34 @@ const authenticate = (state = initialState,action:actionType):stateData =>{
                 data:{...state.data,'auth':action.payload} as dataType,
                 loading:false,
             }
+        
         case 'checkLocal':
-        const auth:string | {[key: string]: string;}= JSON.parse(localStorage['auth']);
+        const auth:stateData['data']['auth']= JSON.parse(localStorage['auth']);
             return {
                 ...state,
-                data:{...state.data,'auth':auth} as dataType,
+                data:{...state.data,'auth':auth},
                 loading:false,
             }
+        
         case 'logout':
             delete localStorage['auth'];
             return {
                 ...state,
                 data:{}
             }
+        
         case 'profile':
             return {
                 ...state, 
                 data:{...state.data,user:action.payload} as dataType,
             }
+        
         case 'error':
             return{
                 ...state,
                 error:true,
             }
+        
         default:
             return state;
     }

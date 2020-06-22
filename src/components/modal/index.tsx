@@ -2,7 +2,8 @@ import React, { MouseEvent } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { modalView, addCart } from '../../store/actioncreator/actiontypes';
+import { modalView,  } from '../../store/actioncreator/effects';
+import {  addCart } from '../../store/actioncreator/item';
 import { Modal } from '../../store/reducers/effects';
 import { itemState, objectData } from '../../store/reducers/items';
 import {

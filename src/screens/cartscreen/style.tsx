@@ -47,11 +47,11 @@ export const Buy = styled.button`
   border: 0px;
   font-weight: bold;
   background: orange;
-  color: whitesmoke;
   border-radius: 20px;
+  outline-width:0px;
 
   :hover {
-    color: black;
+    color: white;
   }
 `;
 
