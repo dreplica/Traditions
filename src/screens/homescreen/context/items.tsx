@@ -19,23 +19,26 @@ export default function Items(props: IProps) {
     })
 
     useEffect(() => {
-        
+        setstate({...state,items:props.items})
     },[])
-
-
+    
+    console.log('here ies props.items :>> ', props.items);
 
     if (state.loading) {
         return <FiActivity />
     }
 
-    const item = state.items.map((item, index) => <Cards
+    const item =props.items.map((item, index) => <Cards
         description={item.description}
         id={item.id} 
         image={item.image}
         itemname={item.itemname}
         price={item.price}
-        key={index}
+        key={index} 
     />)
 
+    console.log("conditional love",state)
+ 
     return <ItemContainer>{item}</ItemContainer>
+
 }
