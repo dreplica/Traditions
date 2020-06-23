@@ -1,9 +1,12 @@
 import React, { useState, MouseEvent, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { connect } from "react-redux";
 
 import CartItem from './cart/cart'
-import { 
-  Container, 
+import { ITEMS } from "../../reusablecomponent/theme/types";
+import { itemState } from "../../store/reducers/items";
+import {
+  Container,
   Content,
   Header,
   Count,
@@ -13,18 +16,16 @@ import {
   Total
 } from "./style";
 
+interface iProps{
+  cart:ITEMS[]; 
+}
 
-export default function Carts(){
-  const [state, setState] = useState<[]|string|null>([]);
+function Carts(props:iProps) {
+  const [state, setState] = useState<ITEMS[]>([]);
   const history = useHistory();
   useEffect(() => {
-    //  try {
-    //   const cart:null= JSON.parse(localStorage.getItem('cart')) ?? [];
-    //   setState(cart)
-    // } catch (error) {
-    //   alert(`this item is not available ${error.message}`)
-    // }
-  }, []);
+    setState(props.cart)
+  }, [props.cart]);
 
   const handlePurchase = (e: MouseEvent) => {
     // e.preventDefault();
@@ -38,28 +39,39 @@ export default function Carts(){
     history.push("/home/payment");
   };
 
-  // const total = state.reduce((acc,items)=>items?.price? acc += items.price:acc += 0,0)
+  const total = state.reduce((acc, items) => {
+    return items.price
+      ? acc += parseInt(items.price) as number
+      : acc += 0
+},0)
 
-  return (
-    <Container>
-      <Content>
-            <Total>Total: &#8358;{0}</Total>
-        <Header>
-          <Count>Cart {0} items</Count>
-          <Buy onClick={handlePurchase}>Buy Now</Buy>
-        </Header>
-        <ShowCart>
-          <Display>
-            {[0,0,0].map((item, index) => <CartItem 
-            cartId={'0'}
+return (
+  <Container>
+    <Content>
+      <Total>Total: &#8358;{total}</Total>
+      <Header>
+        <Count>Cart {state.length} items</Count>
+        <Buy onClick={handlePurchase}>Buy Now</Buy>
+      </Header>
+      <ShowCart>
+        <Display>
+          {state.map((item, index) => <CartItem
+            cartid={item.cartid as string}
             key={index}
-            image={'l'}
-            name={"kawasaki"}
-            price={'9000'}
-            />)}
-          </Display>
-        </ShowCart>
-      </Content>
-    </Container>
-  );
+            image={item.image}
+            itemname={item.itemname}
+            price={item.price}
+          />)}
+        </Display>
+      </ShowCart>
+    </Content>
+  </Container>
+);
 };
+
+
+const mapStateToProps = ({ItemsReducer}:{ItemsReducer:itemState})=>({
+  cart:ItemsReducer.cart
+})
+
+export default connect(mapStateToProps)(Carts)  

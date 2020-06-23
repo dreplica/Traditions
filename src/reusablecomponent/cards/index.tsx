@@ -6,7 +6,8 @@ import { Modal } from '../../store/reducers/effects';
 import { modalView } from '../../store/actioncreator/effects';
 import { getPreview, addCart } from '../../store/actioncreator/item';
 import { ITEMS } from '../theme/types';
-import {  
+import getsingleimage from '../getsingleimage'
+import {
     Container,
     Image,
     View,
@@ -31,7 +32,7 @@ interface IProps {
 
 function Card(props: IProps) {
     const [display, setstate] = useState<"none" | "block">("none")
-    
+
     const showModal = (e: MouseEvent) => {
         props.viewing('block')
         props.current(props.id)
@@ -39,13 +40,13 @@ function Card(props: IProps) {
 
     const addCart = (e: MouseEvent) => {
         e.preventDefault();
-        
+
         props.cart({
             image: props.image,
             itemname: props.itemname,
             price: props.price,
             id: props.id,
-            description:props.description
+            description: props.description
         })
     }
 
@@ -53,17 +54,13 @@ function Card(props: IProps) {
         (display === "none")
             ? setstate("block")
             : setstate("none")
-    
-    const getImage = (arg:string) => {
-        const img = arg.split(',')[0]
-        console.log(img)
-        return `https://res.cloudinary.com/dyypxjmx9/image/upload/v1592830732/${img}`
-    }
+
+
 
     return (
         <Container onMouseEnter={showCover} onMouseLeave={showCover}>
             <Cover style={{ display: display }} />
-            <Image src={getImage(props.image)} />
+            <Image src={getsingleimage(props.image)} />
             <View
                 style={{ display: display }}
                 onClick={showModal}

@@ -97,6 +97,7 @@ export const Form = styled.form`
     & button{
         width:300px;
         padding:15px;
+        height:50px;
         outline-width:0px;
         background:transparent;
         border:0px;

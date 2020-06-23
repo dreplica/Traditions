@@ -1,41 +1,45 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 
+import { ITEMS } from "../../../reusablecomponent/theme/types";
+import { removeCart } from '../../../store/actioncreator/item'
 import img from "../../../img/womgowncan.jpg";
-import { Container, Content, Image, RemoveItem } from "./style";
+import {
+  Container,
+  Content,
+  Image,
+  RemoveItem
+} from "./style";
+import getsingleimage from "../../../reusablecomponent/getsingleimage";
 
-interface Iprops {
-  image: string;
-  cartId: string;
-  name: string;
-  price: string;
+interface Iprops extends Pick<ITEMS,'image'|'itemname'|'price'|'quantity'> {
+  cartid: string; 
+  removeCart(T: string): void;
 }
 
-export default function CartItem(props: Iprops) {
-  //parody state, won't need it
+ function CartItem(props: Iprops) {
   const [state, setState] = useState("flex");
-
-  const removeItem = (id: number = 0) => {
-    // try {
-    //   const cart = JSON.parse(localStorage.getItem('cart'));
-    //   const newCart = cart.filter((item) => item.cartId !== id)
-    //   localStorage['cart'] = JSON.stringify(newCart)
-    // } catch (error) {
-    //   alert(`this item is not available ${error.message}`)
-    // }
-    setState("none");
+ 
+  const removeItem = () => {
+    
+    // setState("none");
+    props.removeCart(props.cartid)
     //on adding to cart, just send to localstorage
+
   };
 
   return (
     <Container className={state}>
-      <RemoveItem onClick={() => removeItem()} id={props.cartId}>
+      <RemoveItem onClick={removeItem}>
         X
       </RemoveItem>
-      <Image src={img} alt="" />
+      <Image src={getsingleimage(props.image)} alt="" />
       <Content>
-        <p>{props.name}</p>
+        <p>{props.itemname}</p>
         <p>&#8358;{props.price}</p>
       </Content>
     </Container>
   );
 }
+
+export default connect(null, { removeCart })(CartItem)

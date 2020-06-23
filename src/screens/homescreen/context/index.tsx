@@ -44,8 +44,6 @@ const ContextLayer = (props: iProps) => {
     }, [props.data])
 
     const partition = async () => {
-        // const { data } = await Axios.get('http://localhost:3000/items')
-        {
             props.data.forEach((item: ITEMS) => {
                 switch (item.category) {
                     case 'men':
@@ -69,7 +67,6 @@ const ContextLayer = (props: iProps) => {
                 }
             })
         }
-    }
 
 
     type keys = keyof category
