@@ -12,10 +12,10 @@ import {
 } from "./style";
 
 
-interface iProps {
-    data: ITEMS[],
-    getRequest(arg: string): void;
-}
+// interface iProps {
+//     data: ITEMS[],
+//     getRequest(arg: string): void;
+// }
 
 interface category {
     "Men's wear": ITEMS[];
@@ -23,7 +23,7 @@ interface category {
     "Foot wear": ITEMS[];
 }
 
-const ContextLayer = (props: iProps) => {
+export default function ContextLayer (){
 
     const [state, setstate] = useState<category>({
         "Men's wear": [],
@@ -33,40 +33,34 @@ const ContextLayer = (props: iProps) => {
 
 
     useEffect(() => {
-        if (!props.data[0].id) {
-            props.getRequest('items')
-        }
-
-        if (props.data[0].id) {
-            partition()
-        }
-
-    }, [props.data])
+        partition()
+    }, [])
 
     const partition = async () => {
-            props.data.forEach((item: ITEMS) => {
-                switch (item.category) {
-                    case 'men':
-                        return setstate((prev) => ({
-                            ...prev,
-                            "Men's wear": [...prev["Men's wear"], item]
-                        }))
+        const { data } = await Axios('http://localhost:3000/items')
+        data.forEach((item: ITEMS) => { 
+            switch (item.category) {
+                case 'men':
+                    return setstate((prev) => ({
+                        ...prev,
+                        "Men's wear": [...prev["Men's wear"], item]
+                    }))
 
-                    case 'women':
-                        return setstate((prev) => ({
-                            ...prev,
-                            "Women's wear": [...prev["Women's wear"], item]
-                        }))
-                    case 'womenfoot' || 'menfoot':
-                        return setstate((prev) => ({
-                            ...prev,
-                            "Foot wear": [...prev["Foot wear"], item]
-                        }))
-                    default:
-                        return
-                }
-            })
-        }
+                case 'women':
+                    return setstate((prev) => ({
+                        ...prev,
+                        "Women's wear": [...prev["Women's wear"], item]
+                    }))
+                case 'womenfoot' || 'menfoot':
+                    return setstate((prev) => ({
+                        ...prev,
+                        "Foot wear": [...prev["Foot wear"], item]
+                    }))
+                default:
+                    return
+            }
+        })
+    }
 
 
     type keys = keyof category
@@ -85,9 +79,9 @@ const ContextLayer = (props: iProps) => {
     );
 }
 
-const mapStateToProps = ({ ItemsReducer }: { ItemsReducer: itemState }) => ({
-    data: ItemsReducer.data
-})
+// const mapStateToProps = ({ ItemsReducer }: { ItemsReducer: itemState }) => ({
+//     data: ItemsReducer.data
+// })
 
 
-export default connect(mapStateToProps, { getRequest })(ContextLayer)
+// export default connect(mapStateToProps, { getRequest })(ContextLayer)

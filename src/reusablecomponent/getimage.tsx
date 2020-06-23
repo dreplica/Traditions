@@ -11,7 +11,6 @@ interface state{
 export default  (arg: string,Komponent:FC<{src:string}>) => {
 
     const images = arg.split(",")
-    console.log("try out")
 
     return class extends Component<{},state>{
         constructor(props:any){
@@ -23,7 +22,6 @@ export default  (arg: string,Komponent:FC<{src:string}>) => {
         }
 
         render(){
-            console.log("some class things")
             const {addr,holder} = this.state
             const display = addr.map(item => <Komponent src={holder+item} />)
             return display
@@ -41,7 +39,6 @@ interface iProps {
 }
 
 export function Imaging(props: iProps) {
-    console.log("heheheh",props.src)
     return (
         <Image src={props.src} />
     );

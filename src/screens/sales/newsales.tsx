@@ -13,7 +13,6 @@ interface iProps {
 }
 
 function Newsales(props:iProps) {
-  const [state, setstate] = useState(props.data);
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
@@ -25,7 +24,6 @@ function Newsales(props:iProps) {
   if (loading) {
     return <FiActivity />;
   }
-console.log('the state state :>> ', props.data);
   return <SpreadContent data={props.data} />;
 }
 

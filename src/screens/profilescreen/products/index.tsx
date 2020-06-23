@@ -22,14 +22,10 @@ export default function Products({ id, token }: Iprops) {
 
     const products = Array.from({ length: 10 })
     return (<Container>
-        {products.map((_, index) => <Cards
+        {/* {products.map((item, index) => <Cards
             key={index}
-            id={"0"}
-            itemname={"gro"}
-            description={"jnjknjn"}
-            image={"Agbada1582886477226.jpg"}
-            price={"90909"} />
-        )}
+            item={item}/>
+        )} */}
     </Container>)
 }
 

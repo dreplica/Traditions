@@ -55,11 +55,7 @@ export default function TopSales() {
     }
 
     return state.map((item, index) => <Cards
-        description={item.description}
-        id={item.id}
-        image={item.image}
-        itemname={item.itemname}
-        price={item.price}
-        key={index}
+        item={item}
+        key={index} 
     />)
 }

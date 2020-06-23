@@ -1,11 +1,11 @@
-import React, { MouseEvent, useState } from 'react';
+import React, { MouseEvent, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import img from '../../img/womgowncan.jpg'
 
 import { Modal } from '../../store/reducers/effects';
 import { modalView } from '../../store/actioncreator/effects';
 import { getPreview, addCart } from '../../store/actioncreator/item';
-import { ITEMS } from '../theme/types';
+import { ITEMS, initialItems } from '../theme/types';
 import getsingleimage from '../getsingleimage'
 import {
     Container,
@@ -17,60 +17,63 @@ import {
     Name,
     Price
 } from './style';
+import Items from '../../screens/homescreen/context/items';
 
 interface IProps {
-    image: string;
-    itemname: string;
-    price: string;
-    description: string;
-    id: string;
+    item: ITEMS;
     modal: string;
-    current: (args: string) => void
+    current: (args: ITEMS) => void
     viewing: (args: string) => void
     cart: (args: ITEMS) => void
 }
 
 function Card(props: IProps) {
-    const [display, setstate] = useState<"none" | "block">("none")
+    const [state, setstate] = useState<{ display: "none" | "block", item: ITEMS }>({
+        display: "none",
+        item: initialItems
+    })
+
+    useEffect(() => {
+        setstate({ ...state, item: props.item })
+    }, [props.item])
+
 
     const showModal = (e: MouseEvent) => {
         props.viewing('block')
-        props.current(props.id)
+        props.current(state.item)
     }
 
     const addCart = (e: MouseEvent) => {
         e.preventDefault();
 
-        props.cart({
-            image: props.image,
-            itemname: props.itemname,
-            price: props.price,
-            id: props.id,
-            description: props.description
-        })
+        props.cart(state.item)
     }
 
     const showCover = (e: MouseEvent) =>
-        (display === "none")
-            ? setstate("block")
-            : setstate("none")
-
-
+        (state.display === "none")
+            ? setstate({ ...state, display: "block" })
+            : setstate({ ...state, display: "none" })
 
     return (
         <Container onMouseEnter={showCover} onMouseLeave={showCover}>
-            <Cover style={{ display: display }} />
-            <Image src={getsingleimage(props.image)} />
+            {console.log("break bones ====>", state.item)}
+            <Cover style={{ display: state.display }} />
+            {
+                state.item.id.length
+                    ? <Image src={getsingleimage(state.item.image as string)} />
+                    : null
+            }
             <View
-                style={{ display: display }}
+                style={{ display: state.display }}
                 onClick={showModal}
             >View</View>
-            <Price><strong>&#8358;{props.price}</strong></Price>
+            <Price><strong>&#8358;{state.item.price}</strong></Price>
             <Details>
-                <Name><strong>{props.itemname}</strong></Name>
+                <Name><strong>{state.item.itemname}</strong></Name>
                 <CartButton onClick={addCart}><strong>Add to Cart</strong></CartButton>
             </Details>
         </Container>
+
     );
 }
 

@@ -54,7 +54,7 @@ export const getItem = (payload: ITEMS[]) => (dispatch: Dispatch) => {
     }
 }
 
-export const getPreview = (payload: string) => (dispatch: Dispatch) => {
+export const getPreview = (payload: ITEMS) => (dispatch: Dispatch) => {
     try {
         dispatch(isloading())
         dispatch({ type: 'Preview', payload })

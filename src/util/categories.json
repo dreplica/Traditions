@@ -12,8 +12,8 @@
         "name":"Men's Clothing",
         "list":[
             {"item":"Shirt","link":"/sale/men/shirt/"},
-            {"item":"Trousers","link":"/sale/men/trousers/"},
-            {"item":"Shirts","link":"/sale/men/shirt/"},
+            {"item":"Trousers","link":"/sale/men/trouser/"},
+            {"item":"Shorts","link":"/sale/men/short/"},
             {"item":"Style","link":"/sale/men/style/"}
         ]
     },
@@ -21,7 +21,7 @@
         "name":"accessories",
         "list":[
             {"item":"Bangle","link":"/sale/access/bangle/"},
-            {"item":"Waist Beeds","link":"/sale/access/waist_beed/"},
+            {"item":"Waist Beeds","link":"/sale/access/waistbeed/"},
             {"item":"Necklace","link":"/sale/access/neckclace/"},
             {"item":"Rings","link":"/sale/access/ring/"}
         ]

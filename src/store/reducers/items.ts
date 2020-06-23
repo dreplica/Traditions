@@ -30,7 +30,7 @@ const ItemsReducer = (state = intitialState,action:action) =>{
         case 'Preview':
             return {
                 ...state,
-                currentItem:state.data.filter((item:ITEMS)=>item.id === action.payload)[0] 
+                currentItem:action.payload 
             }
         case 'addCart':
             const addcart = action.payload as ITEMS[]

@@ -29,12 +29,8 @@ export default function Items(props: IProps) {
     }
 
     const item =props.items.map((item, index) => <Cards
-        description={item.description}
-        id={item.id} 
-        image={item.image}
-        itemname={item.itemname}
-        price={item.price}
-        key={index} 
+        item={item}  
+        key={index}
     />)
 
     console.log("conditional love",state)

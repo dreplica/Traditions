@@ -20,19 +20,7 @@ const initialState: Iprops['data'] = [{
   description: "",
   itemname: "",
   price: ""
-}, {
-    id: "",
-    image: "",
-    description: "",
-    itemname: "",
-    price: ""
-  },{
-    id: "",
-    image: "",
-    description: "",
-    itemname: "",
-    price: ""
-  },{
+},{
     id: "",
     image: "",
     description: "",
@@ -71,11 +59,7 @@ export default function SpreadContent(props: Iprops) {
   const Spread = state.data.map((item, index) => (
     <Cards
       key={index}
-      id={item.id}
-      image={item.image}
-      description={item.description}
-      itemname={item.itemname}
-      price={item.price}
+      item={item}
     />
   ));
 
