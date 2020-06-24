@@ -15,7 +15,7 @@ export const isError = (payload?:string) => ({
     payload
 })
 
-export const uploading = (payload: { token: string;isadmin:number|string}) => ({
+export const uploading = (payload: { token?: string; isadmin?:number|string}) => ({
     type: 'uploading',
     payload 
 })

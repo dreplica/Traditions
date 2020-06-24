@@ -90,18 +90,18 @@ function Signup(props: iProps) {
             return;
         }
 
-        props.setForm(form)
+        await props.setForm(form)
 
         } catch (error) {
             setState({ ...state, error: error.message as string });
             console.log("error", error.message);
         }
     }; 
-
-    // if (props.auth?.length) {
-    //     history.push("/");
-    // }
-
+    console.log("auth here",props.auth)
+    if (props.auth?.length) {
+        history.push("/");
+    }
+ 
     return (
         <Container>
             <Content>

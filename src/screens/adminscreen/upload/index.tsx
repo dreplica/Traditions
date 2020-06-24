@@ -14,9 +14,11 @@ import {
     Error
 } from "./style";
 import InputField from "../../authscreen/register/textinput";
+import { useHistory } from "react-router-dom";
 
 interface Iprops {
     auth?: string;
+    isadmin:number;
 }
 
 export interface AdminForm extends Omit<ITEMS, "id"> {
@@ -50,7 +52,8 @@ export interface stateType {
     error: string;
 }
 
-function Admin({ auth }: Iprops) {
+function Admin({ auth,isadmin }: Iprops) {
+    const history = useHistory()
     const [state, setstate] = useState<stateType>({
         form: initialForm,
         pic: null,
@@ -126,6 +129,9 @@ function Admin({ auth }: Iprops) {
         }
     };
 
+    if(!isadmin){
+        history.push('/')
+    }
 
     const ErrorLog = state.error.length ? <Error>{state.error}</Error>:null
 
@@ -188,5 +194,6 @@ function Admin({ auth }: Iprops) {
 
 const mapStateToProps = ({ authenticate }: { authenticate: stateData }) => ({
     auth: authenticate.data?.auth?.token,
+    isadmin: authenticate.data?.auth?.isadmin as number,
 });
 export default connect(mapStateToProps)(Admin);

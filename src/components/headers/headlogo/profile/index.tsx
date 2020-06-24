@@ -10,24 +10,28 @@ import { Container, Menu } from "./style";
 
 interface iProps {
     drop: "none" | "block" | "flex";
-    admin:string;
+    admin:number;
     logout():void; 
 }
 
 function ProfileDropdown(props: iProps) {
-    const [show, setShow] = useState("none");
+    const [state, setstate] = useState({
+        show:"none",
+        admin:props.admin
+    });
 
     useEffect(() => {
-        setShow(props.drop);
-    }, [props.drop]);
+        setstate({show:props.drop,admin:props.admin});
+    }, [props.drop]); 
+
 
     const logout = (e: MouseEvent) => {
         props.logout();
     };
 
     return (
-        <Container style={{ display: show }}>
-            {props.admin === '1' 
+        <Container style={{ display: state.show }}>
+            {state.admin
             ? <Link to={"/Admin" }>
                 <FiUser /> <Menu>Admin</Menu>
             </Link>
@@ -37,6 +41,7 @@ function ProfileDropdown(props: iProps) {
             <Link to={"/History"}>
                 <FiWatch /> <Menu>History</Menu>
             </Link>
+            {console.log('state.admin :>> ', state.admin)}
             <Link to={"/signin"} onClick={logout}>
                 <FaSignOutAlt /> <Menu>Logout</Menu>
             </Link>
@@ -46,7 +51,7 @@ function ProfileDropdown(props: iProps) {
 
 
 const mapStateToProps = ({authenticate}:{authenticate:stateData})=>({
-admin:authenticate.data.auth?.isadmin as string
+admin:authenticate.data.auth?.isadmin as number
 })
  
 

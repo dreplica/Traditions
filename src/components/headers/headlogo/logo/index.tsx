@@ -38,7 +38,7 @@ function Header(props: Iprops) {
 
    const ShowImage = (
     <Image onMouseEnter={showProfile} onMouseLeave={showProfile}>
-      <img src={prof} alt="" />
+      <img src={prof} alt="profile-image" />
       <ProfileDropdown drop={drop} />
     </Image>
   );
