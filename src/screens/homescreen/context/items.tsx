@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Axios from 'axios';
 import Cards from '../../../reusablecomponent/cards';
 import { FiActivity } from 'react-icons/fi';
 import { ItemContainer } from './style';

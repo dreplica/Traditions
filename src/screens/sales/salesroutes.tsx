@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import { useParams } from 'react-router-dom';
-import { connect } from 'react-redux';
 
 import SpreadContent from '../../reusablecomponent/spread';
-import { getRequest } from '../../store/actioncreator/item'
 import { ITEMS } from '../../reusablecomponent/theme/types';
 
 
@@ -18,7 +16,7 @@ export default function SaleRoutes() {
   }, [category, type])
 
   const getItems = async()=>{
-    const {data} = await Axios.get(`http://localhost:3000/items/${category}/${type}`)
+    const { data } = await Axios.get(`https://thradition.herokuapp.com/items/${category}/${type}`)
     setstate(data)
   }
 

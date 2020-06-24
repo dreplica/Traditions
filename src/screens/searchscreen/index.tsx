@@ -18,8 +18,7 @@ import { ITEMS } from "../../reusablecomponent/theme/types";
   }, [item]);
 
   const getItems = async ()=>{
-    const {data} = await Axios.get(`http://localhost:3000/items/${item}`)
-    console.log("search item",data)
+    const { data } = await Axios.get(`https://thradition.herokuapp.com/items/${item}`)
     setState([...data.search]);
   }
 

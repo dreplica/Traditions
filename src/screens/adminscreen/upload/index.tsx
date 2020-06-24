@@ -108,7 +108,7 @@ function Admin({ auth }: Iprops) {
 
             if (state.error.length) return;
 
-            await Axios.post("http://localhost:3000/items", form,
+            await Axios.post("https://thradition.herokuapp.com/items", form,
                 {
                     headers: {
                         authorization: `Bearer ${auth}`,

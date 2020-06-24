@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Cards from "../cards";
 
+import { ITEMS } from "../theme/types";
 import {
   Container,
   Sort,
@@ -8,7 +9,6 @@ import {
   Button,
   Items
 } from "./style";
-import { ITEMS } from "../theme/types";
 
 interface Iprops {
   data: Pick<ITEMS, 'id' | 'image' | 'description' | 'itemname' | 'price'>[]

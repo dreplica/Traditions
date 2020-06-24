@@ -22,7 +22,7 @@ function Topsales(props: iProps) {
 
 
     const getItems = async () => {
-        const { data } = await Axios.get(`http://localhost:3000/history`)
+        const { data } = await Axios.get(`https://thradition.herokuapp.com/history`)
         setstate(data)
     }
 

@@ -8,7 +8,7 @@ import {isloading, uploading, isError,isData } from './actionfuncs'
 export const getRequest = (url: string) => async (dispatch: Dispatch) => {
     try {
         dispatch(isloading())
-        const { data } = await Axios.get(`http://localhost:3000/${url}`)
+        const { data } = await Axios.get(`https://thradition.herokuapp.com/${url}`)
         dispatch(isData(data))
     }
     catch (error) {

@@ -1,11 +1,8 @@
 import React, { Fragment, useState, useEffect, useCallback, useMemo } from 'react';
 import Axios from 'axios';
-import { connect } from 'react-redux';
 
 import Items from './items';
 import { ITEMS } from '../../../reusablecomponent/theme/types';
-import { itemState } from '../../../store/reducers/items';
-import { getRequest } from '../../../store/actioncreator/item';
 import {
     Container,
     Heading
@@ -37,7 +34,7 @@ export default function ContextLayer (){
     }, [])
 
     const partition = async () => {
-        const { data } = await Axios('http://localhost:3000/items')
+        const { data } = await Axios('https://thradition.herokuapp.com/items')
         data.forEach((item: ITEMS) => { 
             switch (item.category) {
                 case 'men':

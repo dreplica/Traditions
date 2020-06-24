@@ -1,12 +1,12 @@
 import React, { MouseEvent, useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { FiUser, FiWatch } from 'react-icons/fi';
 import { FaSignOutAlt } from 'react-icons/fa';
-import { connect } from 'react-redux';
 
 import { logout } from '../../../../store/actioncreator/auth';
-import { Container, Menu } from "./style";
 import { stateData } from '../../../../store/reducers/authentication';
+import { Container, Menu } from "./style";
 
 interface iProps {
     drop: "none" | "block" | "flex";

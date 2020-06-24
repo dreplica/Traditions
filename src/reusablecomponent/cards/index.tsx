@@ -1,6 +1,5 @@
 import React, { MouseEvent, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import img from '../../img/womgowncan.jpg'
 
 import { Modal } from '../../store/reducers/effects';
 import { modalView } from '../../store/actioncreator/effects';

@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 
 import { ITEMS } from "../../../reusablecomponent/theme/types";
 import { removeCart } from '../../../store/actioncreator/item'
-import img from "../../../img/womgowncan.jpg";
 import {
   Container,
   Content,

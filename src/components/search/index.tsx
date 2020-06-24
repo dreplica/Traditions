@@ -3,7 +3,6 @@ import Axios from "axios";
 import { FiSearch } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
-import InputField from "../../screens/authscreen/register/textinput";
 import {
   Container,
   DropList,
@@ -35,13 +34,12 @@ export default function Search() {
   };
 
   const searching = async (input: string) => {
-    const { data } = await Axios.get(`http://localhost:3000/search/${input.toLowerCase()}`)
+    const { data } = await Axios.get(`https://thradition.herokuapp.com/search/${input.toLowerCase()}`)
     setstate({
       ...state,
       search: input,
       data: data.search
     })
-    console.log(data.search)
   }
 
   const hideList = (e: MouseEvent) => {

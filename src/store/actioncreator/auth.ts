@@ -8,7 +8,7 @@ import { SIGNUP_FORM } from '../../reusablecomponent/theme/types'
 export const registrationFrom = (reg_payload: SIGNUP_FORM) => async (dispatch: Dispatch) => {
     try {
         dispatch(isloading())
-        const { data } = await Axios.post('http://localhost:3000/signup', reg_payload)
+        const { data } = await Axios.post('https://thradition.herokuapp.com/signup', reg_payload)
         if (data.error) {
             return dispatch(isError(data.error))
         }
@@ -21,7 +21,7 @@ export const registrationFrom = (reg_payload: SIGNUP_FORM) => async (dispatch: D
 export const login = (payload: { email: string; password: string }) => async (dispatch: Dispatch) => {
     try {
         dispatch(isloading())
-        const { data } = await Axios.post('http://localhost:3000/signin', payload)
+        const { data } = await Axios.post('https://thradition.herokuapp.com/signin', payload)
         if (data.error) {
             return dispatch(isError(data.error))
         }

@@ -14,7 +14,7 @@ const History:React.FC<{auth:string}> = ({auth})=> {
         loading:true
     })
     useEffect(() => {
-        Axios.get(`http://localhost:3000/history`,{
+        Axios.get(`https://thradition.herokuapp.com/history`,{
             headers:{
                 'authorization':`Bearer ${auth}`
             }
