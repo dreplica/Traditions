@@ -104,25 +104,29 @@ function Admin({ auth,isadmin }: Iprops) {
 
             form = { ...form, image: links }
 
-            setstate(prev => ({
-                ...prev,
-                error: (`don't leave "${check_input(form).join(",")}" empty`)
-            }))
 
-            if (state.error.length) return;
-
-            await Axios.post("https://thradition.herokuapp.com/items", form,
+            const errorMessage = check_input(form).join(",")
+            if(errorMessage.length){
+                setstate(prev => ({
+                    ...prev,
+                    error: (`don't leave "${check_input(form).join(",")}" empty`)
+                }))
+                return 
+            }
+           
+                await Axios.post("https://thradition.herokuapp.com/items", form,
                 {
                     headers: {
                         authorization: `Bearer ${auth}`,
-                        "content-type": "application/json",
-                    },
-                });
-            setstate(prev => ({
-                ...prev,
-                form: initialForm,
-                error: "uploaded succesfully"
-            }))
+                            "content-type": "application/json",
+                        },
+                    });
+                    setstate(prev => ({
+                        ...prev,
+                        form: initialForm,
+                        error: "uploaded succesfully"
+                    }))
+
 
         } catch (error) {
             console.log(error);
