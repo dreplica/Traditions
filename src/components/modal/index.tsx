@@ -44,7 +44,7 @@ function Modalview({ current, modal, RemoveModal, AddCart }: Iprops) {
 
     return (
         <Container style={{ display: modal }}>
-            <Close onClick={close}>Close</Close>
+            <Close onClick={close}>X</Close>
             <Images>
                 <ShowImage />
             </Images>
