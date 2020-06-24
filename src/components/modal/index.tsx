@@ -2,15 +2,22 @@ import React, { MouseEvent } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { modalView,  } from '../../store/actioncreator/effects';
-import {  addCart } from '../../store/actioncreator/item';
+import { modalView, } from '../../store/actioncreator/effects';
+import { addCart } from '../../store/actioncreator/item';
 import { Modal } from '../../store/reducers/effects';
-import { itemState, objectData } from '../../store/reducers/items';
+import { itemState } from '../../store/reducers/items';
+import { ITEMS } from '../../reusablecomponent/theme/types';
+import getimage, { Imaging } from '../../reusablecomponent/getimage';
+import InputField from '../../screens/authscreen/register/textinput';
 import {
     Container,
-    Image,
-    Content,
+    Images,
     Size,
+    Button,
+    Desc,
+    Text,
+    Close,
+    Designer,
     Description,
     Price
 } from './style';
@@ -18,8 +25,8 @@ import {
 interface Iprops {
     modal: string;
     RemoveModal: (arg: string) => void;
-    current: objectData;
-    AddCart: (args: objectData) => void
+    current: ITEMS;
+    AddCart: (args: ITEMS) => void
 }
 
 function Modalview({ current, modal, RemoveModal, AddCart }: Iprops) {
@@ -32,29 +39,35 @@ function Modalview({ current, modal, RemoveModal, AddCart }: Iprops) {
         AddCart(current)
     }
 
+
+    const ShowImage = getimage(current.image, Imaging)
+
     return (
         <Container style={{ display: modal }}>
-            <span className='close' onClick={close}><strong>X</strong></span>
-            <Content>
-                {/* <div className='nav' ><p>previous</p><p>next</p></div> */}
-                <Image><img src={`http://localhost:3000/images/${current?.image}`} alt='' /></Image>
-                <Description>
-                    <h2>{current?.itemname}</h2>
-                    <p className="desc">{current?.description}</p>
-
-                    <Size>
-                        <p>select size:</p>
-                        <select>
-                            <option value='135'>135</option>
-                            <option value='135'>105</option>
-                            <option value='135'>135</option>
-                        </select>
-                    </Size>
-                    <Price><h3>&#8358;{current?.price}</h3></Price>
-                    <Link to={`/seller`} onClick={close} className='check_designer'>Check Designer</Link>
-                    <button onClick={addCart}>Add to Cart</button>
-                </Description>
-            </Content>
+            <Close onClick={close}>X</Close>
+            <Images>
+                <ShowImage />
+            </Images>
+            <Description>
+                <Text style={{
+                    textDecoration:'underline',
+                    textAlign:'center', 
+                    fontSize: 20, fontWeight: 'bold'
+                }}>{current?.itemname} &#8358;{current?.price}</Text>
+                <Desc>{current?.description}</Desc>
+                <Size>
+                    <Text>your size:</Text>
+                    <InputField
+                        style={{ width: 50, height: 30 }}
+                        placeholder='write size here'
+                        type='text'
+                        value='125'
+                        changeHandeler={() => { }} />
+                </Size>
+                <Price></Price>
+                <Designer><Link to={`/seller`} onClick={() => RemoveModal('none')}>Check Designer</Link></Designer>
+                <Button onClick={addCart}>Add to Cart</Button>
+            </Description>
         </Container>
     );
 }

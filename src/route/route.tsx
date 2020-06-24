@@ -3,7 +3,6 @@ import { Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
 
 import Screens from "../screens/index";
-import Frontpage from "../components/users/frontpage/frontpage";
 import { checkLocal } from "../store/actioncreator/item";
 import Categories from "../components/categories/category";
 import {
@@ -27,7 +26,7 @@ function Maincomponent({ getLocal }: Iprops) {
           <Screens.Homepage />
         </Route>
         <Route path="/items/:id">
-          <Frontpage />
+          {/* <Frontpage /> */}
         </Route>
         <Route path="/sale/:category/:type">
           <Screens.Sales.Salesroutes />
@@ -39,7 +38,7 @@ function Maincomponent({ getLocal }: Iprops) {
           <Screens.Sales.Newsales />
         </Route>
         <Route path="/cart">
-          <Screens.Cart />
+          <Screens.Cart />  
         </Route>
         <Route path="/signup">
           <Screens.Register />

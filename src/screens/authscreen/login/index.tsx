@@ -37,11 +37,16 @@ function Login(props:iProps){
     const history = useHistory()
     const [state, setState] = useState({
         form: initialForm,
+        error:props.error
     }) 
 
     useEffect(() => {
+        
         (props.auth?.length) &&  history.push('/')
-    }, [props.auth]) 
+
+        setState({...state,error:props.error})
+
+    }, [props.auth,props.error]) 
 
     const handleChange =(type:string)=> (e:ChangeEvent<HTMLInputElement>) =>{
         e.preventDefault();
@@ -74,7 +79,7 @@ function Login(props:iProps){
             </div>
         </Content>   
         <Form>
-            <span>{props.error}</span>
+            <span>{props.error ?? ""}</span>
         <Label>  
         <InputField placeholder='Email' type='email'  value={state.form.email} changeHandeler={(e)=>handleChange('email')(e)} />
         </Label>

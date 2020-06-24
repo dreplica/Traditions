@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import PaystackButton from 'react-paystack'
 import { connect } from 'react-redux';
 
-import { itemState, objectData } from '../../store/reducers/items';
+import { itemState } from '../../store/reducers/items';
+import { ITEMS } from '../../reusablecomponent/theme/types';
 
-const MakePayment:React.FC<{data:objectData[]}> = ({data}) =>{
+const MakePayment:React.FC<{data:ITEMS[]}> = ({data}) =>{
     const [userBuy, setUserbuy] = useState({refId:"",email:"",amount:""})
         useEffect(() => {
          const tot = data.reduce((acc,val)=>acc + parseFloat(val.price),0)

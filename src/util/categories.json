@@ -12,8 +12,8 @@
         "name":"Men's Clothing",
         "list":[
             {"item":"Shirt","link":"/sale/men/shirt/"},
-            {"item":"Trousers","link":"/sale/men/trousers/"},
-            {"item":"Shirts","link":"/sale/men/shirt/"},
+            {"item":"Trousers","link":"/sale/men/trouser/"},
+            {"item":"Shorts","link":"/sale/men/short/"},
             {"item":"Style","link":"/sale/men/style/"}
         ]
     },
@@ -21,7 +21,7 @@
         "name":"accessories",
         "list":[
             {"item":"Bangle","link":"/sale/access/bangle/"},
-            {"item":"Waist Beeds","link":"/sale/access/waist_beed/"},
+            {"item":"Waist Beeds","link":"/sale/access/waistbeed/"},
             {"item":"Necklace","link":"/sale/access/neckclace/"},
             {"item":"Rings","link":"/sale/access/ring/"}
         ]
@@ -29,16 +29,16 @@
     "Women Foot Wears":{
         "name":"Women Foot Wears",
         "list":[
-            {"item":"Sandals","link":"/sale/wfoot/sandal/"},
-            {"item":"Hills","link":"/sale/wfoot/hill/"},
-            {"item":"Shoes","link":"/sale/wfoot/shoe/"}
+            {"item":"Sandals","link":"/sale/womenfoot/sandal/"},
+            {"item":"Hills","link":"/sale/womenfoot/hill/"},
+            {"item":"Shoes","link":"/sale/womenfoot/shoe/"}
         ]
     },
     "Men Foot Wears":{
         "name":"Men Foot Wears",
         "list":[
-            {"item":"Sandals","link":"/sale/mfoot/sandal/"},
-            {"item":"Shoes","link":"/sale/mfoot/shoe/"}
+            {"item":"Sandals","link":"/sale/menfoot/sandal/"},
+            {"item":"Shoes","link":"/sale/menfoot/shoe/"}
         ]
     }
 }

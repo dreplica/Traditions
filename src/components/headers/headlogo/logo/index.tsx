@@ -22,20 +22,26 @@ interface Iprops {
   Menu: string;
 }
 function Header(props: Iprops) {
-  const [drop, setDrop] = useState<'hidden' | 'visible'>('hidden')
+  const [drop, setDrop] = useState<'none' | 'flex'|'block'>('none')
 
   const Shownav = (e: MouseEvent) => {
     e.preventDefault();
     (props.Menu === 'none') ? props.toggleMenu('flex') : props.toggleMenu('none')
   }
+
+
   const showProfile = (e: MouseEvent) => {
     e.preventDefault();
-    (drop === 'hidden') ? setDrop('visible') : setDrop('hidden')
-  }
+    drop === "none" ? setDrop("block") : setDrop("none");
+  };
 
-  const ShowImage = <Image>
-    <img src={prof} alt='profile image' onClick={showProfile} />
-  </Image>
+
+   const ShowImage = (
+    <Image onMouseEnter={showProfile} onMouseLeave={showProfile}>
+      <img src={prof} alt="profile-image" />
+      <ProfileDropdown drop={drop} />
+    </Image>
+  );
 
 
   return (
@@ -50,7 +56,6 @@ function Header(props: Iprops) {
         </Logo>
         <Search />
       </Content>
-      <ProfileDropdown drop={drop} />
     </Container>
   );
 }

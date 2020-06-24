@@ -1,22 +1,28 @@
+import { initialItems } from './../../reusablecomponent/theme/types';
 import { actionType } from "../actioncreator/actionfuncs"
+import { ITEMS } from "../../reusablecomponent/theme/types"
 
-export type objectData = {[key:string]:string}
+
+interface action {
+    type: string;
+    payload: ITEMS[] | ITEMS | string;
+}
 
 export type itemState = {
-    data:objectData[]; 
-    cart:objectData[];
-    currentItem:objectData
+    data:ITEMS[]; 
+    cart:ITEMS[];
+    currentItem:ITEMS
 }
 
 const intitialState:itemState = {
-    data:[{}],
-    cart:[{}],
-    currentItem:{}
+    data:[initialItems],
+    cart:[initialItems],
+    currentItem:initialItems
 }
 
-const ItemsReducer = (state = intitialState,action:actionType) =>{
+const ItemsReducer = (state = intitialState,action:action) =>{
     switch (action.type) {
-        case "getItems":
+        case "GET_ITEMS":
             return {
                 ...state,
                 data:action.payload
@@ -24,16 +30,16 @@ const ItemsReducer = (state = intitialState,action:actionType) =>{
         case 'Preview':
             return {
                 ...state,
-                currentItem:state.data.filter((item:objectData)=>item.id === action.payload)[0] 
+                currentItem:action.payload 
             }
         case 'addCart':
-            const addcart = action.payload as objectData[]
+            const addcart = action.payload as ITEMS[]
             return {
                 ...state,
                 cart:[...addcart]
-            }
+            } 
         case 'removeCart':
-            const removecart = action.payload as objectData[]
+            const removecart = action.payload as ITEMS[]
             return {
                 ...state,
                 cart:[...removecart]

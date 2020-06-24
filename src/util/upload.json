@@ -2,29 +2,29 @@
     "women": [
         "select option",
         "top",
-        "gowns",
-        "skirts",
+        "gown",
+        "skirt",
         "style"
     ],
     "men": [
         "select option",
-        "shirts",
-        "trousers",
+        "shirt",
+        "trouser",
         "short",
         "style"
     ],
     "accessories": [
         "select option",
-        "bangles",
+        "bangle",
         "necklace",
-        "waistbid",
+        "waistbeed",
         "ring"
     ],
     "womenfoot": [
         "select option",
         "sandal",
         "shoe",
-        "hills",
+        "hill",
         "slippers"
     ],
     "menfoot": [

@@ -5,8 +5,9 @@ export const Container = styled.section`
          max-width: 300px;
          height:80vh;
          position: sticky;
+         /* overflow-y:scroll; */
          top:160px;
-         z-index: 5;
+         z-index: 15;
          align-self: flex-start;
          background: grey;
 

@@ -1,58 +1,57 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 import { connect } from 'react-redux';
 import Axios from 'axios';
-import { objectData } from '../../../store/reducers/items';
-import { stateData } from '../../../store/reducers/authentication';
- 
 
+import { ITEMS,initialItems } from '../../../reusablecomponent/theme/types';
+import { stateData } from '../../../store/reducers/authentication';
 import {HistoryStyle,Summary} from './style' 
 
 const History:React.FC<{auth:string}> = ({auth})=> { 
-    const [data, setData] = useState<objectData[]>([])
-    const [loading, setLoading] = useState<boolean>(true)
+    const [state, setstate] = useState<{
+        items: ITEMS[]; loading: Boolean
+    }>({
+        items: [initialItems],
+        loading:true
+    })
     useEffect(() => {
-        console.log("current token",auth)
-        console.log("hello")
-        Axios.get(`http://localhost:3000/history`,{
+        Axios.get(`https://thradition.herokuapp.com/history`,{
             headers:{
                 'authorization':`Bearer ${auth}`
             }
         })
         .then(_=>{
-            console.log("payload", _.data.payload)
-            setData(unique(_.data?.payload))
-            console.log("uniqueness",unique(_.data?.payload))
-            setLoading(false)
+            setstate({ ...state, items: unique(_.data?.payload) })
+            setstate({ ...state, loading: false })
         })
-        console.log(loading)
     }, [auth])
-    
-    const unique = (history:objectData[]) =>{
-        console.log("data entered",history) 
-        let id = history.map((item:objectData)=>item.id);
+     
+    const unique = (history:ITEMS[]) =>{
+        let id = history.map((item:ITEMS)=>item.id);
         let uniqueId = new Set([...id]);
-        console.log([...uniqueId])
-        return  [...uniqueId].map(id_=>history.reduce((acc:objectData ,val:objectData)=>{
+
+        return  [...uniqueId].map(id_=>history.reduce((acc:ITEMS ,val:ITEMS)=>{
             if(val.id === id_){
                 acc.price = String(parseFloat(acc.price) + parseFloat(val.price));
-                acc.quantity = String(parseInt(acc.quantity)+1);
+                acc.quantity = String(parseInt(acc.quantity as string)+1);
                 return ({...val,price:acc.price,quantity:acc.quantity})   
             }
             return acc;
-        },{quantity:'0',price:'0'})
+        },{...initialItems})
         )
     }
 
-    if(!data.length){
+    if(!state.items.length){
         return <>Loading</>
     }
 
-  return (
-    <>
-    
-    <Summary>
-  <h3>Total Transaction: &#8358;{data.reduce((acc,val)=>parseInt(val.price) + acc,0)}</h3>
+
+    const totalTransaction = <Summary>
+        <h3>Total Transaction: &#8358;{state.items.reduce((acc, val) => parseInt(val.price) + acc, 0)}</h3>
     </Summary>
+
+  return (
+    <Fragment>
+    {totalTransaction}
         <HistoryStyle>
             <thead>
                 <tr>
@@ -64,20 +63,20 @@ const History:React.FC<{auth:string}> = ({auth})=> {
                     <td>Last Purchased Date</td>
                 </tr>
             </thead>
-            {console.log("the table", data)}
             <tbody>
-                {                     data.map((items,ind)=><tr key={ind}>
+                  {
+                      state.items.map((items, ind) => <tr key={ind}>
                         <td>{ind + 1}</td>
                         <td>{items.itemname}</td>
                         <td>{items.quantity}</td>
                         <td>{items.price}</td>
-                        <td>{items.bought}</td>
-                        <td>{new Date(items.created).toDateString()}</td>
+                        <td>{items.bought}</td> 
+                        {/* <td>{new Date(items?.createdAt).toDateString()}</td> */}
                     </tr>)
                 }
             </tbody>  
         </HistoryStyle>
-    </>
+    </Fragment>
   );
 }
 

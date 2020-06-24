@@ -3,48 +3,24 @@ import { connect } from "react-redux";
 import Axios from "axios";
 import { useParams } from "react-router-dom";
 
-import { objectData } from "../../store/reducers/items";
 import { getItem } from "../../store/actioncreator/item";
 import { stateData } from "../../store/reducers/authentication";
 import SpreadContent from "../../reusablecomponent/spread";
+import { ITEMS } from "../../reusablecomponent/theme/types";
 
-export interface IProps {
-  auth: objectData;
-}
 
-interface incomingData {
-  id: string;
-  image: string;
-  description: string;
-  itemname: string;
-  price: string;
-}
-
-const initialState: incomingData = {
-  id: "string;",
-  image: " string;",
-  description: " string;",
-  itemname: " string;",
-  price: " string;",
-};
-
-function SearchRoute(props: IProps) {
+  export default function SearchRoute() {
   const { item } = useParams();
-  const [state, setState] = useState<incomingData[]>([initialState]);
+  const [state, setState] = useState<ITEMS[]>([]);
 
   useEffect(() => {
-    Axios.get(`http://localhost:3000/items/${item}`, {
-      headers: {
-        authorization: `bearer ${props.auth?.token}`,
-      },
-    }).then((res) => setState(res.data));
+    getItems()
   }, [item]);
+
+  const getItems = async ()=>{
+    const { data } = await Axios.get(`https://thradition.herokuapp.com/items/${item}`)
+    setState([...data.search]);
+  }
 
   return <SpreadContent data={state} />;
 }
-
-const mapStateToProps = ({ authenticate }: { authenticate: stateData }) => ({
-  auth: authenticate.data?.auth as objectData,
-});
-
-export default connect(mapStateToProps, { getitems: getItem })(SearchRoute);

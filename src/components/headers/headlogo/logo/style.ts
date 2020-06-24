@@ -7,6 +7,7 @@ export const Container = styled.header`
     justify-content:space-around;
     margin:20px auto;
     font-size:40px;
+    z-index:901;
     font-weight:bolder;
        
 `;
@@ -50,14 +51,15 @@ export const Logo = styled.div`
 `;
 
 export const Image = styled.div`
-    width:50px;
-    margin-right:10px;
-    height:50px;
+    width:auto;
+    position:relative;
+    align-self:center;
+    margin-right:3px;
+    height:auto;
     
     img{
-        width:100%;
+        width:50px;
         border-radius:25px;
-
             :hover{
                 cursor:pointer;
                 color:white;

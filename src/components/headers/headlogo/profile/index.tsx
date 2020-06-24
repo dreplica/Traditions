@@ -1,42 +1,58 @@
-import React, { MouseEvent } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { MouseEvent, useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { FiUser, FiWatch } from 'react-icons/fi';
 import { FaSignOutAlt } from 'react-icons/fa';
-import { connect } from 'react-redux';
 
-import { uploading} from '../../../../store/actioncreator/actionfuncs'
-import { Container } from './style'
-import { Dispatch } from 'redux';
+import { logout } from '../../../../store/actioncreator/auth';
+import { stateData } from '../../../../store/reducers/authentication';
+import { Container, Menu } from "./style";
 
-interface Iprops {
-    drop: 'hidden' | 'visible';
-    removeAuth(obj: { token: string; isadmin: string|number }):void
+interface iProps {
+    drop: "none" | "block" | "flex";
+    admin:number;
+    logout():void; 
 }
 
- function ProfileDropdown(props: Iprops) {
-    const history = useHistory()
+function ProfileDropdown(props: iProps) {
+    const [state, setstate] = useState({
+        show:"none",
+        admin:props.admin
+    });
 
-    const logout = (e: MouseEvent<HTMLAnchorElement>) => {
-        e.preventDefault()
-        props.removeAuth({token:"",isadmin:""})
-        delete localStorage['auth'];
-        history.push('/signin')
-    }
+    useEffect(() => {
+        setstate({show:props.drop,admin:props.admin});
+    }, [props.drop]); 
 
+
+    const logout = (e: MouseEvent) => {
+        props.logout();
+    };
 
     return (
-        <Container style={{ visibility: props.drop }}>
-            <Link to={'/Admin'}><FiUser /> <span>Admin</span></Link>
-            <Link to={'/History'}><FiWatch /> <span>History</span></Link>
-            <a onClick={logout} href='/'><FaSignOutAlt /> <span>Logout</span></a>
+        <Container style={{ display: state.show }}>
+            {state.admin
+            ? <Link to={"/Admin" }>
+                <FiUser /> <Menu>Admin</Menu>
+            </Link>
+            :null
+            }
+
+            <Link to={"/History"}>
+                <FiWatch /> <Menu>History</Menu>
+            </Link>
+            {console.log('state.admin :>> ', state.admin)}
+            <Link to={"/signin"} onClick={logout}>
+                <FaSignOutAlt /> <Menu>Logout</Menu>
+            </Link>
         </Container>
     );
 }
 
-const mapDispatchToProps = (dispatch:Dispatch) => ({
-    removeAuth: (arg: { token: string; isadmin: string|number })=>dispatch(uploading(arg))
-})
 
+const mapStateToProps = ({authenticate}:{authenticate:stateData})=>({
+admin:authenticate.data.auth?.isadmin as number
+})
  
 
-export default connect(null,mapDispatchToProps)(ProfileDropdown)
+export default connect(mapStateToProps,{logout})(ProfileDropdown)

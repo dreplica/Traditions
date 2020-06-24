@@ -1,72 +1,65 @@
-import React, { useState, ChangeEvent, MouseEvent} from "react";
-import { connect } from "react-redux";
+import React, { useState, ChangeEvent, MouseEvent, FocusEvent } from "react";
+import Axios from "axios";
 import { FiSearch } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
-import { stateData } from "../../store/reducers/authentication";
-import { objectData } from "../../store/reducers/items";
-import { 
-  Container, 
-  DropList, 
-  Searchinput 
+import {
+  Container,
+  DropList,
+  Searchinput
 } from "./style";
+import { ITEMS } from "../../reusablecomponent/theme/types";
 
-type Iprops = objectData
 
-interface search{
-  itemname:string;
-  id:number;
+interface search {
+  itemname: string;
+  id: number;
 }
 
-function Search(props:Iprops) {
-  const [search, setSearch] = useState("");
-  const [data, setdata] = useState<search[]>([]);
+export default function Search() {
+  const [state, setstate] = useState<{ search: string, data: ITEMS[] }>({
+    search: "",
+    data: []
+  });
 
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    if (e.currentTarget?.value === "") {
-      setdata([]);
-      setSearch(e.currentTarget.value)
+    const valueSearch = e.currentTarget.value
+    if (valueSearch === "") {
+      setstate({ search: "", data: [] })
       return;
     }
 
-    setSearch(e.currentTarget.value)
-    const value_to_search = new RegExp(e.currentTarget.value,'ig')
-    console.log(value_to_search)
-    searching(value_to_search);
+    searching(valueSearch);
   };
 
-  const searching = async (input:RegExp) =>{
-    // const result = await Axios.get(`http://localhost:3000/search/${item.toLowerCase()}`, {
-    //   headers: {
-    //     authorization: `Bearer ${props?.token}`,
-    //   },
-    // })
-    // return result.data
-
-    const result = dataToSearch.filter(item=>item.itemname.match(input))
-    setdata(result)
-    console.log(result)
+  const searching = async (input: string) => {
+    const { data } = await Axios.get(`https://thradition.herokuapp.com/search/${input.toLowerCase()}`)
+    setstate({
+      ...state,
+      search: input,
+      data: data.search
+    })
   }
 
-  const hideList = (e:MouseEvent)=>{
+  const hideList = (e: MouseEvent) => {
     // e.preventDefault();
-    setdata([])
-    setSearch("")
+    setstate({ data: [], search: "" })
   }
+
   return (
-    <Container>
+    <Container > 
       <Searchinput>
-        <input
+        <input 
           type="search"
           placeholder="search items"
-          value={search}
+          value={state.search}
           onChange={handleSearch}
         />
-        <FiSearch color='black'size={30}/>
+        <FiSearch color='black' size={30} />
       </Searchinput>
       <DropList>
-        {data.map((item, index) => (<Link 
+        {state.data.map((item, index) => (<Link 
         key={index}
         onClick={hideList}
         to={`/search/${item.id}`}>
@@ -76,37 +69,3 @@ function Search(props:Iprops) {
     </Container>
   );
 }
-
-const mapStateToProps = ({authenticate}:{authenticate:stateData}) =>({
-auth:authenticate.data?.auth as objectData
-})
-
-export default connect(mapStateToProps)(Search);
-
-
-const dataToSearch:search[] = [
-  {
-    itemname:"ab",
-    id:0
-  },
-  {
-    itemname: "ac",
-    id: 1
-  },
-  {
-    itemname: "ad",
-    id: 2
-  },
-  {
-    itemname: "bb",
-    id: 3
-  },
-  {
-    itemname: "bc",
-    id: 4
-  },
-  {
-    itemname: "col",
-    id: 5
-  },
-]

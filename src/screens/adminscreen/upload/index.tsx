@@ -14,15 +14,17 @@ import {
     Error
 } from "./style";
 import InputField from "../../authscreen/register/textinput";
+import { useHistory } from "react-router-dom";
 
 interface Iprops {
     auth?: string;
+    isadmin:number;
 }
 
 export interface AdminForm extends Omit<ITEMS, "id"> {
     category: "accessories" | "men" | "menfoot" | "women" | "womenfoot";
     type: string;
-    quantity: number;
+    quantity: string|number; 
 }
 
 const initialForm: AdminForm = {
@@ -50,7 +52,8 @@ export interface stateType {
     error: string;
 }
 
-function Admin({ auth }: Iprops) {
+function Admin({ auth,isadmin }: Iprops) {
+    const history = useHistory()
     const [state, setstate] = useState<stateType>({
         form: initialForm,
         pic: null,
@@ -101,31 +104,38 @@ function Admin({ auth }: Iprops) {
 
             form = { ...form, image: links }
 
-            setstate(prev => ({
-                ...prev,
-                error: (`don't leave "${check_input(form).join(",")}" empty`)
-            }))
 
-            if (state.error.length) return;
-
-            await Axios.post("http://localhost:3000/items", form,
+            const errorMessage = check_input(form).join(",")
+            if(errorMessage.length){
+                setstate(prev => ({
+                    ...prev,
+                    error: (`don't leave "${check_input(form).join(",")}" empty`)
+                }))
+                return 
+            }
+           
+                await Axios.post("https://thradition.herokuapp.com/items", form,
                 {
                     headers: {
                         authorization: `Bearer ${auth}`,
-                        "content-type": "application/json",
-                    },
-                });
-            setstate(prev => ({
-                ...prev,
-                form: initialForm,
-                error: "uploaded succesfully"
-            }))
+                            "content-type": "application/json",
+                        },
+                    });
+                    setstate(prev => ({
+                        ...prev,
+                        form: initialForm,
+                        error: "uploaded succesfully"
+                    }))
+
 
         } catch (error) {
             console.log(error);
         }
     };
 
+    if(!isadmin){
+        history.push('/')
+    }
 
     const ErrorLog = state.error.length ? <Error>{state.error}</Error>:null
 
@@ -188,5 +198,6 @@ function Admin({ auth }: Iprops) {
 
 const mapStateToProps = ({ authenticate }: { authenticate: stateData }) => ({
     auth: authenticate.data?.auth?.token,
+    isadmin: authenticate.data?.auth?.isadmin as number,
 });
 export default connect(mapStateToProps)(Admin);

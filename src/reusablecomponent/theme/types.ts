@@ -74,4 +74,20 @@ export interface ITEMS {
     description: string;
     image: string;
     price: string;
+    type?: string;
+    bought?: string;
+    category?: string;
+    quantity?: string|number;
+    sellerid?: string;
+    cartid?: string;
+    createdAt?: string;
+    updatedAt?: string;
+}
+
+export const initialItems: ITEMS = {
+    id: "",
+    itemname: "",
+    description: "",
+    image: "",
+    price: "",
 }

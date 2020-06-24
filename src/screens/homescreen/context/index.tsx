@@ -1,24 +1,89 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState, useEffect, useCallback, useMemo } from 'react';
+import Axios from 'axios';
 
 import Items from './items';
+import { ITEMS } from '../../../reusablecomponent/theme/types';
 import {
     Container,
     Heading
 } from "./style";
 
-const ITEMS_TO_DISPLAY = ['Men','Women','shoe']
-const HEADER = ['Men\'s wear','Women\'s wear','Foot wears']
 
-export default function ContextLayer() {
-    
-    const Display = ITEMS_TO_DISPLAY.map((item, index) => <Container key={index}>
-        <Heading>{HEADER[index]}</Heading>
-        <Items category={item}/>
+// interface iProps {
+//     data: ITEMS[],
+//     getRequest(arg: string): void;
+// }
+
+interface category {
+    "Men's wear": ITEMS[];
+    "Women's wear": ITEMS[];
+    "Foot wear": ITEMS[];
+}
+
+export default function ContextLayer (){
+
+    const [state, setstate] = useState<category>({
+        "Men's wear": [],
+        "Women's wear": [],
+        "Foot wear": [],
+    })
+
+
+    useEffect(() => {
+        partition()
+    }, [])
+
+    const partition = async () => {
+        const { data } = await Axios('https://thradition.herokuapp.com/items')
+        data.forEach((item: ITEMS) => { 
+            switch (item.category) {
+                case 'men':
+                    return setstate((prev) => ({
+                        ...prev,
+                        "Men's wear": [...prev["Men's wear"], item]
+                    }))
+
+                case 'women':
+                    return setstate((prev) => ({
+                        ...prev,
+                        "Women's wear": [...prev["Women's wear"], item]
+                    }))
+                case 'womenfoot':
+                    return setstate((prev) => ({
+                        ...prev,
+                        "Foot wear": [...prev["Foot wear"], item]
+                    }))
+                case 'menfoot':
+                    return setstate((prev) => ({
+                        ...prev,
+                        "Foot wear": [...prev["Foot wear"], item]
+                    }))
+                default:
+                    return
+            }
+        })
+    }
+
+
+    type keys = keyof category
+
+    const keyValue: keys[] = Object.keys(state) as unknown as keys[]
+
+    const Display = keyValue.map((item: keys, index) => <Container key={index}>
+        <Heading>{item}</Heading>
+        <Items items={state[item]} />
     </Container>)
 
     return (
         <Fragment>
-           {Display}
+            {Display}
         </Fragment>
     );
 }
+
+// const mapStateToProps = ({ ItemsReducer }: { ItemsReducer: itemState }) => ({
+//     data: ItemsReducer.data
+// })
+
+
+// export default connect(mapStateToProps, { getRequest })(ContextLayer)

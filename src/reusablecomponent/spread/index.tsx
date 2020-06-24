@@ -1,65 +1,65 @@
 import React, { useState, useEffect } from "react";
 import Cards from "../cards";
 
-import { 
-  Container, 
+import { ITEMS } from "../theme/types";
+import {
+  Container,
   Sort,
   Filter,
   Button,
-  Items } from "./style";
+  Items
+} from "./style";
 
 interface Iprops {
-  data: {
-    id: string;
-    image: string;
-    description: string;
-    itemname: string;
-    price: string;
-  }[];
+  data: Pick<ITEMS, 'id' | 'image' | 'description' | 'itemname' | 'price'>[]
 }
 
+const initialState: Iprops['data'] = [{
+  id: "",
+  image: "",
+  description: "",
+  itemname: "",
+  price: ""
+},{
+    id: "",
+    image: "",
+    description: "",
+    itemname: "",
+    price: ""
+  }]
 
 export default function SpreadContent(props: Iprops) {
-  const [state, setState] = useState<"cheap" | "costly">("cheap");
-  const [stateData, setStateData] = useState<Iprops["data"]>(props.data);
+  const [state, setState] = useState<{
+    filter: "cheap" | "costly";
+    data: Iprops['data']
+  }>({
+    filter: "cheap",
+    data: initialState
+  })
 
   useEffect(() => {
-      console.log(stateData)
-    switch (state) {
-      case "cheap":
-        sort("cheap");
-        return;
-      case "costly":
-        sort("costly");
-        return;
-      default:
-        break;
-    }
-  }, [state]);
+  setState({...state,data:props.data})
+  }, [props.data]); 
 
   const sort = (arg: string) => {
     let data: Iprops["data"];
     if (arg === "cheap") {
-      data = [...stateData].sort(
+      data = [...props.data].sort(
         (first, second) => parseInt(first.price) - parseInt(second.price)
       );
-      setStateData(data);
+      setState({ ...state, data: data });
       return;
     }
-    data = [...stateData].sort(
+    data = [...props.data].sort(
       (first, second) => parseInt(second.price) - parseInt(first.price)
     );
-    setStateData(data);
+    setState({ ...state, data: data });
   };
 
-  const Spread = stateData.map((item, index) => (
+  const Spread = state.data.map((item, index) => (
     <Cards
       key={index}
-      id={item.id}
-      image={item.image}
-      description={item.description}
-      itemname={item.itemname}
-      price={item.price}
+      item={item}
     />
   ));
 
@@ -68,8 +68,8 @@ export default function SpreadContent(props: Iprops) {
       <Sort>
         <Filter>
           <p>Filter By:</p>
-          <Button onClick={(e) => setState("costly")}>Price Top</Button>
-          <Button onClick={(e) => setState("cheap")}>Price Down</Button>
+          <Button onClick={(e) => sort("costly")}>Price Top</Button>
+          <Button onClick={(e) => sort("cheap")}>Price Down</Button>
         </Filter>
       </Sort>
       <Items>{Spread}</Items>
