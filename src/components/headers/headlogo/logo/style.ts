@@ -7,6 +7,7 @@ export const Container = styled.header`
     justify-content:space-around;
     margin:20px auto;
     font-size:40px;
+    z-index:901;
     font-weight:bolder;
        
 `;

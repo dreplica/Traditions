@@ -8,7 +8,7 @@ export const Container = styled.div`
          background-color: whitesmoke;
          flex-direction: column;
          align-items: flex-start;
-         z-index: 7;
+         z-index: 900;
          justify-content: center;
          & a {
            text-decoration: none;

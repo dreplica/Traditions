@@ -48,7 +48,12 @@ export default function ContextLayer (){
                         ...prev,
                         "Women's wear": [...prev["Women's wear"], item]
                     }))
-                case 'womenfoot' || 'menfoot':
+                case 'womenfoot':
+                    return setstate((prev) => ({
+                        ...prev,
+                        "Foot wear": [...prev["Foot wear"], item]
+                    }))
+                case 'menfoot':
                     return setstate((prev) => ({
                         ...prev,
                         "Foot wear": [...prev["Foot wear"], item]
