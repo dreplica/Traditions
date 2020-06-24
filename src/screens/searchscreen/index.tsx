@@ -6,45 +6,22 @@ import { useParams } from "react-router-dom";
 import { getItem } from "../../store/actioncreator/item";
 import { stateData } from "../../store/reducers/authentication";
 import SpreadContent from "../../reusablecomponent/spread";
+import { ITEMS } from "../../reusablecomponent/theme/types";
 
-export interface IProps {
-  auth?: string;
-}
 
-interface incomingData {
-  id: string;
-  image: string;
-  description: string;
-  itemname: string;
-  price: string;
-}
-
-const initialState: incomingData = {
-  id: "string;",
-  image: " string;",
-  description: " string;",
-  itemname: " string;",
-  price: " string;",
-};
-
-function SearchRoute(props: IProps) {
+  export default function SearchRoute() {
   const { item } = useParams();
-  const [state, setState] = useState<incomingData[]>([initialState]);
+  const [state, setState] = useState<ITEMS[]>([]);
 
   useEffect(() => {
-    //search doesnt need users to signin
-    Axios.get(`http://localhost:3000/items/${item}`, {
-      headers: {
-        // authorization: `bearer ${props.auth?.token}`,
-      },
-    }).then((res) => setState(res.data));
+    getItems()
   }, [item]);
+
+  const getItems = async ()=>{
+    const {data} = await Axios.get(`http://localhost:3000/items/${item}`)
+    console.log("search item",data)
+    setState([...data.search]);
+  }
 
   return <SpreadContent data={state} />;
 }
-
-const mapStateToProps = ({ authenticate }: { authenticate: stateData }) => ({
-  auth: authenticate.data.auth?.token,
-});
-
-export default connect(mapStateToProps, { getitems: getItem })(SearchRoute);
