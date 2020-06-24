@@ -14,7 +14,7 @@ export const registrationFrom = (reg_payload: SIGNUP_FORM) => async (dispatch: D
         }
         dispatch(uploading(data))
     } catch (error) {
-        dispatch(isError())
+        dispatch(isError("please check your details"))
     }
 }
 
@@ -27,7 +27,7 @@ export const login = (payload: { email: string; password: string }) => async (di
         }
         dispatch(uploading(data))
     } catch (error) {
-        dispatch(isError())
+        dispatch(isError("please check your details"))
     }
 } 
 
