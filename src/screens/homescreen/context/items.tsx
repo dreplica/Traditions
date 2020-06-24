@@ -22,7 +22,6 @@ export default function Items(props: IProps) {
         setstate({...state,items:props.items})
     },[])
     
-    console.log('here ies props.items :>> ', props.items);
 
     if (state.loading) {
         return <FiActivity />
@@ -33,7 +32,6 @@ export default function Items(props: IProps) {
         key={index}
     />)
 
-    console.log("conditional love",state)
  
     return <ItemContainer>{item}</ItemContainer>
 

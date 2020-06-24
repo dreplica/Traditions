@@ -6,14 +6,12 @@ import {isloading, uploading, isError,isData } from './actionfuncs'
 
 
 export const getRequest = (url: string) => async (dispatch: Dispatch) => {
-    console.log("dipatching to fetch")
     try {
         dispatch(isloading())
         const { data } = await Axios.get(`http://localhost:3000/${url}`)
         dispatch(isData(data))
     }
     catch (error) {
-        console.log("didnt happen")
         dispatch(isError())
     }
 }
@@ -86,7 +84,6 @@ export const addCart = (payload: ITEMS) => (dispatch: Dispatch) => {
 export const removeCart = (payload: string) => (dispatch: Dispatch) => {
 
     const value = JSON.parse(localStorage['cart'])
-    value.map((x: { [key: string]: string }) => console.log(typeof x.cartid))
 
     const local = value.filter((item: ITEMS) => item.cartid !== payload)
     localStorage['cart'] = JSON.stringify(local)

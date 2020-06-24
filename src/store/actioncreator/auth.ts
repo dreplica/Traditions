@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 import Axios from 'axios'
-import {isloading, uploading, isError } from './actionfuncs'
+import {isloading, uploading, isError,signOut } from './actionfuncs'
 import { SIGNUP_FORM } from '../../reusablecomponent/theme/types'
 
 
@@ -31,5 +31,10 @@ export const login = (payload: { email: string; password: string }) => async (di
     }
 } 
 
+
+export const logout = () =>(dispatch:Dispatch)=>{
+    delete localStorage['auth'];
+    dispatch(signOut())
+}
 
 export default {}

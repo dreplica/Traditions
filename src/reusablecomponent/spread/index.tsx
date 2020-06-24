@@ -38,7 +38,6 @@ export default function SpreadContent(props: Iprops) {
   })
 
   useEffect(() => {
-    console.log("from spread ===>",props.data)
   setState({...state,data:props.data})
   }, [props.data]); 
 

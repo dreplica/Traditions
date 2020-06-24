@@ -25,3 +25,7 @@ export const isData = (payload: ITEMS[]) => ({
     type: "GET_ITEMS",
     payload
 })
+
+export const signOut = ()=>({
+    type:"SIGN_OUT"
+})

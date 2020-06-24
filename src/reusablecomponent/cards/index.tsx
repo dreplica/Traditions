@@ -56,7 +56,6 @@ function Card(props: IProps) {
 
     return (
         <Container onMouseEnter={showCover} onMouseLeave={showCover}>
-            {console.log("break bones ====>", state.item)}
             <Cover style={{ display: state.display }} />
             {
                 state.item.id.length

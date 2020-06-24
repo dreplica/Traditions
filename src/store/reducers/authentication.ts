@@ -55,8 +55,7 @@ const authenticate = (state = initialState,action:actionType) =>{
                 loading:false,
             }
         
-        case 'logout':
-            delete localStorage['auth'];
+        case 'SIGN_OUT':
             return {
                 ...state,
                 data:{}

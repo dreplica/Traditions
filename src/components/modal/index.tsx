@@ -68,7 +68,6 @@ function Modalview({ current, modal, RemoveModal, AddCart }: Iprops) {
                 <Designer><Link to={`/seller`} onClick={() => RemoveModal('none')}>Check Designer</Link></Designer>
                 <Button onClick={addCart}>Add to Cart</Button>
             </Description>
-            {/* </Content> */}
         </Container>
     );
 }
