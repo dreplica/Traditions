@@ -3,11 +3,11 @@ import styled from 'styled-components';
 export const Container = styled.section`
          min-width: 300px;
          max-width: 300px;
-         height:70vh;
+         height:80vh;
          position: sticky;
-         overflow-y:scroll;
+         /* overflow-y:scroll; */
          top:160px;
-         z-index: 5;
+         z-index: 15;
          align-self: flex-start;
          background: grey;
 
