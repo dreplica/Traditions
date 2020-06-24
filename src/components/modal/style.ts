@@ -71,8 +71,8 @@ export const Desc = styled.div`
 export const Images = styled.div`
 display: flex;
 overflow-x:auto;
-	height: 50vh;
-	width: 40%;
+	height: 350px;
+	width: 300px;
 	margin: 5vh auto;
 
 `;

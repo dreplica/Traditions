@@ -46,12 +46,12 @@ export function Imaging(props: iProps) {
 
 
 const Image = styled.img`
-    width:60%;
+    width:100%;
     height:100%;
     margin:auto;
 
     @media (max-width:700px){
-        width:80%;
-        height:90%;
+        width:100%;
+        height:100%;
     }
 `;
